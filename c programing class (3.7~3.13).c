@@ -1,5 +1,5 @@
-//#define _CRT_SECURE_NO_WARNINGS¸¦ »ç¿ëÇØ º¸¾ÈÀ¸·Î ÀÎÇÑ ¾È³»¸¦ ¹«½Ã
-//(Á¦ÀÏ À§¿¡ Àû¾î¾ß ÇÑ´Ù)
+//#define _CRT_SECURE_NO_WARNINGSë¥¼ ì‚¬ìš©í•´ ë³´ì•ˆìœ¼ë¡œ ì¸í•œ ì•ˆë‚´ë¥¼ ë¬´ì‹œ
+//(ì œì¼ ìœ„ì— ì ì–´ì•¼ í•œë‹¤)
 //long -> %ld
 //double -> %lf
 
@@ -9,8 +9,8 @@ int main()
 {
 	int num1 = 15; //00000000 00000000 00000000 00001111 (1+2+4+8)
 	int num2 = 20; //00000000 00000000 00000000 00010100 (4+16)
-	int num3 = num1 & num2; //num1°ú num2ÀÇ ºñÆ®´ÜÀ§ & ¿¬»ê
-	printf("AND ¿¬»êÀÇ °á°ú: %d \n",num3);	
+	int num3 = num1 & num2; //num1ê³¼ num2ì˜ ë¹„íŠ¸ë‹¨ìœ„ & ì—°ì‚°
+	printf("AND ì—°ì‚°ì˜ ê²°ê³¼: %d \n",num3);	
 	return 0;
 } 
 
@@ -38,7 +38,7 @@ int main()
 int main()
 {
 	int a = 0, b = 0, c = 0, d = 0;
-	printf("µÎ Á¤¼ö¸¦ ÀÔ·ÂÇÏ¼¼¿ä");
+	printf("ë‘ ì •ìˆ˜ë¥¼ ì…ë ¥í•˜ì„¸ìš”");
 	scanf_s("%d %d", &a, &b);
 	printf("%d", a | b);
 	return 0;
@@ -55,7 +55,7 @@ int main()
 	printf("%d\n", n << 3);
 	printf("%d\n", n << 4);
 	printf("%d\n", n << 14);
-	printf("%d\n", n << 30);//overflow (ÀÚ·áÇüÀÌ ¼ö¸¦ ´Ù ¸ø´ãÀ½)
+	printf("%d\n", n << 30);//overflow (ìë£Œí˜•ì´ ìˆ˜ë¥¼ ë‹¤ ëª»ë‹´ìŒ)
 	return 0;
 }
 
@@ -92,28 +92,28 @@ int main()
 int main()
 {
 	char ch = 9;
-	printf("chÀÇ Å©±â : %d\n", sizeof(ch));
-	printf("¼ıÀÚ 9ÀÇ Å©±â : %d\n", sizeof(9));
+	printf("chì˜ í¬ê¸° : %d\n", sizeof(ch));
+	printf("ìˆ«ì 9ì˜ í¬ê¸° : %d\n", sizeof(9));
 	int n = 9;
-	printf("nÀÇ Å©±â : %d\n", sizeof(n));
-	printf("¼ıÀÚ 9ÀÇ Å©±â : %d\n", sizeof(9));
+	printf("nì˜ í¬ê¸° : %d\n", sizeof(n));
+	printf("ìˆ«ì 9ì˜ í¬ê¸° : %d\n", sizeof(9));
 	double d = 9.1234;
-	printf("dÀÇ Å©±â : %d\n", sizeof(d));
-	printf("¼ıÀÚ 9.1234ÀÇ Å©±â : %d\n", sizeof(9.1234));
+	printf("dì˜ í¬ê¸° : %d\n", sizeof(d));
+	printf("ìˆ«ì 9.1234ì˜ í¬ê¸° : %d\n", sizeof(9.1234));
 	return 0;
 }
 
 //3.9
-¹İÁö¸§À» ÀÔ·Â¹Ş¾Æ ¿ø³ĞÀÌ¸¦ ±¸ÇÏ´Â ÄÚµå
+ë°˜ì§€ë¦„ì„ ì…ë ¥ë°›ì•„ ì›ë„“ì´ë¥¼ êµ¬í•˜ëŠ” ì½”ë“œ
 #define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
 int main()
 {
 	double area = 0, r = 0;
-	printf("¹İÁö¸§À» ÀÔ·ÂÇÏ¼¼¿ä");
+	printf("ë°˜ì§€ë¦„ì„ ì…ë ¥í•˜ì„¸ìš”");
 	scanf("%lf", &r);
 	area = r * r * 3.14;
-	printf("¹İÁö¸§ %.lfÀÇ ¿øÀÇ ³ĞÀÌ´Â %1.lfÀÔ´Ï´Ù", r,area);
+	printf("ë°˜ì§€ë¦„ %.lfì˜ ì›ì˜ ë„“ì´ëŠ” %1.lfì…ë‹ˆë‹¤", r,area);
 	return 0;
 }
 
@@ -130,60 +130,126 @@ int main()
 	return 0;
 }
 
-ASCII¹øÈ£ > ¹®ÀÚ
+ASCIIë²ˆí˜¸ > ë¬¸ì
 #define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
 int main()
 {
 	int n= 0;
 	scanf("%d", &n);
-	printf("ASCII ¹®ÀÚ %c\n", n);
+	printf("ASCII ë¬¸ì %c\n", n);
 	return 0;
 }
 
-ASCII¹®ÀÚ > ¹øÈ£
+ASCIIë¬¸ì > ë²ˆí˜¸
 #define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
 int main()
 {
 	char n= 0;
 	scanf("%c", &n);
-	printf("ASCII ¹øÈ£ %d\n", n);
+	printf("ASCII ë²ˆí˜¸ %d\n", n);
 	return 0;
 }
 
-//getchar»ç¿ë
+//getcharì‚¬ìš©
 #define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
 int main()
 {
 		int n= 0;
 	scanf("%d", &n);
-	printf("ASCII ¹®ÀÚ %c\n", n);
+	printf("ASCII ë¬¸ì %c\n", n);
 	getchar();
 		char n= 0;
 	scanf("%c", &n);
-	printf("ASCII ¹øÈ£ %d\n", n);
+	printf("ASCII ë²ˆí˜¸ %d\n", n);
 	return 0;
 }
 
-//µÎ Á¡À» ÀÔ·Â¹Ş¾Æ »ç°¢ÇüÀÇ ³ĞÀÌ¸¦ ±¸ÇÏ´Â ÇÁ·Î±×·¥
+//ë‘ ì ì„ ì…ë ¥ë°›ì•„ ì‚¬ê°í˜•ì˜ ë„“ì´ë¥¼ êµ¬í•˜ëŠ” í”„ë¡œê·¸ë¨
 #define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
 int main()
 {
 	int x1 = 0, x2 = 0, x3 = 0, x4 = 0;
 	int x = 0, y = 0, a = 0;
-	printf("»ç°¢ÇüÀÇ ÁÂ ÇÏ´ÜÀÇ x,yÁÂÇ¥¸¦ ÀÔ·ÂÇÏ¼¼¿ä");
+	printf("ì‚¬ê°í˜•ì˜ ì¢Œ í•˜ë‹¨ì˜ x,yì¢Œí‘œë¥¼ ì…ë ¥í•˜ì„¸ìš”");
 	scanf("%d %d", &x1, &x2);
 	getchar();
-	printf("»ç°¢ÇüÀÇ ¿ì »ó´ÜÀÇ x,yÁÂÇ¥¸¦ ÀÔ·ÂÇÏ¼¼¿ä");
+	printf("ì‚¬ê°í˜•ì˜ ìš° ìƒë‹¨ì˜ x,yì¢Œí‘œë¥¼ ì…ë ¥í•˜ì„¸ìš”");
 	scanf("%d %d", &x3, &x4);
 	x = x3 - x1;
 	y = x4 - x2;
 	a = x * y;
-	printf("»ç°¢ÇüÀÇ ³ĞÀÌ %d", a);
+	printf("ì‚¬ê°í˜•ì˜ ë„“ì´ %d", a);
 	return 0;
 }
 
+//3.10
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+int main()
+{
+int Korean = 0, English = 0, math = 0, computer = 0, sum = 0, avg = 0;
+printf("êµ­ì–´, ì˜ì–´, ìˆ˜í•™, ì»´í“¨í„° ê³¼ëª© ì ìˆ˜ë¥¼ ì°¨ë¡€ëŒ€ë¡œ ì…ë ¥í•˜ì„¸ìš”");
+scanf("%d%d%d%d", &Korean, &English, &math, &computer);
+sum = Korean + English + math + computer;
+printf("sum %d\n", sum);
+avg = sum / 4;
+printf("avg %d", avg);
+return 0;
+}
+
+#define _crt_secure_no_warnings
+#include <stdio.h>
+int main()
+{
+	int a = 0, b = 0;
+	printf("ë‘ ì •ìˆ˜ë¥¼ ì…ë ¥í•˜ì„¸ìš”");
+	scanf("%d %d", &a, &b);
+	printf(" %d / %d = %d . . . %d", a, b, a / b, a % b);
+
+	return 0;
+}
+
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+int main()
+{
+	int a = 0, b = 0;
+	printf("ê°€ë¡œ ì„¸ë¡œì˜ ê¸¸ì´ë¥¼ ì…ë ¥í•˜ì„¸ìš”");
+	scanf("%d %d", &a, &b);
+	a += 5;
+	b = b * 2;
+	printf("%d\n%d\n%d", a, b, a * b);
+	return 0;
+}
+
+//3.11
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+int main()
+{
+	int a = 0, b = 0;
+	printf("ë‘ ìˆ˜ë¥¼ ì…ë ¥í•˜ì„¸ìš”");
+	scanf("%d %d", &a, &b);
+	printf("%d %d", ++a, b--);
+	printf("\n%d %d", a, b);
+
+	return 0;
+}
+
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+int main()
+{
+	int a = 0, b = 0, c = 0, d = 0, e = 0,f=0;
+	printf("ë¯¼ìˆ˜ì˜ í‚¤ì™€ ëª¸ë¬´ê²Œë¥¼ ì…ë ¥í•˜ì„¸ìš”");
+	scanf("%d %d", &a, &b);
+	printf("ê¸°ì˜ì´ì˜ í‚¤ì™€ ëª¸ë¬´ê²Œë¥¼ ì…ë ¥í•˜ì„¸ìš”");
+	scanf("%d %d", &c, &d);
+	printf("%d", (a > c && b > d) ? (e = 1) : (e = 0));
+	return 0;
+}
 
