@@ -1,10 +1,10 @@
-//shift + DelÅ° = ÇÑ ÁÙ »èÁ¦
-//#in ÅÇÅ° ´©¸£±â
-//ctrl + f7 = ÄÄÆÄÀÏ
-//ctrl + B = ºôµå
-//ctrl + = f5½ÇÇà	
-//alt + ¹æÇâÅ° = ÁÙÀÌµ¿
-//ctrl + D = º¹»ç
+//shift + Delí‚¤ = í•œ ì¤„ ì‚­ì œ
+//#in íƒ­í‚¤ ëˆ„ë¥´ê¸°
+//ctrl + f7 = ì»´íŒŒì¼
+//ctrl + B = ë¹Œë“œ
+//ctrl + = f5ì‹¤í–‰	
+//alt + ë°©í–¥í‚¤ = ì¤„ì´ë™
+//ctrl + D = ë³µì‚¬
 
 //3.1
 #include <stdio.h>
@@ -13,7 +13,7 @@ int main()
 	printf("Hello World\n");
 	printf("Hello World");
 	printf("Hello\n World");
-	printf("\nÃµÀ»·Î 70 105µ¿ 1504È£");
+	printf("\nì²œì„ë¡œ 70 105ë™ 1504í˜¸");
 	printf("\n%d", 1234);
 	printf("%d%d", 10, 20);
 	return 0;
@@ -23,7 +23,7 @@ int main()
 int main()
 {
 	printf("My age : %d", 17);
-	printf("³ªÀÇ c¾ğ¾î Á¡¼ö : %d ", 100);
+	printf("ë‚˜ì˜ cì–¸ì–´ ì ìˆ˜ : %d ", 100);
 	return 0;
 }
 
@@ -56,23 +56,23 @@ int main()
 #include <stdio.h>
 int main()
 {
-	//ºñ±³¿¬»êÀÚ
+	//ë¹„êµì—°ì‚°ì
 	int n1 = 1, n2 = 2;
-	int °á°ú=0;
-	printf("°á°ú : %d\n", °á°ú);
-	°á°ú = (n1 == n2);
-	printf("°á°ú : %d\n", °á°ú);
+	int ê²°ê³¼=0;
+	printf("ê²°ê³¼ : %d\n", ê²°ê³¼);
+	ê²°ê³¼ = (n1 == n2);
+	printf("ê²°ê³¼ : %d\n", ê²°ê³¼);
 	n2 = 1;
-	°á°ú = (n1 == n2);
-	printf("°á°ú : %d\n", °á°ú);
-	°á°ú = (n1 >= n2);
-	printf("°á°ú : %d\n", °á°ú);
-	°á°ú = (n1 <= n2);
-	printf("°á°ú : %d\n", °á°ú);
-	°á°ú = (n1 > n2);
-	printf("°á°ú : %d\n", °á°ú);
-	°á°ú = (n1 < n2);
-	printf("°á°ú : %d\n", °á°ú);
+	ê²°ê³¼ = (n1 == n2);
+	printf("ê²°ê³¼ : %d\n", ê²°ê³¼);
+	ê²°ê³¼ = (n1 >= n2);
+	printf("ê²°ê³¼ : %d\n", ê²°ê³¼);
+	ê²°ê³¼ = (n1 <= n2);
+	printf("ê²°ê³¼ : %d\n", ê²°ê³¼);
+	ê²°ê³¼ = (n1 > n2);
+	printf("ê²°ê³¼ : %d\n", ê²°ê³¼);
+	ê²°ê³¼ = (n1 < n2);
+	printf("ê²°ê³¼ : %d\n", ê²°ê³¼);
 
 	return 0;
 }
@@ -92,7 +92,7 @@ int main()
 #include <stdio.h>
 int main()
 {
-	printf("\t¤·");
+	printf("\tã…‡");
 
 	return 0;
 }
@@ -100,17 +100,17 @@ int main()
 #include <stdio.h>
 int main()
 {
-	printf("³»\nÀÌ\n¸§");
+	printf("ë‚´\nì´\në¦„");
 	return 0;
 }
 
 #include <stdio.h>
 int main()
 {
-	printf("¾È³ç!!\n");
-	printf("³» ÀÌ¸§Àº : È«±æµ¿ÀÌ¾ß.");
-	printf("³ª´Â 17»ìÀÌ¾ß.");
-	printf("³ªÀÇ ÁÂ¿ì¸íÀº \"ÃÖ¼±À» ´ÙÇØ ³ë·ÂÇÏÀÚ\"");
+	printf("ì•ˆë…•!!\n");
+	printf("ë‚´ ì´ë¦„ì€ : í™ê¸¸ë™ì´ì•¼.");
+	printf("ë‚˜ëŠ” 17ì‚´ì´ì•¼.");
+	printf("ë‚˜ì˜ ì¢Œìš°ëª…ì€ \"ìµœì„ ì„ ë‹¤í•´ ë…¸ë ¥í•˜ì\"");
 
 	return 0;
 }
@@ -139,72 +139,3 @@ int main()
 	printf("%d\n", y);
 	return 0;
 }
-
-//3.10
-#define _CRT_SECURE_NO_WARNINGS
-#include <stdio.h>
-int main()
-{
-int Korean = 0, English = 0, math = 0, computer = 0, sum = 0, avg = 0;
-printf("±¹¾î, ¿µ¾î, ¼öÇĞ, ÄÄÇ»ÅÍ °ú¸ñ Á¡¼ö¸¦ Â÷·Ê´ë·Î ÀÔ·ÂÇÏ¼¼¿ä");
-scanf("%d%d%d%d", &Korean, &English, &math, &computer);
-sum = Korean + English + math + computer;
-printf("sum %d\n", sum);
-avg = sum / 4;
-printf("avg %d", avg);
-return 0;
-}
-
-#define _crt_secure_no_warnings
-#include <stdio.h>
-int main()
-{
-	int a = 0, b = 0;
-	printf("µÎ Á¤¼ö¸¦ ÀÔ·ÂÇÏ¼¼¿ä");
-	scanf("%d %d", &a, &b);
-	printf(" %d / %d = %d . . . %d", a, b, a / b, a % b);
-
-	return 0;
-}
-
-#define _CRT_SECURE_NO_WARNINGS
-#include <stdio.h>
-int main()
-{
-	int a = 0, b = 0;
-	printf("°¡·Î ¼¼·ÎÀÇ ±æÀÌ¸¦ ÀÔ·ÂÇÏ¼¼¿ä");
-	scanf("%d %d", &a, &b);
-	a += 5;
-	b = b * 2;
-	printf("%d\n%d\n%d", a, b, a * b);
-	return 0;
-}
-
-//3.11
-#define _CRT_SECURE_NO_WARNINGS
-#include <stdio.h>
-int main()
-{
-	int a = 0, b = 0;
-	printf("µÎ ¼ö¸¦ ÀÔ·ÂÇÏ¼¼¿ä");
-	scanf("%d %d", &a, &b);
-	printf("%d %d", ++a, b--);
-	printf("\n%d %d", a, b);
-
-	return 0;
-}
-
-#define _CRT_SECURE_NO_WARNINGS
-#include <stdio.h>
-int main()
-{
-	int a = 0, b = 0, c = 0, d = 0, e = 0,f=0;
-	printf("¹Î¼öÀÇ Å°¿Í ¸ö¹«°Ô¸¦ ÀÔ·ÂÇÏ¼¼¿ä");
-	scanf("%d %d", &a, &b);
-	printf("±â¿µÀÌÀÇ Å°¿Í ¸ö¹«°Ô¸¦ ÀÔ·ÂÇÏ¼¼¿ä");
-	scanf("%d %d", &c, &d);
-	printf("%d", (a > c && b > d) ? (e = 1) : (e = 0));
-	return 0;
-}
-
-
