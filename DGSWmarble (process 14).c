@@ -1,10 +1,10 @@
-//°úÁ¤ 14
+//ê³¼ì • 14
 //
-// Æ÷ÃáÄ«µå (4, 12, 20, 28 ¹øÂ° ¶¥) ¸¦ ¸¸µë
-// ÇÑ¹ø ´õ ÁÖ»çÀ§ ±¼¸®±â (2Â÷ ½ÉÀÚ)
-// ¼±ÅÃÇÑ »ó´ë ¶¥À» ÆÄ±«½ÃÅ°±â (È­Àç»óÈ²¹ß»ý)
-// ¹«ÀÎµµ¿¡ °¡±â (±â¸»°í»ç)
-// ÇöÀçÇÃ·¹ÀÌ¾îÀÇ °¡Àå ½Ñ ¶¥°ú ´Ù¸¥ ÇÃ·¹ÀÌ¾îÀÇ °¡Àå ºñ½Ñ ¶¥À» ¹Ù²Ù±â (Æ©Æ¼Æ©ÅÍ) -Áöµµ¹Ù²Ù±â¹Ì¿Ï¼º-
+// í¬ì¶˜ì¹´ë“œ (4, 12, 20, 28 ë²ˆì§¸ ë•…) ë¥¼ ë§Œë“¬
+// í•œë²ˆ ë” ì£¼ì‚¬ìœ„ êµ´ë¦¬ê¸° (2ì°¨ ì‹¬ìž)
+// ì„ íƒí•œ ìƒëŒ€ ë•…ì„ íŒŒê´´ì‹œí‚¤ê¸° (í™”ìž¬ìƒí™©ë°œìƒ)
+// ë¬´ì¸ë„ì— ê°€ê¸° (ê¸°ë§ê³ ì‚¬)
+// í˜„ìž¬í”Œë ˆì´ì–´ì˜ ê°€ìž¥ ì‹¼ ë•…ê³¼ ë‹¤ë¥¸ í”Œë ˆì´ì–´ì˜ ê°€ìž¥ ë¹„ì‹¼ ë•…ì„ ë°”ê¾¸ê¸° (íŠœí‹°íŠœí„°) -ì§€ë„ë°”ê¾¸ê¸°ë¯¸ì™„ì„±-
 //  
 //
 #define _CRT_SECURE_NO_WARNINGS
@@ -17,14 +17,14 @@
 
 struct PLAYER
 {
-	int money;//ÇÃ·¹ÀÌ¾îÀÇ µ·
-	int location;//ÇÃ·¹ÀÌ¾îÀÇ À§Ä¡
+	int money;//í”Œë ˆì´ì–´ì˜ ëˆ
+	int location;//í”Œë ˆì´ì–´ì˜ ìœ„ì¹˜
 	int count;
 };
 struct MAP
 {
-	int building[32];//ºôµùÀÇ °³¼ö
-	int who[32];//ºôµùÀÇ ¼ÒÀ¯ÀÚ
+	int building[32];//ë¹Œë”©ì˜ ê°œìˆ˜
+	int who[32];//ë¹Œë”©ì˜ ì†Œìœ ìž
 	int cost[32];
 };
 
@@ -68,8 +68,8 @@ int map[37][37] = {
 {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 }
 };
 
-//±×³É ¼ö¸¦ ³ÖÀ¸¸é º®°ú °ãÄ¡±â ¶§¹®¿¡ 2°¡ ÇÃ·¯½ºµÈ ¼ö¸¦ »ç¿ëÇØ
-//Ãâ·ÂÇÒ ¶§´Â -2¸¦ ÇØ¼­ È°¿ëÇÑ´Ù
+//ê·¸ëƒ¥ ìˆ˜ë¥¼ ë„£ìœ¼ë©´ ë²½ê³¼ ê²¹ì¹˜ê¸° ë•Œë¬¸ì— 2ê°€ í”ŒëŸ¬ìŠ¤ëœ ìˆ˜ë¥¼ ì‚¬ìš©í•´
+//ì¶œë ¥í•  ë•ŒëŠ” -2ë¥¼ í•´ì„œ í™œìš©í•œë‹¤
 
 int DICE[2][5][5] = { 0, };
 
@@ -79,83 +79,83 @@ struct MAP MAP = { 0, };
 
 
 void TURN();
-//ÇÃ·¹ÀÌ¾îÀÇ ¼ö¸¦ ¹Þ¾Æ¼­ ¼ø¼­¸¦ Á¤ÇÏ´Â ÇÔ¼ö
+//í”Œë ˆì´ì–´ì˜ ìˆ˜ë¥¼ ë°›ì•„ì„œ ìˆœì„œë¥¼ ì •í•˜ëŠ” í•¨ìˆ˜
 int dice();
-//ÁÖ»çÀ§¸¦ µ¹¸®´Â ÇÔ¼ö
+//ì£¼ì‚¬ìœ„ë¥¼ ëŒë¦¬ëŠ” í•¨ìˆ˜
 void GS(int s);//gamesetting
-//°ÔÀÓÀÌ ½ÃÀÛµÇ±â Àü ¼¼ÆÃ
+//ê²Œìž„ì´ ì‹œìž‘ë˜ê¸° ì „ ì„¸íŒ…
 int judge(int s);
-//¾î¶² »óÈ²ÀÎÁö ÆÇ´ÜÇÏ´Â ÇÔ¼ö(³»¶¥ÀÎÁö »ó´ë¶¥ÀÎÁö µî)
+//ì–´ë–¤ ìƒí™©ì¸ì§€ íŒë‹¨í•˜ëŠ” í•¨ìˆ˜(ë‚´ë•…ì¸ì§€ ìƒëŒ€ë•…ì¸ì§€ ë“±)
 int CM(int s);//changingmoney
-//¾î¶² »óÈ²¿¡ µû¶ó µ·À» + - ÇÏ´Â ÇÔ¼ö
+//ì–´ë–¤ ìƒí™©ì— ë”°ë¼ ëˆì„ + - í•˜ëŠ” í•¨ìˆ˜
 void BB(int s);//buildingbuilding
-//»óÈ²¿¡ µû¶ó ºôµùÀ» Áþ´Â ÇÔ¼ö
+//ìƒí™©ì— ë”°ë¼ ë¹Œë”©ì„ ì§“ëŠ” í•¨ìˆ˜
 int YORN(int s);
-//»óÈ²¿¡ µû¶ó Y¶Ç´ÂNÀ» ¹Þ¾Æ¼­ 1¶Ç´Â 0À» ¹ÝÈ¯ÇÏ´Â ÇÔ¼ö
+//ìƒí™©ì— ë”°ë¼ Yë˜ëŠ”Nì„ ë°›ì•„ì„œ 1ë˜ëŠ” 0ì„ ë°˜í™˜í•˜ëŠ” í•¨ìˆ˜
 void GF(int s);//gamefuntion
-//°ÔÀÓÀÇ ±â´É(ÆÄ»êÇÑ»ç¶÷ÀÇ ¼ø¼­¸¦ ³Ñ±â±â)
+//ê²Œìž„ì˜ ê¸°ëŠ¥(íŒŒì‚°í•œì‚¬ëžŒì˜ ìˆœì„œë¥¼ ë„˜ê¸°ê¸°)
 //int END(int s);
-//°ÔÀÓÀÇ ³¡ÀÏ »óÈ²À» ÆÇ´ÜÇÏ´Â ÇÔ¼ö
+//ê²Œìž„ì˜ ëì¼ ìƒí™©ì„ íŒë‹¨í•˜ëŠ” í•¨ìˆ˜
 void CBC(int s);//changingbuildingcost
-//°Ç¹°À» ÁöÀ» ¶§ ¸¶´Ù ¶¥ÀÇ °¡°ÝÀ» ¹Ù²Ù´Â ÇÔ¼ö
+//ê±´ë¬¼ì„ ì§€ì„ ë•Œ ë§ˆë‹¤ ë•…ì˜ ê°€ê²©ì„ ë°”ê¾¸ëŠ” í•¨ìˆ˜
 void CW(int s);//changingwho
-//»óÈ²¿¡ µû¶ó °Ç¹°ÀÇ ¼ÒÀ¯ÀÚ¸¦ ¹Ù²Ù´Â ÇÔ¼ö
+//ìƒí™©ì— ë”°ë¼ ê±´ë¬¼ì˜ ì†Œìœ ìžë¥¼ ë°”ê¾¸ëŠ” í•¨ìˆ˜
 void SP();//specialplace
-//»óÈ²¿¡ µû¶ó ¹«ÀÎµµ, ¿Ã¸²ÇÈ°³ÃÖ, ¼¼°è¿©Çàµî
+//ìƒí™©ì— ë”°ë¼ ë¬´ì¸ë„, ì˜¬ë¦¼í”½ê°œìµœ, ì„¸ê³„ì—¬í–‰ë“±
 void PM();// printmap
-//¸Ê Ãâ·Â ÇÔ¼ö
+//ë§µ ì¶œë ¥ í•¨ìˆ˜
 int SA();//specialaction
-//specialplace¿¡ °¬À» ¶§ Æ¯¼öÇÑ Çàµ¿
+//specialplaceì— ê°”ì„ ë•Œ íŠ¹ìˆ˜í•œ í–‰ë™
 //void PD();//printdice
-////ÁÖ»çÀ§ÀÇ ¼ö¿¡ µû¶ó ¸ð¾çÀ» Ãâ·ÂÇÏ´Â ÇÔ¼ö
+////ì£¼ì‚¬ìœ„ì˜ ìˆ˜ì— ë”°ë¼ ëª¨ì–‘ì„ ì¶œë ¥í•˜ëŠ” í•¨ìˆ˜
 //void MD();//makedice
-////diceÀÇ ¼ö¿¡ µû¶ó Ãâ·ÂÇÏ´Â ÁÖ»çÀ§ÀÇ ¸ð¾çÀ» ¹Ù²Ù´Â ÇÔ¼ö
+////diceì˜ ìˆ˜ì— ë”°ë¼ ì¶œë ¥í•˜ëŠ” ì£¼ì‚¬ìœ„ì˜ ëª¨ì–‘ì„ ë°”ê¾¸ëŠ” í•¨ìˆ˜
 void FC();//fortunecard
-//Æ÷ÃáÄ«µå¸¦ ·£´ýÀ¸·Î »Ì°í ºÒ·¯ÁÖ´Â ÇÔ¼ö
+//í¬ì¶˜ì¹´ë“œë¥¼ ëžœë¤ìœ¼ë¡œ ë½‘ê³  ë¶ˆëŸ¬ì£¼ëŠ” í•¨ìˆ˜
 
-int i = 0;//main for¹®¿¡¼­ »ç¿ëµÇ´Â º¯¼ö
-int n = 0;//ÇÃ·¹ÀÌ¾îÀÇ ¼ö
-int random[4];//¼ø¼­
-char YorN;//¾Æ¹«Å°³ª ´­·¯ ³Ñ±â±â / Y or N
-int DorS;//´õºíÀÎÁö ¾Æ´ÑÁö
-int BN;//ÁöÀ» °Ç¹°ÀÇ °³¼ö
-int choice;//¼±ÅÃÇÏ´Â °Ç¹°(¿Ã¸²ÇÈ °³ÃÖ, ¼¼°è ¿©Çà µî)
-char buildingname[32][20] = { "Á¤¹®", "¿îµ¿Àå", "Ã¼À°°ü", "»çÈ¸Àü¿ë½Ç", "Æ÷ÃáÄ«µå",
-"¼öÇÐÀü¿ë½Ç", "½ÃÃ»°¢½Ç", "¹Ì¼ú½Ç", "±â¼÷»ç", "¹æ¼Û½Ç","Ã¢ÀÇ°øÀÛ½Ç",
-"¸ð¹ÙÀÏÇÁ·Î±×·¡¹Ö½Ç", "Æ÷ÃáÄ«µå", "À©µµ¿ìÇÁ·Î±×·¡¹Ö½Ç", "¿ÀÄÉ½ºÆ®¶ó½Ç", "µµ¼­°ü",
-"±Þ½Ä½Ç", "¾ðÅÏµå","½ºÅ¸º¿", "¼¼ºì·¦½º", "Æ÷ÃáÄ«µå", "CnS", "ducami", "b1nd", "±Í°¡ ¹ö½º",
-"»ç°¨½Ç", "±³Àå½Ç", "Àç´öÁ¤", "Æ÷ÃáÄ«µå", "´ë´Ï»ê", "1ÇÐ³â1¹Ý", "¹Úº´°ü" };
-//ºôµùÀÇ ÀÌ¸§
-int cnt = 0;//ÆÄ»êÇÑ »ç¶÷ÀÇ ¼ö +
-int Dice[2] = { 0, };//ÁÖ»çÀ§ 1, 2
-char fortunecard[10][20] = { "2Â÷ ½ÉÀÚ","È­Àç»óÈ²¹ß»ý","±â¸»°í»ç","Æ©Æ¼Æ©ÅÍ","¿Ü¹Ú","º¹±Í",
+int i = 0;//main forë¬¸ì—ì„œ ì‚¬ìš©ë˜ëŠ” ë³€ìˆ˜
+int n = 0;//í”Œë ˆì´ì–´ì˜ ìˆ˜
+int random[4];//ìˆœì„œ
+char YorN;//ì•„ë¬´í‚¤ë‚˜ ëˆŒëŸ¬ ë„˜ê¸°ê¸° / Y or N
+int DorS;//ë”ë¸”ì¸ì§€ ì•„ë‹Œì§€
+int BN;//ì§€ì„ ê±´ë¬¼ì˜ ê°œìˆ˜
+int choice;//ì„ íƒí•˜ëŠ” ê±´ë¬¼(ì˜¬ë¦¼í”½ ê°œìµœ, ì„¸ê³„ ì—¬í–‰ ë“±)
+char buildingname[32][20] = { "ì •ë¬¸", "ìš´ë™ìž¥", "ì²´ìœ¡ê´€", "ì‚¬íšŒì „ìš©ì‹¤", "í¬ì¶˜ì¹´ë“œ",
+"ìˆ˜í•™ì „ìš©ì‹¤", "ì‹œì²­ê°ì‹¤", "ë¯¸ìˆ ì‹¤", "ê¸°ìˆ™ì‚¬", "ë°©ì†¡ì‹¤","ì°½ì˜ê³µìž‘ì‹¤",
+"ëª¨ë°”ì¼í”„ë¡œê·¸ëž˜ë°ì‹¤", "í¬ì¶˜ì¹´ë“œ", "ìœˆë„ìš°í”„ë¡œê·¸ëž˜ë°ì‹¤", "ì˜¤ì¼€ìŠ¤íŠ¸ë¼ì‹¤", "ë„ì„œê´€",
+"ê¸‰ì‹ì‹¤", "ì–¸í„´ë“œ","ìŠ¤íƒ€ë´‡", "ì„¸ë¸ëž©ìŠ¤", "í¬ì¶˜ì¹´ë“œ", "CnS", "ducami", "b1nd", "ê·€ê°€ ë²„ìŠ¤",
+"ì‚¬ê°ì‹¤", "êµìž¥ì‹¤", "ìž¬ë•ì •", "í¬ì¶˜ì¹´ë“œ", "ëŒ€ë‹ˆì‚°", "1í•™ë…„1ë°˜", "ë°•ë³‘ê´€" };
+//ë¹Œë”©ì˜ ì´ë¦„
+int cnt = 0;//íŒŒì‚°í•œ ì‚¬ëžŒì˜ ìˆ˜ +
+int Dice[2] = { 0, };//ì£¼ì‚¬ìœ„ 1, 2
+char fortunecard[10][20] = { "2ì°¨ ì‹¬ìž","í™”ìž¬ìƒí™©ë°œìƒ","ê¸°ë§ê³ ì‚¬","íŠœí‹°íŠœí„°","ì™¸ë°•","ë³µê·€",
 "" };
 
 
 int main()
 {
 	srand((unsigned)time(NULL));
-	GS(2);//Ç®½ºÅ©¸°
-	GS(1);//ºôµù°ª ÃÊ±âÈ­
-	TURN();//¼ø¼­ Á¤ÇÏ±â
-	GS(0);//¼ø¼­±×´ë·Î ÇÃ·¹ÀÌ¾î µ· ÃÊ±âÈ­
+	GS(2);//í’€ìŠ¤í¬ë¦°
+	GS(1);//ë¹Œë”©ê°’ ì´ˆê¸°í™”
+	TURN();//ìˆœì„œ ì •í•˜ê¸°
+	GS(0);//ìˆœì„œê·¸ëŒ€ë¡œ í”Œë ˆì´ì–´ ëˆ ì´ˆê¸°í™”
 	for (i = 0; i < n; i++)
 	{
 		GF(0);
-		printf("\n\n\t\t\t\t\t\t\t\t\t\t%d¹ø ÇÃ·¹ÀÌ¾î Â÷·Ê\n\n", random[i]);
-		if (PLAYER[random[i]].count != 0)//Æ¯º°ÇÑ Àå¼Ò¿¡ ÀÖÀ» ¶§ ÁÖ»çÀ§¸¦ µ¹¸®Áö ¾Ê´Â´Ù
+		printf("\n\n\t\t\t\t\t\t\t\t\t\t%dë²ˆ í”Œë ˆì´ì–´ ì°¨ë¡€\n\n", random[i]);
+		if (PLAYER[random[i]].count != 0)//íŠ¹ë³„í•œ ìž¥ì†Œì— ìžˆì„ ë•Œ ì£¼ì‚¬ìœ„ë¥¼ ëŒë¦¬ì§€ ì•ŠëŠ”ë‹¤
 		{
 			if (SA())
 			{
 				PM();
-				continue;//¹«ÀÎµµÀÏ ¶§ ¼ø¼­ ³Ñ±â±â
+				continue;//ë¬´ì¸ë„ì¼ ë•Œ ìˆœì„œ ë„˜ê¸°ê¸°
 			}
 		}
 		else
 		{
 			dice();
 		}
-		if (judge(3))//Æ¯¼öÇÑ Áö¿ªÀÏ ¶§
+		if (judge(3))//íŠ¹ìˆ˜í•œ ì§€ì—­ì¼ ë•Œ
 		{
 			if (judge(4))
 			{
@@ -163,58 +163,58 @@ int main()
 			}
 			else
 			{
-				FC();//Æ÷ÃáÄ«µå
+				FC();//í¬ì¶˜ì¹´ë“œ
 			}
 		}
-		else//Æ¯¼öÇÑ Áö¿ªÀÌ ¾Æ´Ò ¶§
+		else//íŠ¹ìˆ˜í•œ ì§€ì—­ì´ ì•„ë‹ ë•Œ
 		{
-			if (judge(0))// »ó´ë¶¥ÀÎÁö ¾Æ´ÑÁö ÆÇº° ¾Æ´Ï¸é
+			if (judge(0))// ìƒëŒ€ë•…ì¸ì§€ ì•„ë‹Œì§€ íŒë³„ ì•„ë‹ˆë©´
 			{
-				if (!(judge(1)))//·£µå¸¶Å©ÀÎÁö ¾Æ´ÑÁö ¾Æ´Ï¶ó¸é
+				if (!(judge(1)))//ëžœë“œë§ˆí¬ì¸ì§€ ì•„ë‹Œì§€ ì•„ë‹ˆë¼ë©´
 				{
-					if (!(judge(2)))//°Ç¹°ÀÌ 3°³ ¹Ì¸¸ÀÏ ¶§
+					if (!(judge(2)))//ê±´ë¬¼ì´ 3ê°œ ë¯¸ë§Œì¼ ë•Œ
 					{
-						if (YORN(0))//°Ç¼³ÇÒ ¶§
+						if (YORN(0))//ê±´ì„¤í•  ë•Œ
 						{
 							BB(0);
 							CW(0);
 						}
 					}
-					else//°Ç¹°ÀÌ 3°³ÀÏ ¶§
+					else//ê±´ë¬¼ì´ 3ê°œì¼ ë•Œ
 					{
-						if (YORN(1))//·£µå¸¶Å©¸¦ ÁöÀ» °ÍÀÎ°¡
+						if (YORN(1))//ëžœë“œë§ˆí¬ë¥¼ ì§€ì„ ê²ƒì¸ê°€
 						{
 							BB(1);
 						}
 					}
-					if (CM(0))//Áþ´Â °Ç¹°ÀÇ °³¼ö¿¡ µû¶ó 
+					if (CM(0))//ì§“ëŠ” ê±´ë¬¼ì˜ ê°œìˆ˜ì— ë”°ë¼ 
 					{
 						continue;
 					}
-					CBC(0);//°Ç¹°À» ÁöÀ½¿¡ µû¶ó ¶¥ÀÇ °¡°ÝÀ» ¹Ù²ãÁÖ±â
+					CBC(0);//ê±´ë¬¼ì„ ì§€ìŒì— ë”°ë¼ ë•…ì˜ ê°€ê²©ì„ ë°”ê¿”ì£¼ê¸°
 				}
-				//else ·£µå¸¶Å©¶ó¸é ³Ñ±â±â
+				//else ëžœë“œë§ˆí¬ë¼ë©´ ë„˜ê¸°ê¸°
 			}
-			else // ¸ÂÀ¸¸é
+			else // ë§žìœ¼ë©´
 			{
-				if (CM(1))//ÀÏ´Ü µ·À» ³»°í
+				if (CM(1))//ì¼ë‹¨ ëˆì„ ë‚´ê³ 
 				{
 					continue;
 				}
-				if (!(judge(1)))//·£µå¸¶Å©°¡ ¾Æ´Ï¶ó¸é(ÀÎ¼ö°¡ °¡´ÉÇÏ´Ù¸é)
+				if (!(judge(1)))//ëžœë“œë§ˆí¬ê°€ ì•„ë‹ˆë¼ë©´(ì¸ìˆ˜ê°€ ê°€ëŠ¥í•˜ë‹¤ë©´)
 				{
-					if (YORN(2))//ÀÎ¼ö¸¦ ÇÒ °ÍÀÎ°¡? ¸Â´Ù¸é
+					if (YORN(2))//ì¸ìˆ˜ë¥¼ í•  ê²ƒì¸ê°€? ë§žë‹¤ë©´
 					{
 						if (CM(2))
 						{
 							continue;
 						}
 						CW(0);
-						if (YORN(0))//°Ç¹°À» Ãß°¡·Î ÁöÀ»°ÇÁö ¾Æ´ÑÁö ¸ÂÀ¸¸é
+						if (YORN(0))//ê±´ë¬¼ì„ ì¶”ê°€ë¡œ ì§€ì„ê±´ì§€ ì•„ë‹Œì§€ ë§žìœ¼ë©´
 						{
-							if (judge(2))//ÀÎ¼öÇÑ ¶¥ÀÇ °Ç¹°ÀÌ 3°³ÀÎÁö ¾Æ´ÑÁö ¸ÂÀ¸¸é
+							if (judge(2))//ì¸ìˆ˜í•œ ë•…ì˜ ê±´ë¬¼ì´ 3ê°œì¸ì§€ ì•„ë‹Œì§€ ë§žìœ¼ë©´
 							{
-								if (YORN(1))//·£µå¸¶Å©¸¦ ÁöÀ»°Å¸é
+								if (YORN(1))//ëžœë“œë§ˆí¬ë¥¼ ì§€ì„ê±°ë©´
 								{
 									BB(1);
 									if (CM(0))
@@ -223,7 +223,7 @@ int main()
 									}
 								}
 							}
-							else//¾Æ´Ï¸é
+							else//ì•„ë‹ˆë©´
 							{
 								BB(0);
 								if (CM(0))
@@ -240,14 +240,14 @@ int main()
 		//Sleep(1000);
 		//CLS;
 		PM();
-		//END(0);//´õºí»çÀÌ¿¡ ³¡ÀÌ ³¯ ¼öµµ ÀÖ´Ù
-		if (DorS)//´õºíÀÏ ¶§ ÇÑ¹ø ´õ
+		//END(0);//ë”ë¸”ì‚¬ì´ì— ëì´ ë‚  ìˆ˜ë„ ìžˆë‹¤
+		if (DorS)//ë”ë¸”ì¼ ë•Œ í•œë²ˆ ë”
 		{
 			i--;
-			continue;//continue°¡ ¾²¿©¼­
-			//ÇÔ¼ö¿¡ ³Ö°ÔµÇ¸é ´õ ±æ¾îÁø´Ù
+			continue;//continueê°€ ì“°ì—¬ì„œ
+			//í•¨ìˆ˜ì— ë„£ê²Œë˜ë©´ ë” ê¸¸ì–´ì§„ë‹¤
 		}
-		GF(1);//¼ø¼­µ¹¸®±â
+		GF(1);//ìˆœì„œëŒë¦¬ê¸°
 	}
 
 	return 0;
@@ -259,15 +259,15 @@ void TURN()
 	{
 		printf("\n=========================================================================================================================");
 		printf("====================================================================\n");
-		printf("\t\t\t\t\t\t\t\t\tÇÃ·¹ÀÌ¾îÀÇ ¼ö¸¦ ÀÔ·ÂÇÏ¼¼¿ä(2~4) ");
+		printf("\t\t\t\t\t\t\t\t\tí”Œë ˆì´ì–´ì˜ ìˆ˜ë¥¼ ìž…ë ¥í•˜ì„¸ìš”(2~4) ");
 		scanf("%d", &n);
 		if (n > 1 && n < 5)
 		{
 			break;
 		}
-		printf("\n\t\t\t\t\t\t\t\t\t2¸í ÀÌ»ó, 4¸í ÀÌÇÏÀÇ ÇÃ·¹ÀÌ¾î ¼ö¸¦ ÀÔ·ÂÇØÁÖ¼¼¿ä\n");
+		printf("\n\t\t\t\t\t\t\t\t\t2ëª… ì´ìƒ, 4ëª… ì´í•˜ì˜ í”Œë ˆì´ì–´ ìˆ˜ë¥¼ ìž…ë ¥í•´ì£¼ì„¸ìš”\n");
 	}
-	printf("\t\t\t\t\t\t\t\t°¢ÀÚ ¹øÈ£¸¦ Á¤ÇÏ¼¼¿ä (´Ù Á¤ÇßÀ¸¸é ¾Æ¹«Å°³ª ÀÔ·ÂÇØ ÁÖ¼¼¿ä) ");
+	printf("\t\t\t\t\t\t\t\tê°ìž ë²ˆí˜¸ë¥¼ ì •í•˜ì„¸ìš” (ë‹¤ ì •í–ˆìœ¼ë©´ ì•„ë¬´í‚¤ë‚˜ ìž…ë ¥í•´ ì£¼ì„¸ìš”) ");
 	scanf(" %c", &YorN);
 	for (int x = 0; x < n; x++)
 	{
@@ -280,7 +280,7 @@ void TURN()
 				y = -1;
 			}
 		}
-		printf("\n\t\t\t\t\t\t\t\t\t\t%d¹øÂ°¼ø¼­ = %d¹ø ÇÃ·¹ÀÌ¾î ", x + 1, random[x]);
+		printf("\n\t\t\t\t\t\t\t\t\t\t%dë²ˆì§¸ìˆœì„œ = %dë²ˆ í”Œë ˆì´ì–´ ", x + 1, random[x]);
 		if (x == 0)
 		{
 			SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 0xCC);
@@ -297,7 +297,7 @@ void TURN()
 		{
 			SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 0xAA);
 		}
-		printf("¡á");
+		printf("â– ");
 		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 0x0F);
 		printf("\n");
 	}
@@ -307,36 +307,36 @@ void TURN()
 
 int dice()
 {
-	DorS = 0;//´õºíÀÎÁö¾Æ´ÑÁö ÆÇ´ÜÇÏ´Â º¯¼ö¸¦ ÃÊ±âÈ­
+	DorS = 0;//ë”ë¸”ì¸ì§€ì•„ë‹Œì§€ íŒë‹¨í•˜ëŠ” ë³€ìˆ˜ë¥¼ ì´ˆê¸°í™”
 	int power;
 	while (1)
 	{
-		printf("\t\t\t\t\t\t\t\t\tÁÖ»çÀ§ °­µµ¸¦ ÀÔ·ÂÇØÁÖ¼¼¿ä(1~5) ");
+		printf("\t\t\t\t\t\t\t\t\tì£¼ì‚¬ìœ„ ê°•ë„ë¥¼ ìž…ë ¥í•´ì£¼ì„¸ìš”(1~5) ");
 		scanf("%d", &power);
 		if (power > 0 && power < 6)
 		{
 			break;
 		}
-		printf("\n\t\t\t\t\t\t\t\t\t   1ÀÌ»ó 5ÀÌÇÏÀÇ ¼ö¸¦ ÀÔ·ÂÇØÁÖ¼¼¿ä\n\n");
+		printf("\n\t\t\t\t\t\t\t\t\t   1ì´ìƒ 5ì´í•˜ì˜ ìˆ˜ë¥¼ ìž…ë ¥í•´ì£¼ì„¸ìš”\n\n");
 		continue;
 	}
 	Dice[0] = rand() % 2 + power;
 	Dice[1] = rand() % 6 + 1;
 	if (Dice[0] == Dice[1])
 	{
-		printf("\n\n\t\t\t\t\t\t\t\t\t\t\t  ´õºí!\n\n");
+		printf("\n\n\t\t\t\t\t\t\t\t\t\t\t  ë”ë¸”!\n\n");
 		DorS = 1;
 	}
-	printf("\t\t\t\t\t\t\t\t\t\t  ÁÖ»çÀ§ = %d %d\n", Dice[0], Dice[1]);
+	printf("\t\t\t\t\t\t\t\t\t\t  ì£¼ì‚¬ìœ„ = %d %d\n", Dice[0], Dice[1]);
 	PLAYER[random[i]].location += (Dice[0] + Dice[1]);
 	if (PLAYER[random[i]].location > 31)
 	{
 		PLAYER[random[i]].location -= 32;
 		PLAYER[random[i]].money += 60;
-		printf("\n\t\t\t\t\t\t\t\t\t\t      ¿ù±Þ Áö±Þ!\n");
+		printf("\n\t\t\t\t\t\t\t\t\t\t      ì›”ê¸‰ ì§€ê¸‰!\n");
 	}
-	printf("\n\t\t\t\t\t\t\t\t\t%20s µµÂø!\n\n", buildingname[PLAYER[random[i]].location]);
-	printf("\t\t\t\t\t\t\t\t\t      %d¹ø ÇÃ·¹ÀÌ¾îÀÇ À§Ä¡ = %d\n", random[i], PLAYER[random[i]].location);
+	printf("\n\t\t\t\t\t\t\t\t\t%20s ë„ì°©!\n\n", buildingname[PLAYER[random[i]].location]);
+	printf("\t\t\t\t\t\t\t\t\t      %dë²ˆ í”Œë ˆì´ì–´ì˜ ìœ„ì¹˜ = %d\n", random[i], PLAYER[random[i]].location);
 }
 
 
@@ -349,7 +349,7 @@ void GS(int s)
 			PLAYER[random[x]].money = 400;
 		}
 	}
-	else if (s == 1)//ºôµù°¡°ÝÀ» Ä­ * 2·Î ÃÊ±âÈ­
+	else if (s == 1)//ë¹Œë”©ê°€ê²©ì„ ì¹¸ * 2ë¡œ ì´ˆê¸°í™”
 	{
 		for (int x = 0; x < 32; x++)
 		{
@@ -363,11 +363,11 @@ void GS(int s)
 }
 void GF(int s)
 {
-	if (s == 0)//ÆÄ»êÇÑ ÇÃ·¹ÀÌ¾î¸¦ ¶Ù¾î ³Ñ´Â »óÈ²
+	if (s == 0)//íŒŒì‚°í•œ í”Œë ˆì´ì–´ë¥¼ ë›°ì–´ ë„˜ëŠ” ìƒí™©
 	{
 		if (PLAYER[random[i]].money <= 0)
 		{
-			if (i == n - 1)//i°¡ ¸¶Áö¸·ÀÏ ¶§
+			if (i == n - 1)//iê°€ ë§ˆì§€ë§‰ì¼ ë•Œ
 			{
 				i = -1;
 			}
@@ -376,7 +376,7 @@ void GF(int s)
 	}
 	if (s == 1)
 	{
-		if (i == n - 1)//¼ø¼­µ¹¸®±â
+		if (i == n - 1)//ìˆœì„œëŒë¦¬ê¸°
 		{
 			i = -1;
 		}
@@ -385,18 +385,18 @@ void GF(int s)
 
 int judge(int s)
 {
-	if (s == 0)//»ó´ë¶¥ÀÎÁö ¾Æ´ÑÁö ÆÇ´Ü
+	if (s == 0)//ìƒëŒ€ë•…ì¸ì§€ ì•„ë‹Œì§€ íŒë‹¨
 	{
-		if (MAP.who[PLAYER[random[i]].location] != random[i] && MAP.building[PLAYER[random[i]].location] != 0)//»ó´ë¶¥ÀÏ ¶§
+		if (MAP.who[PLAYER[random[i]].location] != random[i] && MAP.building[PLAYER[random[i]].location] != 0)//ìƒëŒ€ë•…ì¼ ë•Œ
 		{
 			return 0;
 		}
-		else//°Ç¼³ ÇÒ ¼ö ÀÖÀ» ¶§
+		else//ê±´ì„¤ í•  ìˆ˜ ìžˆì„ ë•Œ
 		{
 			return 1;
 		}
 	}
-	else if (s == 1)//·£µå¸¶Å©ÀÎÁö ¾Æ´ÑÁö ÆÇ´Ü
+	else if (s == 1)//ëžœë“œë§ˆí¬ì¸ì§€ ì•„ë‹Œì§€ íŒë‹¨
 	{
 		if (MAP.building[PLAYER[random[i]].location] == 4)
 		{
@@ -407,7 +407,7 @@ int judge(int s)
 			return 0;
 		}
 	}
-	else if (s == 2)//°Ç¹°ÀÌ 3°³ÀÎÁö 3°³ ¹Ì¸¸ÀÎÁö ÆÇ´Ü(·£µå¸¶Å©°Ç¼³)
+	else if (s == 2)//ê±´ë¬¼ì´ 3ê°œì¸ì§€ 3ê°œ ë¯¸ë§Œì¸ì§€ íŒë‹¨(ëžœë“œë§ˆí¬ê±´ì„¤)
 	{
 		if (MAP.building[PLAYER[random[i]].location] == 3)
 		{
@@ -418,13 +418,13 @@ int judge(int s)
 			return 0;
 		}
 	}
-	else if (s == 3)//Æ¯¼öÇÑ Áö¿ªÀÎÁö ¾Æ´ÑÁö ÆÇ´Ü(¹«ÀÎµµ µî)
+	else if (s == 3)//íŠ¹ìˆ˜í•œ ì§€ì—­ì¸ì§€ ì•„ë‹Œì§€ íŒë‹¨(ë¬´ì¸ë„ ë“±)
 	{
 		if (PLAYER[random[i]].location == 8 ||
 			PLAYER[random[i]].location == 16 ||
 			PLAYER[random[i]].location == 24 ||
 			PLAYER[random[i]].location == 0 ||
-			PLAYER[random[i]].location == 4 ||//Æ÷ÃáÄ«µå
+			PLAYER[random[i]].location == 4 ||//í¬ì¶˜ì¹´ë“œ
 			PLAYER[random[i]].location == 12 ||
 			PLAYER[random[i]].location == 20 ||
 			PLAYER[random[i]].location == 28)
@@ -436,7 +436,7 @@ int judge(int s)
 			return 0;
 		}
 	}
-	else if (s == 4)//Æ÷ÃáÄ«µå¿Í ´Ù¸¥ Æ¯¼öÇÑ Áö¿ªÀ» ³ª´©´Â ÇÔ¼ö
+	else if (s == 4)//í¬ì¶˜ì¹´ë“œì™€ ë‹¤ë¥¸ íŠ¹ìˆ˜í•œ ì§€ì—­ì„ ë‚˜ëˆ„ëŠ” í•¨ìˆ˜
 	{
 		if (PLAYER[random[i]].location == 8 ||
 			PLAYER[random[i]].location == 16 ||
@@ -455,31 +455,31 @@ int judge(int s)
 
 int CM(int s)
 {
-	if (s == 0)//¾Æ¹«°Íµµ ¾øÀ» ¶§ °Ç¼³
+	if (s == 0)//ì•„ë¬´ê²ƒë„ ì—†ì„ ë•Œ ê±´ì„¤
 	{
 		//PLAYER[random[i]].money -= MAP.cost[PLAYER[random[i]].location];
-		//°Ç¹°À» ÁöÀ» ¶§ ¸¶´Ù ´õ ºñ½Î°Ô ÁÖ°í °Ç¹°À» Áö¾î¾ßÇÔ
+		//ê±´ë¬¼ì„ ì§€ì„ ë•Œ ë§ˆë‹¤ ë” ë¹„ì‹¸ê²Œ ì£¼ê³  ê±´ë¬¼ì„ ì§€ì–´ì•¼í•¨
 		PLAYER[random[i]].money -= BN * PLAYER[random[i]].location;
 	}
-	else if (s == 1)//ÅëÇà·á
+	else if (s == 1)//í†µí–‰ë£Œ
 	{
-		PLAYER[random[i]].money -= MAP.cost[PLAYER[random[i]].location];//°Ç¹°¿¡ ¿Â »ç¶÷
-		PLAYER[MAP.who[PLAYER[random[i]].location]].money += MAP.cost[PLAYER[random[i]].location];//°Ç¹°ÁÖÀÎ
+		PLAYER[random[i]].money -= MAP.cost[PLAYER[random[i]].location];//ê±´ë¬¼ì— ì˜¨ ì‚¬ëžŒ
+		PLAYER[MAP.who[PLAYER[random[i]].location]].money += MAP.cost[PLAYER[random[i]].location];//ê±´ë¬¼ì£¼ì¸
 	}
-	else if (s == 2)//ÀÎ¼ö·á
+	else if (s == 2)//ì¸ìˆ˜ë£Œ
 	{
-		PLAYER[random[i]].money -= PLAYER[random[i]].location * 2;//°Ç¹°¿¡ ¿Â »ç¶÷
-		PLAYER[MAP.who[PLAYER[random[i]].location]].money += PLAYER[random[i]].location * 2;//°Ç¹°ÁÖÀÎ
-		//MAP.cost[PLAYER[random[i]].locaiton]ÇÏÁö ¾Ê°í À§Ä¡ * 2¸¦ ÇÏ´Â ÀÌÀ¯´Â
-		//¿Ã¸²ÇÈ °³ÃÖ·Î ÀÎÇØ MAP.cost°¡ ¿Ã¶ó°¡¸é ÀÎ¼ö ÇÒ ¶§ cost°¡ ¿Ã¶ó°£ Ã¤·Î ÀÎ¼ö°¡ µÇ±â¶§¹®¿¡
+		PLAYER[random[i]].money -= PLAYER[random[i]].location * 2;//ê±´ë¬¼ì— ì˜¨ ì‚¬ëžŒ
+		PLAYER[MAP.who[PLAYER[random[i]].location]].money += PLAYER[random[i]].location * 2;//ê±´ë¬¼ì£¼ì¸
+		//MAP.cost[PLAYER[random[i]].locaiton]í•˜ì§€ ì•Šê³  ìœ„ì¹˜ * 2ë¥¼ í•˜ëŠ” ì´ìœ ëŠ”
+		//ì˜¬ë¦¼í”½ ê°œìµœë¡œ ì¸í•´ MAP.costê°€ ì˜¬ë¼ê°€ë©´ ì¸ìˆ˜ í•  ë•Œ costê°€ ì˜¬ë¼ê°„ ì±„ë¡œ ì¸ìˆ˜ê°€ ë˜ê¸°ë•Œë¬¸ì—
 	}
-	if (PLAYER[random[i]].money < 0)//ÆÄ»êÈ®ÀÎ
+	if (PLAYER[random[i]].money < 0)//íŒŒì‚°í™•ì¸
 	{
-		printf("\n\t\t\t\t\t\t\t\t\t\t%d¹ø ÇÃ·¹ÀÌ¾î ÆÄ»ê\n", random[i]);
+		printf("\n\t\t\t\t\t\t\t\t\t\t%dë²ˆ í”Œë ˆì´ì–´ íŒŒì‚°\n", random[i]);
 		cnt++;
 		for (int x = 1; x < 32; x++)
 		{
-			if (MAP.who[x] == random[i])//Áöµµ¸¦ ºñ±³ÇØ¼­ ÆÄ»êÇÑ »ç¶÷ÀÇ ¶¥À» ¸ðµÎ ¾ø¾Ø´Ù
+			if (MAP.who[x] == random[i])//ì§€ë„ë¥¼ ë¹„êµí•´ì„œ íŒŒì‚°í•œ ì‚¬ëžŒì˜ ë•…ì„ ëª¨ë‘ ì—†ì•¤ë‹¤
 			{
 				MAP.who[x] = 0;
 				MAP.building[x] = 0;
@@ -487,13 +487,13 @@ int CM(int s)
 				{
 					for (int P = 2; P < 35; P += 4)
 					{
-						if (map[p][P] == x + 2 || map[p][P] == x + 38)//mapÀÇ ¹øÈ£¿Í ¹è¿­ÀÇ ¶¥ ¹øÈ£¸¦ ºñ±³
+						if (map[p][P] == x + 2 || map[p][P] == x + 38)//mapì˜ ë²ˆí˜¸ì™€ ë°°ì—´ì˜ ë•… ë²ˆí˜¸ë¥¼ ë¹„êµ
 						{
 							for (int k = 0; k < 3; k++)
 							{
 								for (int K = 0; K < 3; K++)
 								{
-									if (k == 1 && K == 1)//Áß°£Ä­Àº º¹±¸
+									if (k == 1 && K == 1)//ì¤‘ê°„ì¹¸ì€ ë³µêµ¬
 									{
 										map[p][P] = x + 2;
 										continue;
@@ -506,13 +506,13 @@ int CM(int s)
 				}
 			}
 		}
-		if (cnt == n - 1)//°ÔÀÓÀÌ ³¡³¯ ¶§
+		if (cnt == n - 1)//ê²Œìž„ì´ ëë‚  ë•Œ
 		{
 			for (int x = 0; x < n; x++)
 			{
 				if (PLAYER[random[x]].money > 0)
 				{
-					printf("\n\n\n\n\t\t\t\t\t\t\t\t\t%d¹ø ÇÃ·¹ÀÌ¾î ½Â¸®!\n\n\n\n", random[x]);
+					printf("\n\n\n\n\t\t\t\t\t\t\t\t\t%dë²ˆ í”Œë ˆì´ì–´ ìŠ¹ë¦¬!\n\n\n\n", random[x]);
 					exit(1);
 				}
 			}
@@ -528,11 +528,11 @@ void BB(int s)
 	{
 		while (1)
 		{
-			printf("\t\t\t\t\t\t\t\t¸î °³ÀÇ °Ç¹°À» Áþ°Ú½À´Ï±î? (Ãß°¡·Î ÁöÀ» °Ç¹°ÀÇ °³¼ö 1~3)  ");
+			printf("\t\t\t\t\t\t\t\tëª‡ ê°œì˜ ê±´ë¬¼ì„ ì§“ê² ìŠµë‹ˆê¹Œ? (ì¶”ê°€ë¡œ ì§€ì„ ê±´ë¬¼ì˜ ê°œìˆ˜ 1~3)  ");
 			scanf("%d", &BN);
 			if (BN + MAP.building[PLAYER[random[i]].location] >= 4 || BN <= 0 || BN > 3)
 			{
-				printf("\n\t\t\t\t\t\t\t\t    °Ç¹°ÀÇ °³¼ö°¡ Àß¸ø µÇ¾ú½À´Ï´Ù (ÃÊ°ú / ¹Ì¸¸ µîÀÇ ÀÌÀ¯)\n\n");
+				printf("\n\t\t\t\t\t\t\t\t    ê±´ë¬¼ì˜ ê°œìˆ˜ê°€ ìž˜ëª» ë˜ì—ˆìŠµë‹ˆë‹¤ (ì´ˆê³¼ / ë¯¸ë§Œ ë“±ì˜ ì´ìœ )\n\n");
 				continue;
 			}
 			else
@@ -552,12 +552,12 @@ void BB(int s)
 									{
 										continue;
 									}
-									//map[x-1+p][y-1+P] = 34+i;//¸ÊÀ» ¸¸µå´Â µ¥ 0°ú 1À» »ç¿ëÇØ¼­
-									map[x + 1 - p][y - 1 + P] = 34 + i;//¸ÊÀ» ¸¸µå´Â µ¥ 0°ú 1À» »ç¿ëÇØ¼­
-									//9Ä­ Áß ¿ÞÂÊ ¾Æ·¡¿¡¼­ ºÎÅÍ
-									//¶¥ÀÇ ¹øÈ£¸¦ Àû´Âµ¥ 33±îÁö»ç¿ë
-									//¶¥ÀÇ ¼ÒÀ¯¸¦ Ç¥ÇöÇÏ±â À§ÇØ 34~37±îÁö »ç¿ë
-									//random[i]°¡ ¹øÈ£ÀÓÀ» È°¿ëÇØ¼­ 33+random[i];
+									//map[x-1+p][y-1+P] = 34+i;//ë§µì„ ë§Œë“œëŠ” ë° 0ê³¼ 1ì„ ì‚¬ìš©í•´ì„œ
+									map[x + 1 - p][y - 1 + P] = 34 + i;//ë§µì„ ë§Œë“œëŠ” ë° 0ê³¼ 1ì„ ì‚¬ìš©í•´ì„œ
+									//9ì¹¸ ì¤‘ ì™¼ìª½ ì•„ëž˜ì—ì„œ ë¶€í„°
+									//ë•…ì˜ ë²ˆí˜¸ë¥¼ ì ëŠ”ë° 33ê¹Œì§€ì‚¬ìš©
+									//ë•…ì˜ ì†Œìœ ë¥¼ í‘œí˜„í•˜ê¸° ìœ„í•´ 34~37ê¹Œì§€ ì‚¬ìš©
+									//random[i]ê°€ ë²ˆí˜¸ìž„ì„ í™œìš©í•´ì„œ 33+random[i];
 								}
 							}
 							x = 36;
@@ -572,8 +572,8 @@ void BB(int s)
 	else if (s == 1)
 	{
 		MAP.building[PLAYER[random[i]].location] = 4;
-		printf("\n\n\n\n\n\t\t\t\t\t\t\t\t\t\t***%s °Ç¼³***\n\n\n\n\n", buildingname[PLAYER[random[i]].location]);
-		BN = 1;//ºôµù³Ñ¹ö¸¦ 1·Î ¸ÂÃç¼­ °¡°ÝÀÌ °Ç¹° ÇÏ³ª¸¦ ÁöÀ» ¶§¿Í °°ÀÌ ¿Ã¶ó°¡µµ·Ï ÇÏ±â
+		printf("\n\n\n\n\n\t\t\t\t\t\t\t\t\t\t***%s ê±´ì„¤***\n\n\n\n\n", buildingname[PLAYER[random[i]].location]);
+		BN = 1;//ë¹Œë”©ë„˜ë²„ë¥¼ 1ë¡œ ë§žì¶°ì„œ ê°€ê²©ì´ ê±´ë¬¼ í•˜ë‚˜ë¥¼ ì§€ì„ ë•Œì™€ ê°™ì´ ì˜¬ë¼ê°€ë„ë¡ í•˜ê¸°
 		for (int x = 2; x < 35; x += 4)
 		{
 			for (int y = 2; y < 35; y += 4)
@@ -594,15 +594,15 @@ int YORN(int s)
 	{
 		if (s == 0)
 		{
-			printf("\t\t\t\t\t\t\t\t\t     °Ç¹°À» Áþ°Ú½À´Ï±î? (y / n) ");
+			printf("\t\t\t\t\t\t\t\t\t     ê±´ë¬¼ì„ ì§“ê² ìŠµë‹ˆê¹Œ? (y / n) ");
 		}
 		else if (s == 1)
 		{
-			printf("\t\t\t\t\t\t\t\t\t     ·£µå¸¶Å©¸¦ Áþ°Ú½À´Ï±î? (y / n) ");
+			printf("\t\t\t\t\t\t\t\t\t     ëžœë“œë§ˆí¬ë¥¼ ì§“ê² ìŠµë‹ˆê¹Œ? (y / n) ");
 		}
 		else if (s == 2)
 		{
-			printf("\t\t\t\t\t\t\t\t\t    °Ç¹°À» ÀÎ¼öÇÏ½Ã°Ú½À´Ï±î? (y / n) ");
+			printf("\t\t\t\t\t\t\t\t\t    ê±´ë¬¼ì„ ì¸ìˆ˜í•˜ì‹œê² ìŠµë‹ˆê¹Œ? (y / n) ");
 		}
 
 		scanf(" %c", &YorN);
@@ -616,7 +616,7 @@ int YORN(int s)
 		}
 		else
 		{
-			printf("\n\t\t\t\t\t\t\t\t Y(y)¶Ç´Â N(n)Áß ÇÏ³ªÀÇ ¹®ÀÚ¸¦ ÀÔ·ÂÇØÁÖ¼¼¿ä\n");
+			printf("\n\t\t\t\t\t\t\t\t Y(y)ë˜ëŠ” N(n)ì¤‘ í•˜ë‚˜ì˜ ë¬¸ìžë¥¼ ìž…ë ¥í•´ì£¼ì„¸ìš”\n");
 		}
 	}
 }
@@ -644,7 +644,7 @@ int YORN(int s)
 
 void CBC(int s)
 {
-	if (s == 0)//±×³É °Ç¹°À» ÁöÀ» ¶§(+·Î °¡°Ý ¿Ã¸®±â)
+	if (s == 0)//ê·¸ëƒ¥ ê±´ë¬¼ì„ ì§€ì„ ë•Œ(+ë¡œ ê°€ê²© ì˜¬ë¦¬ê¸°)
 	{
 		MAP.cost[PLAYER[random[i]].location] += (PLAYER[random[i]].location * BN);
 	}
@@ -661,7 +661,7 @@ void CW(int s)
 			{
 				if (PLAYER[random[i]].location == map[x][y] - 2)
 				{
-					//»öº¯°æ
+					//ìƒ‰ë³€ê²½
 					for (int x = 2; x < 35; x += 4)
 					{
 						for (int y = 2; y < 35; y += 4)
@@ -676,12 +676,12 @@ void CW(int s)
 										{
 											continue;
 										}
-										//map[x-1+p][y-1+P] = 34+i;//¸ÊÀ» ¸¸µå´Â µ¥ 0°ú 1À» »ç¿ëÇØ¼­
-										map[x + 1 - p][y - 1 + P] = 34 + i;//¸ÊÀ» ¸¸µå´Â µ¥ 0°ú 1À» »ç¿ëÇØ¼­
-										//9Ä­ Áß ¿ÞÂÊ ¾Æ·¡¿¡¼­ ºÎÅÍ
-										//¶¥ÀÇ ¹øÈ£¸¦ Àû´Âµ¥ 33±îÁö»ç¿ë
-										//¶¥ÀÇ ¼ÒÀ¯¸¦ Ç¥ÇöÇÏ±â À§ÇØ 34~37±îÁö »ç¿ë
-										//random[i]°¡ ¹øÈ£ÀÓÀ» È°¿ëÇØ¼­ 33+random[i];
+										//map[x-1+p][y-1+P] = 34+i;//ë§µì„ ë§Œë“œëŠ” ë° 0ê³¼ 1ì„ ì‚¬ìš©í•´ì„œ
+										map[x + 1 - p][y - 1 + P] = 34 + i;//ë§µì„ ë§Œë“œëŠ” ë° 0ê³¼ 1ì„ ì‚¬ìš©í•´ì„œ
+										//9ì¹¸ ì¤‘ ì™¼ìª½ ì•„ëž˜ì—ì„œ ë¶€í„°
+										//ë•…ì˜ ë²ˆí˜¸ë¥¼ ì ëŠ”ë° 33ê¹Œì§€ì‚¬ìš©
+										//ë•…ì˜ ì†Œìœ ë¥¼ í‘œí˜„í•˜ê¸° ìœ„í•´ 34~37ê¹Œì§€ ì‚¬ìš©
+										//random[i]ê°€ ë²ˆí˜¸ìž„ì„ í™œìš©í•´ì„œ 33+random[i];
 									}
 								}
 								x = 36;
@@ -701,7 +701,7 @@ void SP()
 	if (PLAYER[random[i]].location == 8)
 	{
 		DorS = 0;
-		printf("\n\t\t\t\t\t\t\t\t\t   2ÅÏ µÚ¿¡ ´Ù½Ã ÇÃ·¹ÀÌ°¡ °¡´ÉÇÕ´Ï´Ù\n");
+		printf("\n\t\t\t\t\t\t\t\t\t   2í„´ ë’¤ì— ë‹¤ì‹œ í”Œë ˆì´ê°€ ê°€ëŠ¥í•©ë‹ˆë‹¤\n");
 		PLAYER[random[i]].count = -1;
 	}
 	else if (PLAYER[random[i]].location == 16)
@@ -713,15 +713,15 @@ void SP()
 			{
 				while (1)
 				{
-					printf("\t\t\t\t\t\t¼±ÅÃÇÑ ¶¥ÀÇ °¡°ÝÀÌ 2¹è°¡ µË´Ï´Ù(ÇöÀç ÇÃ·¹ÀÌ¾îÀÇ ¶¥ / Áßº¹¼±ÅÃ½Ã 2¹è) ");
+					printf("\t\t\t\t\t\tì„ íƒí•œ ë•…ì˜ ê°€ê²©ì´ 2ë°°ê°€ ë©ë‹ˆë‹¤(í˜„ìž¬ í”Œë ˆì´ì–´ì˜ ë•… / ì¤‘ë³µì„ íƒì‹œ 2ë°°) ");
 					scanf("%d", &choice);
 					if (random[i] != MAP.who[choice] || choice < 0 || choice > 31)
 					{
-						printf("\n\t\t\t\t\t\t\t\t°¡´ÉÇÑ ¶¥ÀÌ ¾Æ´Õ´Ï´Ù\n");
+						printf("\n\t\t\t\t\t\t\t\tê°€ëŠ¥í•œ ë•…ì´ ì•„ë‹™ë‹ˆë‹¤\n");
 						continue;
 					}
 					MAP.cost[choice] *= 2;
-					printf("\n\t\t\t\t\t\t\t\t\t\t%s °¡°Ý 2¹è ¼º°ø\n", buildingname[choice]);
+					printf("\n\t\t\t\t\t\t\t\t\t\t%s ê°€ê²© 2ë°° ì„±ê³µ\n", buildingname[choice]);
 					break;
 				}
 				break;
@@ -729,14 +729,14 @@ void SP()
 		}
 		if (x > 31)
 		{
-			printf("\n\t\t\t\t\t\t\t\t\t     ¼±ÅÃ °¡´ÉÇÑ ¶¥ÀÌ ¾ø½À´Ï´Ù\n");
+			printf("\n\t\t\t\t\t\t\t\t\t     ì„ íƒ ê°€ëŠ¥í•œ ë•…ì´ ì—†ìŠµë‹ˆë‹¤\n");
 		}
 	}
 	else if (PLAYER[random[i]].location == 24)
 	{
 		DorS = 0;
 		PLAYER[random[i]].count = 1;
-		printf("\n\t\t\t\t\t\t\t\t     ´ÙÀ½ÅÏ¿¡ ¼±ÅÃÇÑ ¶¥À¸·Î ÀÌµ¿ÇÒ ¼ö ÀÖ½À´Ï´Ù\n");
+		printf("\n\t\t\t\t\t\t\t\t     ë‹¤ìŒí„´ì— ì„ íƒí•œ ë•…ìœ¼ë¡œ ì´ë™í•  ìˆ˜ ìžˆìŠµë‹ˆë‹¤\n");
 	}
 	else if (PLAYER[random[i]].location == 0)
 	{
@@ -747,19 +747,19 @@ void SP()
 			{
 				if (MAP.who[x] == random[i])
 				{
-					while (1)//°Ç¼³ÇÒ ¼ö ÀÖ´Â ¶¥ÀÌ ÀÖÀ» ¶§
+					while (1)//ê±´ì„¤í•  ìˆ˜ ìžˆëŠ” ë•…ì´ ìžˆì„ ë•Œ
 					{
-						printf("\t\t\t\t\t\t\t\t\t  ¼±ÅÃÇÑ ¶¥À» Ãß°¡ °Ç¼³ÇÒ ¼ö ÀÖ½À´Ï´Ù ");
+						printf("\t\t\t\t\t\t\t\t\t  ì„ íƒí•œ ë•…ì„ ì¶”ê°€ ê±´ì„¤í•  ìˆ˜ ìžˆìŠµë‹ˆë‹¤ ");
 						scanf("%d", &choice);
 						if (choice < 32 && choice > 0 && MAP.who[choice] == random[i] && MAP.building[choice] != 4)
-							//¼±ÅÃÇÑ ¶¥ÀÌ ¹üÀ§ ¾È, ÀÚ±â¶¥, ·£µå¸¶Å©°¡ ¾Æ´Ò ¶§
+							//ì„ íƒí•œ ë•…ì´ ë²”ìœ„ ì•ˆ, ìžê¸°ë•…, ëžœë“œë§ˆí¬ê°€ ì•„ë‹ ë•Œ
 						{
-							if (MAP.building[choice] == 3)//·£µå¸¶Å©
+							if (MAP.building[choice] == 3)//ëžœë“œë§ˆí¬
 							{
 								MAP.building[choice] = 4;
-								printf("\n\n\n\n\n\t\t\t\t\t\t\t\t\t\t***%s °Ç¼³***\n\n\n\n\n", buildingname[choice]);
-								BN = 1;//ºôµù³Ñ¹ö¸¦ 1·Î ¸ÂÃç¼­ °¡°ÝÀÌ °Ç¹° ÇÏ³ª¸¦ ÁöÀ» ¶§¿Í °°ÀÌ ¿Ã¶ó°¡µµ·Ï ÇÏ±â
-								//·£µå¸¶Å© »ö º¯°æ
+								printf("\n\n\n\n\n\t\t\t\t\t\t\t\t\t\t***%s ê±´ì„¤***\n\n\n\n\n", buildingname[choice]);
+								BN = 1;//ë¹Œë”©ë„˜ë²„ë¥¼ 1ë¡œ ë§žì¶°ì„œ ê°€ê²©ì´ ê±´ë¬¼ í•˜ë‚˜ë¥¼ ì§€ì„ ë•Œì™€ ê°™ì´ ì˜¬ë¼ê°€ë„ë¡ í•˜ê¸°
+								//ëžœë“œë§ˆí¬ ìƒ‰ ë³€ê²½
 								for (int p = 2; p < 35; p += 4)
 								{
 									for (int P = 2; P < 35; P += 4)
@@ -772,16 +772,16 @@ void SP()
 									}
 								}
 							}
-							else//±×³É °Ç¹°
+							else//ê·¸ëƒ¥ ê±´ë¬¼
 							{
-								//°Ç¹°ÀÇ °³¼ö
+								//ê±´ë¬¼ì˜ ê°œìˆ˜
 								while (1)
 								{
-									printf("\t\t\t\t\t\t\t\t\t¸î °³ÀÇ °Ç¹°À» Áþ°Ú½À´Ï±î? (Ãß°¡·Î ÁöÀ» °Ç¹°ÀÇ °³¼ö)");
+									printf("\t\t\t\t\t\t\t\t\tëª‡ ê°œì˜ ê±´ë¬¼ì„ ì§“ê² ìŠµë‹ˆê¹Œ? (ì¶”ê°€ë¡œ ì§€ì„ ê±´ë¬¼ì˜ ê°œìˆ˜)");
 									scanf("%d", &BN);
 									if (BN + MAP.building[choice] > 4 || BN <= 0 || BN > 3)
 									{
-										printf("\t\t\t\t\t\t\t°Ç¹°ÀÇ °³¼ö°¡ Àß¸ø µÇ¾ú½À´Ï´Ù (ÃÊ°ú / ¹Ì¸¸ µîÀÇ ÀÌÀ¯)");
+										printf("\t\t\t\t\t\t\tê±´ë¬¼ì˜ ê°œìˆ˜ê°€ ìž˜ëª» ë˜ì—ˆìŠµë‹ˆë‹¤ (ì´ˆê³¼ / ë¯¸ë§Œ ë“±ì˜ ì´ìœ )");
 										continue;
 									}
 									else
@@ -815,8 +815,8 @@ void SP()
 							}
 							PLAYER[random[i]].money -= (BN * choice);
 							MAP.cost[choice] += (BN * choice);
-							//ÇÃ·¹ÀÌ¾îÀÇ µ· -
-							//°Ç¹°ÀÇ °¡°Ý +
+							//í”Œë ˆì´ì–´ì˜ ëˆ -
+							//ê±´ë¬¼ì˜ ê°€ê²© +
 
 
 
@@ -825,20 +825,20 @@ void SP()
 							//	PLAYER[random[i]].money -= BN * PLAYER[random[i]].location;
 							//}
 
-							//if (s == 0)//±×³É °Ç¹°À» ÁöÀ» ¶§(+·Î °¡°Ý ¿Ã¸®±â)
+							//if (s == 0)//ê·¸ëƒ¥ ê±´ë¬¼ì„ ì§€ì„ ë•Œ(+ë¡œ ê°€ê²© ì˜¬ë¦¬ê¸°)
 							//{
 							//	MAP.cost[PLAYER[random[i]].location] += (PLAYER[random[i]].location * BN);
 							//}
 							break;
 						}
-						printf("\n\t\t\t\t\t\t\t\t\t°Ç¼³ÇÒ ¼ö ¾ø´Â ¶¥ÀÔ´Ï´Ù\n");
+						printf("\n\t\t\t\t\t\t\t\t\tê±´ì„¤í•  ìˆ˜ ì—†ëŠ” ë•…ìž…ë‹ˆë‹¤\n");
 					}
 					break;
 				}
 			}
 			if (x > 31)
 			{
-				printf("\n\t\t\t\t\t\t\t¼±ÅÃ °¡´ÉÇÑ ¶¥ÀÌ ¾ø½À´Ï´Ù\n");
+				printf("\n\t\t\t\t\t\t\tì„ íƒ ê°€ëŠ¥í•œ ë•…ì´ ì—†ìŠµë‹ˆë‹¤\n");
 			}
 		}
 	}
@@ -858,28 +858,28 @@ void PM()
 	printf("\n\n");
 	//for (int p = 0; p < n; p++)
 	//{
-	//	for (int x = 0; x < 37; x++)//ÇÃ·¹ÀÌ¾îÀÇ À§Ä¡¸¦ ³ªÅ¸³»±â
+	//	for (int x = 0; x < 37; x++)//í”Œë ˆì´ì–´ì˜ ìœ„ì¹˜ë¥¼ ë‚˜íƒ€ë‚´ê¸°
 	//	{
 	//		for (int y = 0; y < 37; y++) 
 	//		{
 	//			if (PLAYER[random[p]].location + 2  == map[x][y]  || PLAYER[random[p]].location + 36 == map[x][y])
 	//			{
-	//				//36 + 33 = 69 Áï map¿¡¼­ 70ºÎÅÍ »ç¿ë °¡´É
+	//				//36 + 33 = 69 ì¦‰ mapì—ì„œ 70ë¶€í„° ì‚¬ìš© ê°€ëŠ¥
 	//				if (p == 1)
 	//				{
-	//					map[x-1][y-1] = 69 + 1;//¼ø¼­´ë·Î +
+	//					map[x-1][y-1] = 69 + 1;//ìˆœì„œëŒ€ë¡œ +
 	//				}
 	//				else if (p == 2)
 	//				{
-	//					map[x-1][y+1] = 69 + 2;//¼ø¼­´ë·Î +
+	//					map[x-1][y+1] = 69 + 2;//ìˆœì„œëŒ€ë¡œ +
 	//				}
 	//				else if (p == 3)
 	//				{
-	//					map[x+1][y-1] = 69 + 3;//¼ø¼­´ë·Î +
+	//					map[x+1][y-1] = 69 + 3;//ìˆœì„œëŒ€ë¡œ +
 	//				}
 	//				else if (p == 4)
 	//				{
-	//					map[x+1][y+1] = 69 + 4;//¼ø¼­´ë·Î +
+	//					map[x+1][y+1] = 69 + 4;//ìˆœì„œëŒ€ë¡œ +
 	//				}
 	//			}
 	//		}
@@ -893,12 +893,12 @@ void PM()
 			if (map[x][y] == 0)
 			{
 				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 0x00);
-				printf("¡à");
+				printf("â–¡");
 			}
 			else if (map[x][y] == 1)
 			{
 				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 0x88);
-				printf("¡á");
+				printf("â– ");
 			}
 			else if (map[x][y] > 1 && map[x][y] < 12)
 			{
@@ -910,27 +910,27 @@ void PM()
 				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 7);
 				printf("%d", map[x][y] - 2);
 			}
-			else if (map[x][y] == 34)//Ã¹¹øÂ° ¼ø¼­ÀÇ ÇÃ·¹ÀÌ¾î = »¡°£»ö (33+1)
+			else if (map[x][y] == 34)//ì²«ë²ˆì§¸ ìˆœì„œì˜ í”Œë ˆì´ì–´ = ë¹¨ê°„ìƒ‰ (33+1)
 			{
 				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 12 | 12 << 4);
-				printf("¡á");
+				printf("â– ");
 			}
-			else if (map[x][y] == 35)//µÎ¹øÂ° ¼ø¼­ÀÇ ÇÃ·¹ÀÌ¾î = ÆÄ¶õ»ö
+			else if (map[x][y] == 35)//ë‘ë²ˆì§¸ ìˆœì„œì˜ í”Œë ˆì´ì–´ = íŒŒëž€ìƒ‰
 			{
 				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 9 | 9 << 4);
-				printf("¡á");
+				printf("â– ");
 			}
-			else if (map[x][y] == 36)//¼¼¹øÂ° ¼ø¼­ÀÇ ÇÃ·¹ÀÌ¾î = ³ë¶õ»ö
+			else if (map[x][y] == 36)//ì„¸ë²ˆì§¸ ìˆœì„œì˜ í”Œë ˆì´ì–´ = ë…¸ëž€ìƒ‰
 			{
 				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 6 | 6 << 4);
-				printf("¡á");
+				printf("â– ");
 			}
-			else if (map[x][y] == 37)//³×¹øÂ° ¼ø¼­ÀÇ ÇÃ·¹ÀÌ¾î = ÃÊ·Ï»ö
+			else if (map[x][y] == 37)//ë„¤ë²ˆì§¸ ìˆœì„œì˜ í”Œë ˆì´ì–´ = ì´ˆë¡ìƒ‰
 			{
 				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 10 | 10 << 4);
-				printf("¡á");
+				printf("â– ");
 			}
-			else if (map[x][y] > 37 && map[x][y] < 70)//·£µå¸¶Å©ÀÏ ¶§
+			else if (map[x][y] > 37 && map[x][y] < 70)//ëžœë“œë§ˆí¬ì¼ ë•Œ
 			{
 				//map[x][y] - 36;
 				if (map[x][y + 1] == 34)
@@ -949,7 +949,7 @@ void PM()
 				{
 					SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 0xAF);
 				}
-				if (map[x][y] < 48)//ÇÑÀÚ¸® ¼ö ÀÏ¶§
+				if (map[x][y] < 48)//í•œìžë¦¬ ìˆ˜ ì¼ë•Œ
 				{
 					printf(" %d", map[x][y] - 38);
 				}
@@ -960,27 +960,27 @@ void PM()
 			}
 			//else if (map[x][y] > 69 || map[x][y] < 74)
 			//{
-			//	if (map[x][y] == 70)//»¡°£»ö
+			//	if (map[x][y] == 70)//ë¹¨ê°„ìƒ‰
 			//	{
 			//		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 12 | 12 << 4);
-			//		printf("¡á");
+			//		printf("â– ");
 			//	}
 			//	else if (map[x][y] == 71)
 			//	{
 			//		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 9 | 9 << 4);
-			//		printf("¡á");
+			//		printf("â– ");
 			//	}
 			//	else if (map[x][y] == 72)
 			//	{
 			//		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 6 | 6 << 4);
-			//		printf("¡á");
+			//		printf("â– ");
 			//	}
 			//	else if (map[x][y] == 73)
 			//	{
 			//		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 10 | 10 << 4);
-			//		printf("¡á");
+			//		printf("â– ");
 			//	}
-			//	map[x][y] = map[x + 1][y];//À§Ä¡¸¦ ³ªÅ¸³»°í °ªÀ» ÃÊ±âÈ­
+			//	map[x][y] = map[x + 1][y];//ìœ„ì¹˜ë¥¼ ë‚˜íƒ€ë‚´ê³  ê°’ì„ ì´ˆê¸°í™”
 			//}
 		}
 		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 0x00);
@@ -988,9 +988,9 @@ void PM()
 	}
 	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 0x0F);
 	printf("\n\n");
-	for (int x = 0; x < n; x++)//ÇÃ·¹ÀÌ¾îÀÇ Á¤º¸
+	for (int x = 0; x < n; x++)//í”Œë ˆì´ì–´ì˜ ì •ë³´
 	{
-		printf("\n\t\t\t\t\t\t\t\t%d¹ø ÇÃ·¹ÀÌ¾îÀÇ ÀÚ»ê %5.d¸¸¿ø\tÀ§Ä¡ = %d\t", random[x], PLAYER[random[x]].money, PLAYER[random[x]].location);
+		printf("\n\t\t\t\t\t\t\t\t%dë²ˆ í”Œë ˆì´ì–´ì˜ ìžì‚° %5.dë§Œì›\tìœ„ì¹˜ = %d\t", random[x], PLAYER[random[x]].money, PLAYER[random[x]].location);
 		if (x == 0)
 		{
 			SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 0xCC);
@@ -1007,7 +1007,7 @@ void PM()
 		{
 			SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 0xAA);
 		}
-		printf("¡á");
+		printf("â– ");
 		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 0x0F);
 	}
 
@@ -1017,7 +1017,7 @@ int SA()
 {
 	if (PLAYER[random[i]].location == 8)
 	{
-		printf("\n\t\t\t\t\t\t\t\t\t   %dÅÏ µÚ¿¡ ÇÃ·¹ÀÌ °¡´ÉÇÕ´Ï´Ù\n", 2 + PLAYER[random[i]].count);
+		printf("\n\t\t\t\t\t\t\t\t\t   %dí„´ ë’¤ì— í”Œë ˆì´ ê°€ëŠ¥í•©ë‹ˆë‹¤\n", 2 + PLAYER[random[i]].count);
 		PLAYER[random[i]].count++;
 		if (i == n - 1)
 		{
@@ -1030,21 +1030,21 @@ int SA()
 	{
 		while (1)
 		{
-			printf("\t\t\t\t\t\t\t\t\t     ¼±ÅÃÇÑ ¶¥À¸·Î ÀÌµ¿ÇÕ´Ï´Ù ");
+			printf("\t\t\t\t\t\t\t\t\t     ì„ íƒí•œ ë•…ìœ¼ë¡œ ì´ë™í•©ë‹ˆë‹¤ ");
 			scanf("%d", &choice);
 			if (choice > 32 || choice < 0 || choice == 24)
 			{
-				printf("\nÀÌµ¿ °¡´ÉÇÑ ¶¥ÀÌ ¾Æ´Õ´Ï´Ù\n");
+				printf("\nì´ë™ ê°€ëŠ¥í•œ ë•…ì´ ì•„ë‹™ë‹ˆë‹¤\n");
 				continue;
 			}
 			if (choice >= 0 && choice < 24)
 			{
 				PLAYER[random[i]].money += 60;
-				printf("\n\t\t\t\t\t\t\t\t\t\t      ¿ù±Þ Áö±Þ!\n");
+				printf("\n\t\t\t\t\t\t\t\t\t\t      ì›”ê¸‰ ì§€ê¸‰!\n");
 			}
 			PLAYER[random[i]].location = choice;
-			printf("\n\t\t\t\t\t\t\t\t\t\t\t ÀÌµ¿¼º°ø\n");
-			printf("\n\t\t\t\t\t\t\t\t\t%20s µµÂø!\n\n", buildingname[PLAYER[random[i]].location]);
+			printf("\n\t\t\t\t\t\t\t\t\t\t\t ì´ë™ì„±ê³µ\n");
+			printf("\n\t\t\t\t\t\t\t\t\t%20s ë„ì°©!\n\n", buildingname[PLAYER[random[i]].location]);
 			break;
 		}
 		PLAYER[random[i]].count--;
@@ -1057,38 +1057,38 @@ void FC()
 	int con = 0;
 	int fc = 0;
 	int x = 0;
-	if (DorS == 1)//´õºíÀÏ ¶§
+	if (DorS == 1)//ë”ë¸”ì¼ ë•Œ
 	{
-		con = 1;//ÇÑ¹ø ´õ ±â´É Ãë¼Ò
+		con = 1;//í•œë²ˆ ë” ê¸°ëŠ¥ ì·¨ì†Œ
 	}
 	fc = rand() % 10 + con;
 	printf("\n\t\t\t\t\t\t\t\t\t\t%s\n", fortunecard[fc]);
-	if (fc == 0)//ÇÑ¹ø ´õ ÇÏ±â ±â´É(2Â÷ ½ÉÀÚ)
+	if (fc == 0)//í•œë²ˆ ë” í•˜ê¸° ê¸°ëŠ¥(2ì°¨ ì‹¬ìž)
 	{
-		printf("\n\t\t\t\t\t\t\t\t\t\tÇÑ¹ø ´õ ÇÒ ¼ö ÀÖ½À´Ï´Ù\n");
+		printf("\n\t\t\t\t\t\t\t\t\t\tí•œë²ˆ ë” í•  ìˆ˜ ìžˆìŠµë‹ˆë‹¤\n");
 		DorS = 1;
 	}
-	else if (fc == 1)//°Ç¹° ÆÄ±«(È­Àç»óÈ²¹ß»ý)
+	else if (fc == 1)//ê±´ë¬¼ íŒŒê´´(í™”ìž¬ìƒí™©ë°œìƒ)
 	{
-		printf("\n\t\t\t\t\t\t\t¼±ÅÃÇÑ »ó´ëÀÇ °Ç¹°À» ÆÄ±«½ÃÅ³ ¼ö ÀÖ½À´Ï´Ù(·£µå¸¶Å© Á¦¿Ü) \n");
+		printf("\n\t\t\t\t\t\t\tì„ íƒí•œ ìƒëŒ€ì˜ ê±´ë¬¼ì„ íŒŒê´´ì‹œí‚¬ ìˆ˜ ìžˆìŠµë‹ˆë‹¤(ëžœë“œë§ˆí¬ ì œì™¸) \n");
 		for (int x = 1; x < 32; x++)
 		{
-			if (MAP.who[x] != 0 && MAP.who[x] != random[i])//»ó´ë¶¥ÀÌ°í ³ªÀÇ ¶¥ÀÌ ¾Æ´Ò ¶§ ÆÄ±«ÇÒ ¼ö ÀÖ´Â ¶¥ÀÌ ÀÖ´Ù
+			if (MAP.who[x] != 0 && MAP.who[x] != random[i])//ìƒëŒ€ë•…ì´ê³  ë‚˜ì˜ ë•…ì´ ì•„ë‹ ë•Œ íŒŒê´´í•  ìˆ˜ ìžˆëŠ” ë•…ì´ ìžˆë‹¤
 			{
 				break;
 			}
 		}
 		if (x == 32)
 		{
-			printf("\n\t\t\t\t\t\t¼±ÅÃÇÒ ¼ö ÀÖ´Â ¶¥ÀÌ ¾ø½À´Ï´Ù\n");
-			return;//ÇÔ¼öÁ¾·á
+			printf("\n\t\t\t\t\t\tì„ íƒí•  ìˆ˜ ìžˆëŠ” ë•…ì´ ì—†ìŠµë‹ˆë‹¤\n");
+			return;//í•¨ìˆ˜ì¢…ë£Œ
 		}
 		while (1)
 		{
 			scanf("%d", &x);
 			if (MAP.building[x] == 0 || MAP.who[x] == random[i] || x < 1 || x > 31 || MAP.building[x] == 4)
-			{//°Ç¹°ÀÌ ¾ø°Å³ª ³ªÀÇ ¶¥ÀÌ°Å³ª ¹üÀ§¸¦ ³Ñ¾î°¡°Å³ª ·£µå¸¶Å©¶ó¸é
-				printf("\n\t\t\t\t\t\t\t»ó´ëÀÇ ¶¥À» ÀÔ·ÂÇØÁÖ¼¼¿ä\n");
+			{//ê±´ë¬¼ì´ ì—†ê±°ë‚˜ ë‚˜ì˜ ë•…ì´ê±°ë‚˜ ë²”ìœ„ë¥¼ ë„˜ì–´ê°€ê±°ë‚˜ ëžœë“œë§ˆí¬ë¼ë©´
+				printf("\n\t\t\t\t\t\t\tìƒëŒ€ì˜ ë•…ì„ ìž…ë ¥í•´ì£¼ì„¸ìš”\n");
 				continue;
 			}
 			MAP.building[x] = 0;
@@ -1099,11 +1099,11 @@ void FC()
 				{
 					if (map[p][P] == x + 2)
 					{
-						for (int k = 0; k < 3; k++)//Çý´çÇÏ´Â Ä­ÀÇ »öÀ» ÃÊ±âÈ­
+						for (int k = 0; k < 3; k++)//í˜œë‹¹í•˜ëŠ” ì¹¸ì˜ ìƒ‰ì„ ì´ˆê¸°í™”
 						{
 							for (int K = 0; K < 3; K++)
 							{
-								if (k == 1 && K == 1)//Áß°£ Ä­Àº ÃÊ±âÈ­ X
+								if (k == 1 && K == 1)//ì¤‘ê°„ ì¹¸ì€ ì´ˆê¸°í™” X
 								{
 									continue;
 								}
@@ -1117,32 +1117,32 @@ void FC()
 			}
 		}
 	}
-	else if (fc == 2)//¹«ÀÎµµ·Î ÀÌµ¿(±â¸»°í»ç)
+	else if (fc == 2)//ë¬´ì¸ë„ë¡œ ì´ë™(ê¸°ë§ê³ ì‚¬)
 	{
-		printf("\n\t\t\t\t\t\t\t\t\t\t¹«ÀÎµµ·Î ÀÌµ¿ÇÕ´Ï´Ù\n");
+		printf("\n\t\t\t\t\t\t\t\t\t\të¬´ì¸ë„ë¡œ ì´ë™í•©ë‹ˆë‹¤\n");
 		PLAYER[random[i]].location = 8;
 		DorS = 0;
-		printf("\n\t\t\t\t\t\t\t\t\t   2ÅÏ µÚ¿¡ ´Ù½Ã ÇÃ·¹ÀÌ°¡ °¡´ÉÇÕ´Ï´Ù\n");
+		printf("\n\t\t\t\t\t\t\t\t\t   2í„´ ë’¤ì— ë‹¤ì‹œ í”Œë ˆì´ê°€ ê°€ëŠ¥í•©ë‹ˆë‹¤\n");
 		PLAYER[random[i]].count = -1;
 	}
-	else if (fc == 3)//°Ç¹° ¹Ù²Ù±â(Æ©Æ¼Æ©ÅÍ)
+	else if (fc == 3)//ê±´ë¬¼ ë°”ê¾¸ê¸°(íŠœí‹°íŠœí„°)
 	{
-		printf("\n\t\t\t\t\t\t\t\t\tÇöÀç ÇÃ·¹ÀÌ¾îÀÇ °¡Àå ½Ñ ¶¥°ú");
-		printf("\t\t\t\t\t\t´Ù¸¥ ÇÃ·¹ÀÌ¾îÀÇ °¡Àå ºñ½Ñ ¶¥À» ¹Ù²ß´Ï´Ù(·£µå¸¶Å© Á¦¿Ü)\n");
-		for (int p = 1; p < 32; p++)//°Ç¹°À» ¹Ù²Ü ¼ö ÀÖ´Â »óÈ²ÀÎÁö ÆÇ´Ü
-		{//ÇöÀç ÇÃ·¹ÀÌ¾îÀÇ °¡Àå ½Ñ ¶¥ÀÌ¾î¼­ x++
-			if (MAP.who[p] == random[i] && MAP.building[p] != 4)//³» ¶¥ÀÌ°í ·£µå¸¶Å©°¡ ¾Æ´Ñ °Ç¹°ÀÌ ÀÖ´ÂÁö
+		printf("\n\t\t\t\t\t\t\t\t\tí˜„ìž¬ í”Œë ˆì´ì–´ì˜ ê°€ìž¥ ì‹¼ ë•…ê³¼");
+		printf("\t\t\t\t\t\të‹¤ë¥¸ í”Œë ˆì´ì–´ì˜ ê°€ìž¥ ë¹„ì‹¼ ë•…ì„ ë°”ê¿‰ë‹ˆë‹¤(ëžœë“œë§ˆí¬ ì œì™¸)\n");
+		for (int p = 1; p < 32; p++)//ê±´ë¬¼ì„ ë°”ê¿€ ìˆ˜ ìžˆëŠ” ìƒí™©ì¸ì§€ íŒë‹¨
+		{//í˜„ìž¬ í”Œë ˆì´ì–´ì˜ ê°€ìž¥ ì‹¼ ë•…ì´ì–´ì„œ x++
+			if (MAP.who[p] == random[i] && MAP.building[p] != 4)//ë‚´ ë•…ì´ê³  ëžœë“œë§ˆí¬ê°€ ì•„ë‹Œ ê±´ë¬¼ì´ ìžˆëŠ”ì§€
 			{
 				for (int P = 32; P > 0; P--)
-				{//»ó´ë ÇÃ·¹ÀÌ¾îÀÇ °¡Àå ºñ½Ñ ¶¥ÀÌ¿©¼­ y--;
-					if (MAP.who[P] != random[i] && MAP.who[P] > 0 && MAP.building[P] != 4)//»ó´ë¶¥ÀÌ°í ·£µå¸¶Å©°¡ ¾Æ´Ñ °Ç¹°ÀÌ ÀÖ´ÂÁö
+				{//ìƒëŒ€ í”Œë ˆì´ì–´ì˜ ê°€ìž¥ ë¹„ì‹¼ ë•…ì´ì—¬ì„œ y--;
+					if (MAP.who[P] != random[i] && MAP.who[P] > 0 && MAP.building[P] != 4)//ìƒëŒ€ë•…ì´ê³  ëžœë“œë§ˆí¬ê°€ ì•„ë‹Œ ê±´ë¬¼ì´ ìžˆëŠ”ì§€
 					{
-						printf("\n\t\t\t\t\t\t\t¹Ù²Ù±â ¼º°ø!\n");
-						printf("\t\t\t\t\t\t%d¹ø ÇÃ·¹ÀÌ¾îÀÇ %d¹ø ¶¥ <-> %d¹ø ÇÃ·¹ÀÌ¾îÀÇ %d¹ø ¶¥\n", MAP.who[p], p, MAP.who[P], P);
-						//¹Ù²Ù±â
-						MAP.who[p] = MAP.who[P];//³»¶¥À» »ó´ë¿¡°Ô ÁÖ±â
-						MAP.who[P] = random[i];//»ó´ë¶¥À» ³»²¬·Î ¸¸µé±â
-						//Áöµµ ¹Ù²Ù±â
+						printf("\n\t\t\t\t\t\t\të°”ê¾¸ê¸° ì„±ê³µ!\n");
+						printf("\t\t\t\t\t\t%dë²ˆ í”Œë ˆì´ì–´ì˜ %dë²ˆ ë•… <-> %dë²ˆ í”Œë ˆì´ì–´ì˜ %dë²ˆ ë•…\n", MAP.who[p], p, MAP.who[P], P);
+						//ë°”ê¾¸ê¸°
+						MAP.who[p] = MAP.who[P];//ë‚´ë•…ì„ ìƒëŒ€ì—ê²Œ ì£¼ê¸°
+						MAP.who[P] = random[i];//ìƒëŒ€ë•…ì„ ë‚´ê»„ë¡œ ë§Œë“¤ê¸°
+						//ì§€ë„ ë°”ê¾¸ê¸°
 
 
 
@@ -1152,10 +1152,10 @@ void FC()
 				}
 			}
 		}
-		//¹Ù²Ü ¼ö ¾ø´Ù¸é
-		printf("\n\t\t\t\t\t\t\t\t¹Ù²Ü ¼ö ÀÖ´Â ¶¥ÀÌ ¾ø½À´Ï´Ù\n")
+		//ë°”ê¿€ ìˆ˜ ì—†ë‹¤ë©´
+		printf("\n\t\t\t\t\t\t\t\të°”ê¿€ ìˆ˜ ìžˆëŠ” ë•…ì´ ì—†ìŠµë‹ˆë‹¤\n");
 	}
 }
 
-//"È­Àç»óÈ²¹ß»ý", "±â¸»°í»ç", "Æ©Æ¼Æ©ÅÍ", "¿Ü¹Ú", "º¹±Í"
+//"í™”ìž¬ìƒí™©ë°œìƒ", "ê¸°ë§ê³ ì‚¬", "íŠœí‹°íŠœí„°", "ì™¸ë°•", "ë³µê·€"
 
