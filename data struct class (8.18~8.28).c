@@ -1,65 +1,65 @@
 // 8.18~8.21
-// extern ÀÌ¶ó´Â ¿¹¾à¾î´Â	
-// ´Ù¸¥ÆÄÀÏÀÇ º¯¼ö¸¦ ¾µ ¼ö ÀÖ´Ù
-// ¿¹)
+// extern ì´ë¼ëŠ” ì˜ˆì•½ì–´ëŠ”	
+// ë‹¤ë¥¸íŒŒì¼ì˜ ë³€ìˆ˜ë¥¼ ì“¸ ìˆ˜ ìžˆë‹¤
+// ì˜ˆ)
 // extern void func1();
-// À» ¼±¾ðÇÏ¸é ´Ù¸¥ ÆÄÀÏÀÇ func1() À» »ç¿ëÇÒ ¼ö ÀÖ´Ù'
+// ì„ ì„ ì–¸í•˜ë©´ ë‹¤ë¥¸ íŒŒì¼ì˜ func1() ì„ ì‚¬ìš©í•  ìˆ˜ ìžˆë‹¤'
 // 
-// Æ÷ÀÎÅÍ(pointer) = °¡¸£Å°´Â °Í
-// & ¿¬»êÀÚ = º¯¼öÀÇ ÁÖ¼Ò¸¦ÃßÃâ
-// * ¿¬»êÀÚ = Æ÷ÀÎÅÍ°¡ °¡¸£Å°´Â °÷ÀÇ ³»¿ëÀ» ÃßÃâ
-// Áï ¿¹) int* p; = Á¤¼öÇü º¯¼ö¸¦ °¡¸£Å°´Â Æ÷ÀÎÅÍÀÌ´Ù
-// Æ÷ÀÎÅÍÀÇ Æ÷ÀÎÅÍ¸¦ È°¿ëÇØ Â÷¿ø¿¡ ½±°Ô Á¢±ÙÇÒ ¼ö ÀÖ´Ù
+// í¬ì¸í„°(pointer) = ê°€ë¥´í‚¤ëŠ” ê²ƒ
+// & ì—°ì‚°ìž = ë³€ìˆ˜ì˜ ì£¼ì†Œë¥¼ì¶”ì¶œ
+// * ì—°ì‚°ìž = í¬ì¸í„°ê°€ ê°€ë¥´í‚¤ëŠ” ê³³ì˜ ë‚´ìš©ì„ ì¶”ì¶œ
+// ì¦‰ ì˜ˆ) int* p; = ì •ìˆ˜í˜• ë³€ìˆ˜ë¥¼ ê°€ë¥´í‚¤ëŠ” í¬ì¸í„°ì´ë‹¤
+// í¬ì¸í„°ì˜ í¬ì¸í„°ë¥¼ í™œìš©í•´ ì°¨ì›ì— ì‰½ê²Œ ì ‘ê·¼í•  ìˆ˜ ìžˆë‹¤
 // 
-// ¹è¿­ÀÇ ÀÌ¸§Àº »ç½Ç»ó Æ÷ÀÎÅÍ¿Í °°Àº ¿ªÇÒÀÌ´Ù
+// ë°°ì—´ì˜ ì´ë¦„ì€ ì‚¬ì‹¤ìƒ í¬ì¸í„°ì™€ ê°™ì€ ì—­í• ì´ë‹¤
 
 // 8.22~8.28
-// call by value = °ª¿¡ ÀÇÇÑ È£Ãâ
-// call by reference = ÂüÁ¶¿¡ ÀÇÇÑ È£Ãâ
+// call by value = ê°’ì— ì˜í•œ í˜¸ì¶œ
+// call by reference = ì°¸ì¡°ì— ì˜í•œ í˜¸ì¶œ
 // 
-// call by value´Â ÀÎÀÚ·Î ¹ÞÀº °ªÀ» º¹»çÇÏ¿© Ã³¸®¸¦ ÇÑ´Ù
-// call by reference´Â ÀÎÀÚ·Î ¹ÞÀº °ªÀÇ ÁÖ¼Ò¸¦ ÂüÁ¶ÇÏ¿© Á÷Á¢ °ª¿¡ ¿µÇâÀ» ÁØ´Ù
-// Áï  °ªÀ» º¹»ç¸¦ ÇÏ¿© Ã³¸®ÇÏ´À³Ä, Á÷Á¢ ÂüÁ¶¸¦ ÇÏ´À³Ä Â÷ÀÌÀÌ´Ù
+// call by valueëŠ” ì¸ìžë¡œ ë°›ì€ ê°’ì„ ë³µì‚¬í•˜ì—¬ ì²˜ë¦¬ë¥¼ í•œë‹¤
+// call by referenceëŠ” ì¸ìžë¡œ ë°›ì€ ê°’ì˜ ì£¼ì†Œë¥¼ ì°¸ì¡°í•˜ì—¬ ì§ì ‘ ê°’ì— ì˜í–¥ì„ ì¤€ë‹¤
+// ì¦‰  ê°’ì„ ë³µì‚¬ë¥¼ í•˜ì—¬ ì²˜ë¦¬í•˜ëŠëƒ, ì§ì ‘ ì°¸ì¡°ë¥¼ í•˜ëŠëƒ ì°¨ì´ì´ë‹¤
 // 
 // call by value
-// ÀåÁ¡ = º¹»ç¸¦ ÇÏ¿© Ã³¸®ÇØ¼­ ¾ÈÀüÇÏ´Ù. ¿ø·¡ °ªÀÌ º¸Á¸µÈ´Ù
-// ´ÜÁ¡ = º¹»ç¸¦ ÇØ¼­ ¸Þ¸ð¸®°¡ »ç¿ë·®ÀÌ ´Ã¾î³­´Ù
+// ìž¥ì  = ë³µì‚¬ë¥¼ í•˜ì—¬ ì²˜ë¦¬í•´ì„œ ì•ˆì „í•˜ë‹¤. ì›ëž˜ ê°’ì´ ë³´ì¡´ëœë‹¤
+// ë‹¨ì  = ë³µì‚¬ë¥¼ í•´ì„œ ë©”ëª¨ë¦¬ê°€ ì‚¬ìš©ëŸ‰ì´ ëŠ˜ì–´ë‚œë‹¤
 // 
 // call by reference
-// ÀåÁ¡ = º¹»çÇÏÁö ¾Ê°í Á÷Á¢ ÂüÁ¶¸¦ ÇÏ±â¿¡ ºü¸£´Ù
-// ´ÜÁ¡ = Á÷Á¢ ÂüÁ¶¸¦ ÇÏ±â¿¡ ¿ø·¡ °ªÀÌ ¿µÇâÀ» ¹Þ´Â´Ù
+// ìž¥ì  = ë³µì‚¬í•˜ì§€ ì•Šê³  ì§ì ‘ ì°¸ì¡°ë¥¼ í•˜ê¸°ì— ë¹ ë¥´ë‹¤
+// ë‹¨ì  = ì§ì ‘ ì°¸ì¡°ë¥¼ í•˜ê¸°ì— ì›ëž˜ ê°’ì´ ì˜í–¥ì„ ë°›ëŠ”ë‹¤
 // 
-// ¸µÅ©µå ¸®½ºÆ®
-// ³»°¡ ÇÊ¿äÇÒ ¶§¸¶´Ù ¸¸µé¸é µÇ¼­ ¸Þ¸ð¸®¸¦ È¿À²ÀûÀ¸·Î »ç¿ëÇÒ ¼ö ÀÖ´Ù
+// ë§í¬ë“œ ë¦¬ìŠ¤íŠ¸
+// ë‚´ê°€ í•„ìš”í•  ë•Œë§ˆë‹¤ ë§Œë“¤ë©´ ë˜ì„œ ë©”ëª¨ë¦¬ë¥¼ íš¨ìœ¨ì ìœ¼ë¡œ ì‚¬ìš©í•  ìˆ˜ ìžˆë‹¤
 
 //8.19
-//Æ÷ÀÎÅÍ
+//í¬ì¸í„°
 #define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
 
-static int i = 7;//Àü¿ªº¯¼ö(¸Þ¸ð¸®ÀÇ µ¥ÀÌÅÍ¿µ¿ª)
+static int i = 7;//ì „ì—­ë³€ìˆ˜(ë©”ëª¨ë¦¬ì˜ ë°ì´í„°ì˜ì—­)
 void func1();
 void func2();
 
 int main()
 {
-	int i = 5;//Áö¿ª¹ø¼ö(¸Þ¸ð¸®ÀÇ stack¿µ¿ª)
+	int i = 5;//ì§€ì—­ë²ˆìˆ˜(ë©”ëª¨ë¦¬ì˜ stackì˜ì—­)
 	func1();
 	i++;
-	printf("i=%d\n", i);//Áö¿ªº¯¼öÀÇ i
+	printf("i=%d\n", i);//ì§€ì—­ë³€ìˆ˜ì˜ i
 	return 0;
 }
 
 void func1()
 {
-	i++;//Àü¿ªº¯¼öÀÇ i
+	i++;//ì „ì—­ë³€ìˆ˜ì˜ i
 	printf("func1 i = %d \n", i);
 	func2();
 }
 
 void func2()
 {
-	i++;//Àü¿ªº¯¼öÀÇ i
+	i++;//ì „ì—­ë³€ìˆ˜ì˜ i
 	printf("func2 i=%d \n", i);
 }
 
@@ -69,10 +69,10 @@ void func2()
 int main()
 {
 	static int i = 7, * p, ** pp;
-	p = &i;//º¯¼ö i
+	p = &i;//ë³€ìˆ˜ i
 
-	pp = &p;//º¯¼ö i¸¦ °¡¸£Å°´Â Æ÷ÀÎÅÍÀÇ Æ÷ÀÎÅÍ
-	//Áï º¯¼ö i
+	pp = &p;//ë³€ìˆ˜ ië¥¼ ê°€ë¥´í‚¤ëŠ” í¬ì¸í„°ì˜ í¬ì¸í„°
+	//ì¦‰ ë³€ìˆ˜ i
 
 	printf("p\'s Address = %p\n,p");
 	printf("pp\'s Address = %p\n,pp");
@@ -94,11 +94,11 @@ int main()
 int main()
 {
 	char string[] = "Hello";
-	char* pstr = string;//pstrÀº ¹®ÀÚ¿­À» °¡¸£Å°´Â Æ÷ÀÎÅÍÀÌ´Ù
-	while (*pstr)//¹®ÀÚ¿­ÀÇ null(³¡) ±îÁö ½ÇÇàÇÑ´Ù
+	char* pstr = string;//pstrì€ ë¬¸ìžì—´ì„ ê°€ë¥´í‚¤ëŠ” í¬ì¸í„°ì´ë‹¤
+	while (*pstr)//ë¬¸ìžì—´ì˜ null(ë) ê¹Œì§€ ì‹¤í–‰í•œë‹¤
 	{
-		putchar(*pstr++);//putchar´Â printf¿¡ %c ¿Í °°Àº ¿ªÇÒÀ» ÇÑ´Ù	
-		//++À» ¸¸³ª¸é¼­ ´ÙÀ½´Ü¾î°¡ Ãâ·ÂµÈ´Ù
+		putchar(*pstr++);//putcharëŠ” printfì— %c ì™€ ê°™ì€ ì—­í• ì„ í•œë‹¤	
+		//++ì„ ë§Œë‚˜ë©´ì„œ ë‹¤ìŒë‹¨ì–´ê°€ ì¶œë ¥ëœë‹¤
 	}
 
 	return 0;
@@ -122,7 +122,7 @@ void swap2(int* a, int* b)//call by reference
 	int t = *a;
 	*a = *b;
 	*b = t;
-}//Æ÷ÀÎÅÍ¸¦ »ç¿ëÇØ¼­ swapÈ£Ãâ ÈÄ¿¡µµ °ªÀÌ º¯°æµÇ¾î ÀÖÀ½
+}//í¬ì¸í„°ë¥¼ ì‚¬ìš©í•´ì„œ swapí˜¸ì¶œ í›„ì—ë„ ê°’ì´ ë³€ê²½ë˜ì–´ ìžˆìŒ
 
 int main()
 {
@@ -130,13 +130,13 @@ int main()
 	printf("n1 = %d, n2 = %d\n", n1, n2);
 	swap1(n1, n2);
 	printf("n1 = %d, n2 = %d\n", n1, n2);
-	swap2(&n1, &n2);//Æ÷ÀÎÅÍ¸¦ »ç¿ëÇÏ±â ¶§¹®¿¡ ÁÖ¼Ò¸¦ ³Ñ°Ü¾ß ÇÑ´Ù
+	swap2(&n1, &n2);//í¬ì¸í„°ë¥¼ ì‚¬ìš©í•˜ê¸° ë•Œë¬¸ì— ì£¼ì†Œë¥¼ ë„˜ê²¨ì•¼ í•œë‹¤
 	printf("n1 = %d, n2 = %d\n", n1, n2);
 
 	return 0;
 }
 
-//ÆÑÅä¸®¾ó
+//íŒ©í† ë¦¬ì–¼
 #define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
 
@@ -151,7 +151,7 @@ int main()
 	printf("%d! = %d", n, factorial(n));
 	return 0;
 }
-//10ÀÌÇÏÀÇ °ªµéÀÌ ¸ðµÎ Ãâ·ÂµÇµµ·Ï ¹Ù²Ù±â
+//10ì´í•˜ì˜ ê°’ë“¤ì´ ëª¨ë‘ ì¶œë ¥ë˜ë„ë¡ ë°”ê¾¸ê¸°
 #define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
 int d=0;
@@ -175,7 +175,7 @@ int main()
 	printf("%d! = %d", n, factorial(n));
 	return 0;
 }
-//°úÁ¦)ÆÑµµ¸®¾óÀ» ¹Ýº¹¹®À» »ç¿ëÇÏ¿© ±¸ÇÏ´Â ÄÚµå
+//ê³¼ì œ)íŒ©ë„ë¦¬ì–¼ì„ ë°˜ë³µë¬¸ì„ ì‚¬ìš©í•˜ì—¬ êµ¬í•˜ëŠ” ì½”ë“œ
 #define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
 int main()
@@ -189,7 +189,7 @@ int main()
 	printf("%d! = %d",n ,v);
 	return 0;
 }
-//¼±ÅÃÁ¤·Ä
+//ì„ íƒì •ë ¬
 #define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
 
@@ -218,13 +218,13 @@ void swap(int* x, int* y)
 	*y = t;
 }
 
-void selectionSort(int a[], int cnt)//¼±ÅÃÁ¤·Ä
+void selectionSort(int a[], int cnt)//ì„ íƒì •ë ¬
 {
 	for (int i = 0; i < cnt - 1; i++)
 	{
 		for (int j = i + 1; j < cnt; j++)
 		{
-			if (a[i] > a[j])//¾ÕÀÌ µÚº¸´Ù Å¬ ¶§
+			if (a[i] > a[j])//ì•žì´ ë’¤ë³´ë‹¤ í´ ë•Œ
 			{
 				swap(&a[i], &a[j]);//call by reference
 			}
@@ -242,7 +242,7 @@ int main()
 	output(a, n);
 	return 0;
 }
-+¹öºíÁ¤·Ä¼÷Á¦
++ë²„ë¸”ì •ë ¬ìˆ™ì œ
 #define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
 
@@ -260,15 +260,15 @@ int main()
 
 	while (1)
 	{
-		printf("·£´ýÀ¸·Î ¼ö¸¦ ÀÔ·Â½ÃÅ°·Á¸é 1\n");
-		printf("Á÷Á¢ ¼ö¸¦ ÀÔ·ÂÇÏ·Á¸é 2¹øÀ» ÀÔ·ÂÇÏ¼¼¿ä\n\n");
+		printf("ëžœë¤ìœ¼ë¡œ ìˆ˜ë¥¼ ìž…ë ¥ì‹œí‚¤ë ¤ë©´ 1\n");
+		printf("ì§ì ‘ ìˆ˜ë¥¼ ìž…ë ¥í•˜ë ¤ë©´ 2ë²ˆì„ ìž…ë ¥í•˜ì„¸ìš”\n\n");
 		scanf("%d", &b);
-		printf("\n\n»ý¼ºÇÒ, ÀÔ·ÂÇÒ ¼ýÀÚÀÇ ¼ö¸¦ ÀÔ·ÂÇÏ¼¼¿ä\n\n");
+		printf("\n\nìƒì„±í• , ìž…ë ¥í•  ìˆ«ìžì˜ ìˆ˜ë¥¼ ìž…ë ¥í•˜ì„¸ìš”\n\n");
 		scanf("%d", &c);
 
 		if (b == 1)
 		{
-			printf("\n\nÁ¤·Ä Àü : ");
+			printf("\n\nì •ë ¬ ì „ : ");
 			for (int i = 0; i < c; i++)
 			{
 				a[i] = rand() % 100;
@@ -287,10 +287,10 @@ int main()
 	}
 
 	for (int i = 0; i < c ; i++)
-	{//¼ýÀÚÀÇ °³¼ö¸¸Å­ µ·´Ù
+	{//ìˆ«ìžì˜ ê°œìˆ˜ë§Œí¼ ëˆë‹¤
 		for (int j = 0; j < c-1; j++)
-		{//+ 1À» ÇÏ¸ç ºñ±³ÇÏ±â¶§¹®¿¡ ¸¶Áö¸· ¼ýÀÚ´Â
-			//ºñ±³ÇÏÁö ¾Ê¾Æµµ µÈ´Ù
+		{//+ 1ì„ í•˜ë©° ë¹„êµí•˜ê¸°ë•Œë¬¸ì— ë§ˆì§€ë§‰ ìˆ«ìžëŠ”
+			//ë¹„êµí•˜ì§€ ì•Šì•„ë„ ëœë‹¤
 			if (a[j] > a[j+1])
 			{
 				temp = a[j];
@@ -300,7 +300,7 @@ int main()
 		}
 	}
 
-	printf("\n\n\nÁ¤·ÄÈÄ : ");
+	printf("\n\n\nì •ë ¬í›„ : ");
 	for (int i = 0; i < c; i++)
 	{
 		printf("%d\t", a[i]);
