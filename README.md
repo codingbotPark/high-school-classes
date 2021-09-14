@@ -22,6 +22,6 @@ all of my C programing
 * [data struct class (8.18~8.28)](https://github.com/codingbotPark/C-programing/blob/main/data%20struct%20class%20(8.18~8.28).c)
 * [data struct class (8.29~9.4)](https://github.com/codingbotPark/C-programing/blob/main/data%20struct%20class%20(8.29~9.4).c)
 
-## Projects
+## rojects
 * [DGSWmarble](https://github.com/codingbotPark/C-programing/blob/main/DGSWmarble.c)
 * [ladder game](https://github.com/codingbotPark/C-programing/blob/main/ladder%20game.c)
