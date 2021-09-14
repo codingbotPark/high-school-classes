@@ -27,7 +27,7 @@ all of my C programing
 * [ladder game](https://github.com/codingbotPark/C-programing/blob/main/ladder%20game.c)
 
 ## algorithm problems
-### <a href = "https://github.com/codingbotPark/C-programing/blob/main/jungol-2046.c" target = "_blank" title = "참고자료">JUNGOL</a>
+### * <a href = "https://github.com/codingbotPark/C-programing/blob/main/jungol-2046.c" target = "_blank" title = "참고자료">JUNGOL</a>
 * [jungol-1291](https://github.com/codingbotPark/C-programing/blob/main/jungol-1291.c)
 * [jungol-1301](https://github.com/codingbotPark/C-programing/blob/main/jungol-1303.c)
 * [jungol-1304](https://github.com/codingbotPark/C-programing/blob/main/jungol-1304.c)
