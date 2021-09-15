@@ -37,3 +37,6 @@ all of my C programing
 * [jungol-1341](https://github.com/codingbotPark/C-programing/blob/main/jungol-1341.c)
 * [jungol-1856](https://github.com/codingbotPark/C-programing/blob/main/jungol-1856.c)
 * [jungol-2046](https://github.com/codingbotPark/C-programing/blob/main/jungol-2046.c)
+
+### after school algorithm class
+* [after school algorithm (9.15)](https://github.com/codingbotPark/C-programing/blob/main/after%20school%20algorithm%20class%20(9.15).c)
