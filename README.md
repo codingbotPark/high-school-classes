@@ -22,6 +22,18 @@ all of my C programing
 * [data struct class (8.18~8.28)](https://github.com/codingbotPark/C-programing/blob/main/data%20struct%20class%20(8.18~8.28).c)
 * [data struct class (8.29~9.4)](https://github.com/codingbotPark/C-programing/blob/main/data%20struct%20class%20(8.29~9.4).c)
 
-## Projects
+## projects
 * [DGSWmarble](https://github.com/codingbotPark/C-programing/blob/main/DGSWmarble.c)
 * [ladder game](https://github.com/codingbotPark/C-programing/blob/main/ladder%20game.c)
+
+## algorithm problems
+### <a href = "https://github.com/codingbotPark/C-programing/blob/main/jungol-2046.c" target = "_blank" title = "참고자료">JUNGOL</a>
+* [jungol-1291](https://github.com/codingbotPark/C-programing/blob/main/jungol-1291.c)
+* [jungol-1301](https://github.com/codingbotPark/C-programing/blob/main/jungol-1303.c)
+* [jungol-1304](https://github.com/codingbotPark/C-programing/blob/main/jungol-1304.c)
+* [jungol-1307](https://github.com/codingbotPark/C-programing/blob/main/jungol-1307.c)
+* [jungol-1314](https://github.com/codingbotPark/C-programing/blob/main/jungol-1314.c)
+* [jungol-1338](https://github.com/codingbotPark/C-programing/blob/main/jungol-1338.c)
+* [jungol-1341](https://github.com/codingbotPark/C-programing/blob/main/jungol-1341.c)
+* [jungol-1856](https://github.com/codingbotPark/C-programing/blob/main/jungol-1856.c)
+* [jungol-2046](https://github.com/codingbotPark/C-programing/blob/main/jungol-2046.c)
