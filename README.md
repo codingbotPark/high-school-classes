@@ -21,6 +21,7 @@ all of my C programing
 * [c programing class (6.20~6.26)](https://github.com/codingbotPark/C-programing/blob/main/c%20programing%20class%20(6.20~6.26).c)
 * [data struct class (8.18~8.28)](https://github.com/codingbotPark/C-programing/blob/main/data%20struct%20class%20(8.18~8.28).c)
 * [data struct class (8.29~9.4)](https://github.com/codingbotPark/C-programing/blob/main/data%20struct%20class%20(8.29~9.4).c)
+* [data struct class (9.5~9.11)](https://github.com/codingbotPark/C-programing/blob/main/data%20struct%20class%20(9.5~9.11).c)
 
 ## projects
 * [DGSWmarble](https://github.com/codingbotPark/C-programing/blob/main/DGSWmarble.c)
