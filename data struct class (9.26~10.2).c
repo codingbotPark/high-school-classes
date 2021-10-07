@@ -71,6 +71,7 @@ long combi(int n, int r) {
 }
 
 //9.30
+//두 수를 입력받아 더해서 가장 큰 수 출력하기
 #define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
 int main()
