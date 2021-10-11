@@ -23,6 +23,7 @@ all of my C programing
 * [data struct class (8.29~9.4)](https://github.com/codingbotPark/C-programing/blob/main/data%20struct%20class%20(8.29~9.4).c)
 * [data struct class (9.5~9.11)](https://github.com/codingbotPark/C-programing/blob/main/data%20struct%20class%20(9.5~9.11).c)
 * [data struct class (9.12~9.18)](https://github.com/codingbotPark/C-programing/blob/main/data%20struct%20class%20(9.12~9.18).c)
+* [data struct class (9.26~10.2)](https://github.com/codingbotPark/C-programing/blob/main/data%20struct%20class%20(9.26~10.2).c)
 
 ## projects
 * [DGSWmarble](https://github.com/codingbotPark/C-programing/blob/main/DGSWmarble.c)
