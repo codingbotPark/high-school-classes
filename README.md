@@ -24,13 +24,14 @@ all of my C programing
 * [data struct class (9.5~9.11)](https://github.com/codingbotPark/C-programing/blob/main/data%20struct%20class%20(9.5~9.11).c)
 * [data struct class (9.12~9.18)](https://github.com/codingbotPark/C-programing/blob/main/data%20struct%20class%20(9.12~9.18).c)
 * [data struct class (9.26~10.2)](https://github.com/codingbotPark/C-programing/blob/main/data%20struct%20class%20(9.26~10.2).c)
+* [data struct class (10.3~10.9)](https://github.com/codingbotPark/C-programing/blob/main/data%20struct%20class%20(10.3~10.9).c)
 
 ## projects
 * [DGSWmarble](https://github.com/codingbotPark/C-programing/blob/main/DGSWmarble.c)
 * [ladder game](https://github.com/codingbotPark/C-programing/blob/main/ladder%20game.c)
 
 ## algorithm problems
-### <a href = "https://github.com/codingbotPark/C-programing/blob/main/jungol-2046.c" target = "_blank" title = "참고자료">JUNGOL</a>
+### [JUNGOL](http://jungol.co.kr/)
 * [jungol-1291](https://github.com/codingbotPark/C-programing/blob/main/jungol-1291.c)
 * [jungol-1301](https://github.com/codingbotPark/C-programing/blob/main/jungol-1303.c)
 * [jungol-1304](https://github.com/codingbotPark/C-programing/blob/main/jungol-1304.c)
@@ -45,3 +46,7 @@ all of my C programing
 * [after school algorithm (9.8)](https://github.com/codingbotPark/C-programing/blob/main/after%20school%20algorithm%20(9.15).c)
 * [after school algorithm (9.15)](https://github.com/codingbotPark/C-programing/blob/main/after%20school%20algorithm%20class%20(9.15).c)
 * [after school algorithm (9.29)](https://github.com/codingbotPark/C-programing/blob/main/after%20school%20algorithm%20(9.29).c)
+
+### [BEAKJOON](https://www.acmicpc.net/)
+* [Beakjoon-1157](https://github.com/codingbotPark/C-programing/blob/main/baekjoon-1157.c)
+* [Beakjoon-1357](https://github.com/codingbotPark/C-programing/blob/main/baekjoon-1357.c)
