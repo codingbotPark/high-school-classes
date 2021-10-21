@@ -25,10 +25,12 @@ all of my C programing
 * [data struct class (9.12~9.18)](https://github.com/codingbotPark/C-programing/blob/main/data%20struct%20class%20(9.12~9.18).c)
 * [data struct class (9.26~10.2)](https://github.com/codingbotPark/C-programing/blob/main/data%20struct%20class%20(9.26~10.2).c)
 * [data struct class (10.3~10.9)](https://github.com/codingbotPark/C-programing/blob/main/data%20struct%20class%20(10.3~10.9).c)
+* [data struct class (10.14)](https://github.com/codingbotPark/C-programing/blob/main/data%20struct%20class%20(10%2C14).c)
 
 ## projects
 * [DGSWmarble](https://github.com/codingbotPark/C-programing/blob/main/DGSWmarble.c)
 * [ladder game](https://github.com/codingbotPark/C-programing/blob/main/ladder%20game.c)
+* [chess game](https://github.com/codingbotPark/chess-game)
 
 ## algorithm problems
 ### [JUNGOL](http://jungol.co.kr/)
