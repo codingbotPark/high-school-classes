@@ -1,5 +1,5 @@
 # C-programing
-all of my C programing
+all of my C programming
 
 ## school
 * [c programing class (3.1~3.6)](https://github.com/codingbotPark/C-programing/blob/main/c%20programing%20class%20(3.1~3.6).c)
