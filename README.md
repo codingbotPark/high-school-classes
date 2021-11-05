@@ -46,7 +46,7 @@ all of my C programming
 
 ### after school algorithm class
 * [after school algorithm (9.8)](https://github.com/codingbotPark/C-programing/blob/main/after%20school%20algorithm%20(9.15).c)
-* [after school algorithm (9.15)](https://github.com/codingbotPark/C-programing/blob/main/after%20school%20algorithm%20class%20(9.15).c)
+* [after school algorithm (9.15)](https://github.com/codingbotPark/C-programming/blob/main/after%20school%20algorithm%20(9.15).c)
 * [after school algorithm (9.29)](https://github.com/codingbotPark/C-programing/blob/main/after%20school%20algorithm%20(9.29).c)
 
 ### [BEAKJOON](https://www.acmicpc.net/)
