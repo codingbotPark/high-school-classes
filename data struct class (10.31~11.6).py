@@ -67,7 +67,7 @@ print(sum(n))
 # 자식 노드(child node) | 노드 x의 서브 트리의 루트들은 x의 자식
 # 부모 노드(parent node) | x는 그 자식들의 부모
 # 형제 노드(sibling node) | 부모가 같은 자식들
-# 조상 노드(ancestor node) | 루트부토 노드에 이르는 경로상의 모든 노드들
+# 조상 노드(ancestor node) | 루트부터 노드에 이르는 경로상의 모든 노드들
 # 트리의 차수(degree) | 트리에 속한 노드의 최대 차수
 
 # -----------
