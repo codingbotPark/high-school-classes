@@ -26,6 +26,7 @@ all of my C programming
 * [data struct class (9.26~10.2)](https://github.com/codingbotPark/C-programing/blob/main/data%20struct%20class%20(9.26~10.2).c)
 * [data struct class (10.3~10.9)](https://github.com/codingbotPark/C-programing/blob/main/data%20struct%20class%20(10.3~10.9).c)
 * [data struct class (10.14)](https://github.com/codingbotPark/C-programing/blob/main/data%20struct%20class%20(10%2C14).c)
+* [addition class (9.3~9.4)](https://github.com/codingbotPark/C-programming/blob/main/additional%20c%20programing%20class%20(9.3~9.4).c)
 * [after school algorithm (9.8)](https://github.com/codingbotPark/C-programing/blob/main/after%20school%20algorithm%20(9.15).c)
 * [after school algorithm (9.15)](https://github.com/codingbotPark/C-programming/blob/main/after%20school%20algorithm%20(9.15).c)
 * [after school algorithm (9.29)](https://github.com/codingbotPark/C-programing/blob/main/after%20school%20algorithm%20(9.29).c)
@@ -35,18 +36,3 @@ all of my C programming
 * [ladder game](https://github.com/codingbotPark/C-programing/blob/main/ladder%20game.c)
 * [chess game](https://github.com/codingbotPark/chess-game)
 
-## algorithm problems
-### [JUNGOL](http://jungol.co.kr/)
-* [jungol-1291](https://github.com/codingbotPark/C-programing/blob/main/jungol-1291.c)
-* [jungol-1301](https://github.com/codingbotPark/C-programing/blob/main/jungol-1303.c)
-* [jungol-1304](https://github.com/codingbotPark/C-programing/blob/main/jungol-1304.c)
-* [jungol-1307](https://github.com/codingbotPark/C-programing/blob/main/jungol-1307.c)
-* [jungol-1314](https://github.com/codingbotPark/C-programing/blob/main/jungol-1314.c)
-* [jungol-1338](https://github.com/codingbotPark/C-programing/blob/main/jungol-1338.c)
-* [jungol-1341](https://github.com/codingbotPark/C-programing/blob/main/jungol-1341.c)
-* [jungol-1856](https://github.com/codingbotPark/C-programing/blob/main/jungol-1856.c)
-* [jungol-2046](https://github.com/codingbotPark/C-programing/blob/main/jungol-2046.c)
-
-### [BEAKJOON](https://www.acmicpc.net/)
-* [Beakjoon-1157](https://github.com/codingbotPark/C-programing/blob/main/baekjoon-1157.c)
-* [Beakjoon-1357](https://github.com/codingbotPark/C-programing/blob/main/baekjoon-1357.c)
