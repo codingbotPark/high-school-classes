@@ -1,4 +1,4 @@
-package NW220222;
+package NW220422_1;
 
 public class MyRun_WithSynchronized implements Runnable {
 	private int i=0;

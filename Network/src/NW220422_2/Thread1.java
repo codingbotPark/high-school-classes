@@ -1,4 +1,4 @@
-package Thread2;
+package NW220422_2;
 
 public class Thread1 implements Runnable{
 	public String name;
