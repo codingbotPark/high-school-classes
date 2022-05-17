@@ -4,8 +4,6 @@
 #define LED_DDR DDRB
 #define LED_PORT PORTB
 
-int LED_Flag = 0;
-
 // 인터럽트 트리거 방식에는
 // 0 0 = low일 때
 // 0 1 = 상승
@@ -20,11 +18,9 @@ void init_EINT(){
 
 // 4번을 확인해준다
 ISR(INT4_vect){
-	LED_Flag = 0;
 	LED_PORT = 0xff;
 }
 ISR(INT5_vect){
-	LED_Flag = 1;
 	LED_PORT = 0x00;
 }
 
