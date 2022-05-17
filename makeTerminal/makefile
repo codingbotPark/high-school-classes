@@ -1,0 +1,9 @@
+
+
+all:
+
+file.o:
+
+
+
+clean:
