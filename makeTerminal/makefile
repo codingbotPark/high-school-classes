@@ -4,6 +4,4 @@ all:
 
 file.o:
 
-
-
 clean:
