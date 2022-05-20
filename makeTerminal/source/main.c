@@ -93,6 +93,10 @@ int main()
     // char fileName[512] = "myfile";
     while (1)
     {
+
+        // cd 스페이스 했을 때 오류
+
+
         printPath(current);
 
         // 명령어 받기
@@ -118,25 +122,31 @@ int main()
             j++;
         }
 
-
         // touch [파일이름] 는 파일생성
         // rm [파일이름] 파일삭제
         // ls [ls또는ls-al] 디렉토리보기
         // mkdir [디렉토리명] 디렉토리 만들기
         // rmdir [없앨디렉토리]
+        // cat 파일
 
         // vi [있는파일이름] 파일 수정
-        // cat 파일
+
 
         // 기본적으로 명령어와 뒤에 오는 말 이외에 띄어쓰기가 있으면 오류로 간주
 
         // 단수의 명령
         if (!strcmp(command, "ls")){
             listFileDir(current);
+            continue;
         } else if (!strcmp(command, "quit")){
             break;
         }
 
+        // 연산자 확인
+        if (commandOper[0] == '\0'){
+            perror("cannot find command");
+            continue;
+        }
         checkEmpty(commandOper);
 
         if (!strcmp(command,"cd")){
@@ -190,13 +200,14 @@ int main()
             // 파일이 없으면 만들고 수정
             // file.c에 있는 vi의 확장자를 검사하는 함수
             if (checkCommandForVi(commandOper)){
-                // printf("vi함수 실행\n");
+                // 파일이 존재할 때 
                 if (isFileExists(current,commandOper)){
-                    editFile(current,commandOper);
+                    readFile(current,commandOper);
+                    editFile(current,commandOper,0);
                 } else {
                     // 없다면 만들고 추가
                     makeFile(current,commandOper);
-                    editFile(current,commandOper);
+                    editFile(current,commandOper,1);
                 }
             } else {
                 printf("please add extension\n");
@@ -340,6 +351,7 @@ void printPath(char currentPath[1024])
     printf("$ ");
 }
 
+
 // 명령어와 연산자 이외에 공백이 있는지 검사
 void checkEmpty(char commandOper[512]){
     
@@ -349,3 +361,4 @@ void checkEmpty(char commandOper[512]){
         }
     }
 }
+
