@@ -73,15 +73,17 @@ void readFile(char path[512], char fileName[512]){
 }
 
 
+// 파일에 내용 추가 부분에서 오류가 떳을 때 메인으로 보내기 위해
+// return을 사용, int형 함수이다
 // isNew = 새로운 파일인지 아닌지
-void editFile(char path[512],char fileName[512],int isNew){
+int editFile(char path[512],char fileName[512],int isNew){
 	char pathName[512];
 	strcpy(pathName,path);
 	strcat(pathName,fileName);
 
 
 
-	char editBuffer[100];
+	char editBuffer[100] = {'\0',};
 	// 새로 만든 파일일 때
 	if (isNew){
 		FILE *file;
@@ -114,15 +116,30 @@ void editFile(char path[512],char fileName[512],int isNew){
 			strcpy(fileContents[len],buf);
 		}
 
-		// printf("%d",len);
+		printf("%d",len);
 
 		// 수정할 라인과 내용을 입력받는다
 		int line;
-		printf("write line : ");
+		printf("write line(next line is add) : ");
 		scanf("%d",&line);
+		getchar();
+		// len이 한 줄 많다,
+		// 그래서 수정할 다음라인을 입력했을 때
+		// line과 len을 동등비교
+		if (line > len){
+			// len+1 을 입력 받았을 때
+			if (len+1 == line){
+				// 아래에서 len만큼 반복하며 for문을 돌기때문에 ++
+				len++;
+			} else {
+				perror("wrong line");
+				return 1;
+			}
+		}
 		printf("write content : ");
 		// 엔터를 추가해준다
 		scanf(" %[^\n]", editBuffer);
+		getchar();
 		editBuffer[strlen(editBuffer)] = '\n';
 		
 		// 입력받은 문자를 복사
@@ -143,5 +160,7 @@ void editFile(char path[512],char fileName[512],int isNew){
 		fclose(editFile);
 
 	}
+
+	return 0;
 
 }
