@@ -71,7 +71,7 @@ char *findAbsolutePath();
 char *colPath(char absolutePath[1024]);
 
 // 슬레쉬의 개수
-int countBackslash(char cwd[1024]);
+int countSlash(char cwd[1024]);
 
 // 경로를 출력해주는 함수
 void printPath(char current[1024]);
@@ -89,14 +89,8 @@ int main()
     // home/유저이름/d의 경로
     char *current = colPath(absolutePath);
 
-
-    // char fileName[512] = "myfile";
     while (1)
     {
-
-        // cd 스페이스 했을 때 오류
-
-
         printPath(current);
 
         // 명령어 받기
@@ -111,12 +105,15 @@ int main()
         int i = 0;
         // 명령어를 걸러냄
         int j = 0;
-        for (i; (commandLine[i] != ' ') && (commandLine[i] != '\0') && (commandLine[i] != '\n'); i++)
+        for (i; (commandLine[i] != ' ') && 
+        (commandLine[i] != '\0') && 
+        (commandLine[i] != '\n'); i++)
         {
             command[i] = commandLine[i];
         }
         // 명령어 뒤의 값들을 걸러냄
-        for (i++; (commandLine[i] != '\n') && (commandLine[i] != '\0'); i++)
+        for (i++; (commandLine[i] != '\n') && 
+        (commandLine[i] != '\0'); i++)
         {
             commandOper[j] = commandLine[i];
             j++;
@@ -131,7 +128,8 @@ int main()
         // vi [있는파일이름] 파일 수정
 
 
-        // 기본적으로 명령어와 뒤에 오는 말 이외에 띄어쓰기가 있으면 오류로 간주
+        // 기본적으로 명령어와 뒤에 오는 말 
+        // 이외에 띄어쓰기가 있으면 오류로 간주
 
         // 단수의 명령
         if (!strcmp(command, "ls")){
@@ -156,9 +154,10 @@ int main()
             strcpy(copiedCurrent,current);
             if (!strcmp(commandOper,"..")){ // 뒤로
                 // ~$ 에서 cd .. 이 먹히지 않도록 하기 위해
-                if (countBackslash(copiedCurrent) > 3){
+                if (countSlash(copiedCurrent) > 3){
                     // null 을 뺀 -1 , 최소 한 글자라서 -1, -2
-                    for (int i = strlen(copiedCurrent)-2;copiedCurrent[i] != '/';i--){
+                    for (int i = strlen(copiedCurrent)-2;
+                    copiedCurrent[i] != '/';i--){
                     // 널로 넣어줌
                     copiedCurrent[i] = '\0';
                     }
@@ -303,7 +302,7 @@ char *colPath(char absolutePath[1024])
 
 
 // 슬레쉬의 개수
-int countBackslash(char cwd[1024])
+int countSlash(char cwd[1024])
 {
     int counter = 0;
     for (int i = 0; cwd[i] != '\0'; i++)

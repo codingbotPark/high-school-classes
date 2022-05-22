@@ -14,6 +14,9 @@
 
 #include <stdbool.h>
 
+
+
+
 // 절대경로로 생성
 void makeFile(char path[512], char fileName[512]){
 	// 복사가 된다
@@ -25,7 +28,8 @@ void makeFile(char path[512], char fileName[512]){
 		perror("파일 생성 실패");
 	}
 }
-	
+
+
 void removeFile(char path[512], char fileName[512]){
 	char copiedCurrent[512];
 	strcpy(copiedCurrent,path);
@@ -34,16 +38,6 @@ void removeFile(char path[512], char fileName[512]){
 	if (fd == -1){
 		perror("파일 삭제 실패");
 	}
-}
-
-// vi 의 확장자를 검사
-int checkCommandForVi(char command[512]){
-	for (int i = strlen(command) -2;i>0;i--){
-		if (command[i] == '.'){
-			return 1;
-		}
-	}
-	return 0;
 }
 
 // 파일 읽기
@@ -72,6 +66,17 @@ void readFile(char path[512], char fileName[512]){
 	fclose(file);
 }
 
+
+
+// vi 의 확장자를 검사
+int checkCommandForVi(char command[512]){
+	for (int i = strlen(command) -2;i>0;i--){
+		if (command[i] == '.'){
+			return 1;
+		}
+	}
+	return 0;
+}
 
 // 파일에 내용 추가 부분에서 오류가 떳을 때 메인으로 보내기 위해
 // return을 사용, int형 함수이다
@@ -115,8 +120,6 @@ int editFile(char path[512],char fileName[512],int isNew){
 		for (len;fgets(buf, sizeof(buf),file) != NULL;len++){
 			strcpy(fileContents[len],buf);
 		}
-
-		printf("%d",len);
 
 		// 수정할 라인과 내용을 입력받는다
 		int line;
