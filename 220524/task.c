@@ -1,13 +1,21 @@
+/*
+ * ex_usart_rtx.c
+ *
+ * Created: 2022-05-24 오전 2:54:44
+ * Author : user
+ */ 
+
 #include <avr/io.h>
+#include <util/delay.h>
 // 항상 메시지 송신을 기다릴 수는 없기 때문에 인터럽트를 include
 // RX수신 처리 인터럽트
 #include <avr/interrupt.h>
 
-#define LED_DDR DDRB
-#define LED_PORT PORTB
-
 // usart제어를 위한 정의
 #define BAUD_RATE 51 // atmega128의 데이터 시트 51
+
+#define LED_DDR DDRB
+#define LED_PORT PORTB
 
 volatile unsigned char rxData;
 
@@ -41,7 +49,6 @@ int main(void)
 	LED_DDR = 0xff;
 	LED_PORT = 0x00;
 	
-	
 	USART_Init();
 	
 	sei();
@@ -49,17 +56,25 @@ int main(void)
 	USART_Transmitter('S');
 	
 	/* Replace with your application code */
+	
+	// 기본값 -1
+	int lastNum = -1;
+	
 	while (1)
 	{
-		switch(rxData){
-			case '1':
-				LED_PORT = 0xff;
-				break;
-			default:
-				LED_PORT = 0x00;
+		// rxData를 int로 변경
+		int num = rxData - '0';
+		
+		// rxData가 바뀌었는지 비교
+		if (lastNum != num){
+			LED_PORT = 0x00;
+			lastNum = num;
+			for (int i = 0;i<num;i++){
+				LED_PORT = LED_PORT << 1; // 비트쉬프트
+				LED_PORT |= 1; // 1 추가
+			}
 			
 		}
-
 	}
 }
 
