@@ -32,7 +32,7 @@ public class ServerMain {
 		} finally {
 			try {
 				ss.close();
-			} catch(IOException) {}
+			} catch(IOException e) {}
 		}
 	}
 }
