@@ -1,4 +1,4 @@
-// 1¹ø¹®Á¦
+// 1ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 #include <stdio.h>
 int main() {
 	printf("Hello\nWorld");
@@ -7,7 +7,7 @@ int main() {
 
 
 
-// 2¹ø¹®Á¦
+// 2ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 #include <stdio.h>
 int main() {
 	char x, y;
@@ -18,7 +18,7 @@ int main() {
 
 
 
-// 3¹ø¹®Á¦
+// 3ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 #include <stdio.h>
 int main() {
 	int h, m, s;
@@ -29,7 +29,7 @@ int main() {
 
 
 
-// 4¹ø ¸øÇ°
+// 4ï¿½ï¿½ ï¿½ï¿½Ç°
 #include <stdio.h>
 int main() {
 	int y, m, d;
@@ -38,7 +38,7 @@ int main() {
 	return 0;
 }
 
-// 5¹ø¹®Á¦
+// 5ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 #include <stdio.h>
 int main() {
 	int a;
@@ -47,7 +47,7 @@ int main() {
 	return 0;
 }
 
-// 6¹ø¹®Á¦
+// 6ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 #include <stdio.h>
 int main() {
 	char a;
@@ -56,7 +56,7 @@ int main() {
 	return 0;
 }
 
-// 8¹ø¹®Á¦
+// 8ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 #include <stdio.h>
 int main() {
 	int a, b, c;
@@ -65,7 +65,7 @@ int main() {
 	return 0;
 }
 
-// 9¹ø¹®Á¦
+// 9ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 #include <stdio.h>
 int main() {
 	int a, b, c;
@@ -82,7 +82,7 @@ int main() {
 	return 0;
 }
 
-// 10¹ø¹®Á¦
+// 10ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 #include <stdio.h>
 int main() {
 	int a, b, c;
@@ -110,7 +110,7 @@ int main() {
 	return 0;
 }
 
-// 11¹ø¹®Á¦
+// 11ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 #include <stdio.h>
 int main() {
 	char a;
@@ -123,7 +123,7 @@ int main() {
 	return 0;
 }
 
-// 12¹ø¹®Á¦
+// 12ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 #include <stdio.h>
 int main() {
 	int a;
@@ -134,7 +134,7 @@ int main() {
 	return 0;
 }
 
-// 13¹ø¹®Á¦
+// 13ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 #include <stdio.h>
 int main() {
 	int a;
@@ -149,7 +149,7 @@ int main() {
 	return 0;
 }
 
-// 14¹ø¹®Á¦
+// 14ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 #include <stdio.h>
 int main() {
 	int a, i = 0, sum = 0;
@@ -176,7 +176,7 @@ int main() {
 }
 
 
-// 15¹ø¹®Á¦
+// 15ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 #include <stdio.h>
 int main() {
 	int a;
@@ -199,7 +199,7 @@ for (int i = 0; i < a; i += 1) {
 	for
 }*/
 
-// 16¹ø¹®Á¦
+// 16ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 #include <stdio.h>
 int main() {
 
@@ -221,7 +221,7 @@ int main() {
 	return 0;
 }
 
-// 17¹ø¹®Á¦
+// 17ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 #include <stdio.h>
 int main() {
 	int a, b, c;
@@ -230,7 +230,7 @@ int main() {
 	return 0;
 }
 
-// 19¹ø¹®Á¦
+// 19ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 #include <stdio.h>
 int main() {
 	long long a;
@@ -243,7 +243,7 @@ int main() {
 	return 0;
 }
 
-// 20¹ø¹®Á¦
+// 20ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 #include <stdio.h>
 int main() {
 	int a;
