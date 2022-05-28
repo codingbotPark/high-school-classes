@@ -1,21 +1,13 @@
-/*
- * ex_usart_rtx.c
- *
- * Created: 2022-05-24 오전 2:54:44
- * Author : user
- */ 
-
 #include <avr/io.h>
-#include <util/delay.h>
 // 항상 메시지 송신을 기다릴 수는 없기 때문에 인터럽트를 include
 // RX수신 처리 인터럽트
 #include <avr/interrupt.h>
 
-// usart제어를 위한 정의
-#define BAUD_RATE 51 // atmega128의 데이터 시트 51
-
 #define LED_DDR DDRB
 #define LED_PORT PORTB
+
+// usart제어를 위한 정의
+#define BAUD_RATE 51 // atmega128의 데이터 시트 51
 
 volatile unsigned char rxData;
 
@@ -37,10 +29,37 @@ void USART_Transmitter(unsigned char txData){
 	UDR1 = txData;
 }
 
+char previousValue = ' ';
+
+// 인터럽트로 들어온 값을 받기
 ISR(USART1_RX_vect){
 	if(UCSR1A & (1<<RXC1)){
 		rxData = UDR1;//수신 버퍼 데이터를 변수에 저장
+		
 		USART_Transmitter(rxData);//pc로 전송해서 확인
+		
+		// line ending 없으로 해야됨
+		// 케리지 리턴, 뉴라인이 있으면 for문에 들어가지 못함
+		PORTB = 0x00;
+		
+		// 이 if문으로 1 -> 1 일 때 꺼지게 하고 다시 1이 들어오면 켜지게 함ㅈ
+		
+		// 이전 값과 다를 때 for문 실행
+		if (previousValue != rxData){
+			previousValue = rxData;
+			
+			for (int i = 0;i<rxData - '0';i++){
+				PORTB = PORTB << 1;
+				PORTB |= 1;
+			}	
+			
+		} else {
+		
+			previousValue = ' ';
+		}
+		
+		
+		
 	}
 }
 
@@ -49,32 +68,21 @@ int main(void)
 	LED_DDR = 0xff;
 	LED_PORT = 0x00;
 	
+	// 통신하기 위한 기본 세팅
 	USART_Init();
 	
+	// 예외처리 사용
 	sei();
 	
+	// 통신으로 S를 보낸다
 	USART_Transmitter('S');
 	
+	
+	
 	/* Replace with your application code */
-	
-	// 기본값 -1
-	int lastNum = -1;
-	
 	while (1)
 	{
-		// rxData를 int로 변경
-		int num = rxData - '0';
-		
-		// rxData가 바뀌었는지 비교
-		if (lastNum != num){
-			LED_PORT = 0x00;
-			lastNum = num;
-			for (int i = 0;i<num;i++){
-				LED_PORT = LED_PORT << 1; // 비트쉬프트
-				LED_PORT |= 1; // 1 추가
-			}
-			
-		}
+		;
 	}
 }
 
