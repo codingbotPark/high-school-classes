@@ -4,6 +4,8 @@
 #include <sys/stat.h>
 #include <string.h>
 
+
+
 void makeDirectory(char current[512],char commandOper[512]){
     char copidPath[512];
     strcpy(copidPath,current);
@@ -17,8 +19,6 @@ void makeDirectory(char current[512],char commandOper[512]){
         perror("fail to mkdir");
     }
 }
-
-
 
 
 
