@@ -60,9 +60,12 @@
 // #include <io.h>	
 #include <unistd.h>
 
-#include "../header/file.h"
-#include "../header/ls.h"
-#include "../header/dir.h"
+// #include "../header/file.h"
+// #include "../header/ls.h"
+// #include "../header/dir.h"
+#include "./file.h"
+#include "./ls.h"
+#include "./dir.h"
 
 // 현재 절대경로를 구하는 함수
 char *findAbsolutePath();
