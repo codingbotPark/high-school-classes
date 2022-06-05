@@ -193,10 +193,10 @@ public class CommandThread extends Thread{
 				String idPass = br.readLine();
 				loginMsg = idPass.split(" ",2);
 				if (loginMsg[0].equals("admin") && loginMsg[1].equals("1234")) {
-					pw.println("True");
+					pw.println("true");
 					break;
 				} else {
-					pw.println("False");
+					pw.println("false");
 				}
 			}
 		}catch (IOException e) {
