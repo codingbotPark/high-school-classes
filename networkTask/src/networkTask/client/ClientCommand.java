@@ -82,6 +82,25 @@ public class ClientCommand {
 		SendFile sendfile = new SendFile(os, file);
 
 	}
+	
+	public void dl(String fileName, File downLoadFolder) {
+		pw.println("dl " + fileName);
+
+		String size = "0";
+		try {
+			size = br.readLine();
+
+			File file = new File(downLoadFolder.getAbsolutePath() + "//" + fileName);
+
+			// int형으로 변경해서 size를 보내준다
+			DownLoadFile downLoadFile = new DownLoadFile(is,file,Integer.parseInt(size));
+
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			System.out.println("사이즈 받기 실패");
+			e1.printStackTrace();
+		}
+	}
 
 	public void execute() {
 		// while 조건 달거나 하기
@@ -172,53 +191,19 @@ public class ClientCommand {
 				// 파일이 서버에 있을 때 dl를 요청
 				if (YorN.equals("Yes")) {
 					if (ls(commands[1])) {
-						pw.println("dl " + commands[1]);
-
-						String size = "0";
-						try {
-							size = br.readLine();
-
-							File file = new File(downLoadFolder.getAbsolutePath() + "//" + commands[1]);
-
-							try {
-								// 파일 크기를 int형으로 바꿈
-								int byteSize = Integer.parseInt(size);
-								file.createNewFile();
-								// 파일에 넣기
-								FileOutputStream fout = new FileOutputStream(file);
-
-								byte[] bytes = new byte[1024];
-								int readbit = 0;
-
-								BufferedInputStream bir = new BufferedInputStream(is);
-								DataInputStream dis = new DataInputStream(bir);
-
-								while ((readbit = dis.read(bytes)) != -1) {
-									byteSize -= readbit;
-									fout.write(bytes, 0, readbit);
-									if (byteSize == 0) {
-										break;
-									}
-								}
-
-							} catch (IOException e) {
-								// TODO: handle exception
-								System.out.println("파일 다운로드 실패");
-							}
-
-						} catch (IOException e1) {
-							// TODO Auto-generated catch block
-							System.out.println("사이즈 받기 실패");
-							e1.printStackTrace();
-						}
+						
+						dl(commands[1],downLoadFolder);
 					} else {
 						System.out.println("서버에 존재하지 않는 파일입니다");
 					}
 				}
 
+			} else if(command.equals("quit")) {
+				pw.println("quit");
 			} else {
 				System.out.println("**없는 명령어입니다**");
 			}
+			
 
 		}
 	}

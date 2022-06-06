@@ -72,7 +72,9 @@ public class CommandThread extends Thread{
 			msg = "";
 			
 			try {
+				
 				String command = br.readLine();
+				
 				if (command.equals("ls")) {
 						
 					msg = list(Folder);
@@ -149,9 +151,20 @@ public class CommandThread extends Thread{
 					}
 					System.out.println("파일 보내기 끝");
 					
+				} else if (command.equals("quit")) {
+					sc.close();
 				}
 			}catch (IOException e) {
 				// TODO Auto-generated catch block
+				System.out.println("catch");
+				try {
+					sc.close();
+					System.out.println("클로스 했음");
+					break;
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 				e.printStackTrace();
 			}
 		}
@@ -177,6 +190,10 @@ public class CommandThread extends Thread{
 			System.out.println("서버 스트림 생성 실패");
 		}
 		
+	}
+	
+	@Override
+	public void run() {
 		// 아이디 비밀번호 체크
 		BufferedReader br = null;
 		String[] loginMsg = null;
@@ -200,7 +217,6 @@ public class CommandThread extends Thread{
 		
 		// command를 받기 시작
 		command();
-		
 		
 	}
 }
