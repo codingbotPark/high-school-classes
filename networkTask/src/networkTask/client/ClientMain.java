@@ -44,7 +44,8 @@ public class ClientMain {
 				if (isLogin.equals("true")) {
 					// 로그인 했을 때 break
 					System.out.println("**FTP 서버에 접속하였습니다**");
-					ClientCommand command = new ClientCommand(sc);
+					// input,output stream을 넘겨준다
+					ClientCommand command = new ClientCommand(os,is);
 					break;
 				} else if (isLogin.equals("false")){
 					System.out.println("**ID 또는 PASS가 틀림**");
@@ -58,62 +59,14 @@ public class ClientMain {
 			e.printStackTrace();
 		}
 	}
+	
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		
-		
-		
 		try {
-			Socket sc = new Socket("127.0.0.1", 5000); // 명령어 주고 받기용
+			Socket sc = new Socket("127.0.0.1", 5000);
 			ClientMain cl = new ClientMain();
 			cl.login(sc);
-//			// 로그인
-//			try {
-//				String isLogin = "";
-//				String loginMsg = "";
-//				Scanner scan = null;
-//				
-//				OutputStream os = sc.getOutputStream();
-//				InputStream is = sc.getInputStream();
-//				while (true) {
-//					
-//					// id,pass를 입력
-//					System.out.printf("ID: ");
-//					scan = new Scanner(System.in);
-//					loginMsg = scan.nextLine();
-//					System.out.printf("PASS: ");
-//					// id와 pass를 // 로 나눈다
-//					loginMsg += " ";
-//					scan = new Scanner(System.in);
-//					loginMsg += scan.nextLine();
-//					
-//					// id, pass를 서버에 보냄
-//					PrintWriter pw = new PrintWriter(os,true);
-//					pw.println(loginMsg);
-//					
-//					// id와 pass에 대한 서버값을 받음
-//					
-//					BufferedReader br = new BufferedReader(new InputStreamReader(is));
-//					isLogin = br.readLine();
-//					
-//					if (isLogin.equals("True")) {
-//						// 로그인 했을 때 break
-//						System.out.println("**FTP 서버에 접속하였습니다**");
-//						ClientCommand command = new ClientCommand(sc);
-//						break;
-//					} else if (isLogin.equals("False")){
-//						System.out.println("**ID 또는 PASS가 틀림**");
-//					}
-//				}
-//				
-//				
-//			} catch (Exception e) {
-//				// TODO: handle exception
-//				e.printStackTrace();
-//				System.out.println("Client:로그인 스크림 생성 실패");
-//			}
-			
 		} catch (UnknownHostException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

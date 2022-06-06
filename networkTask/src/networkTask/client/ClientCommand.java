@@ -16,201 +16,223 @@ import java.util.Scanner;
 
 public class ClientCommand {
 
-	Socket scc;
+	OutputStream os;
+	InputStream is;
+
+	PrintWriter pw;
+	BufferedReader br;
 
 	Scanner scan = new Scanner(System.in);
-
 	String command;
 
-	OutputStream cos;
-	InputStream cis;
-	PrintWriter pw;
+	public void ls() {
+		// 파일 목록과 파일 개수
+		String[] fileList;
+		int fileNum = 0;
+		// 서버 요청
+		pw.println("ls");
+		System.out.println("** File List **");
+
+		// 읽고 list에 string배열로 저장
+		// 파일과 파일을 나누는 기준을 띄어쓰기 때문에 : 로 했다
+		try {
+			fileList = (br.readLine()).split(":");
+
+			// 비었다면 \을 서버에서 보내준다
+			if (!fileList[0].equals("\\")) {
+				for (String file : fileList) {
+					System.out.printf("** %s **\n", file);
+				}
+				fileNum = fileList.length;
+			}
+			System.out.printf("** %d개 파일 **\n", fileNum);
+
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		;
+	}
+
+	// ls를 사용하는데에, fileName을 넣으면 그 파일이 서버에 있는지(true), 없는지(false)를 리턴
+	public boolean ls(String fileName) {
+		String fileList;
+		pw.println("ls");
+		try {
+			fileList = br.readLine();
+
+			// 파일 리스트는 ":" 을 간격으로 오기 때문에 contains를 사용해도 된다
+			if (fileList.contains(fileName))
+				return true;
+
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			System.out.println("list요청 후 값 받아오지 못함");
+			e.printStackTrace();
+		}
+		;
+		// 포함하지 않으면 0
+		return false;
+	}
+
+	public void ul(String fileName, File file) {
+		// ul와 파일 이름, 파일 길이를 보낸다(바이트 단위)
+		pw.println("ul " + fileName + " " + file.length());
+		// 파일을 보낸다
+		SendFile sendfile = new SendFile(os, file);
+
+	}
 
 	public void execute() {
-		// pw 설정
-		this.pw = new PrintWriter(cos, true);
-		// br 설정
-		BufferedReader br = new BufferedReader(new InputStreamReader(cis));
-		
-		
+		// while 조건 달거나 하기
 		while (true) {
 			System.out.printf("Write command: ");
 			command = scan.nextLine();
-			
-//			System.out.println("client에서 command받는중");
+
 			// 파일 목록
 			if (command.equals("ls")) {
-				// 파일 목록
-				String[] list;
-				// 파일 개수
-				int fileNum = 0;
-				
-				pw.println("ls");
-				System.out.println("** File List **");
-				
-				// 읽고 list에 string배열로 저장
-				try {
-					list = (br.readLine()).split(":");
-					
-					// 비었다면 \을 서버에서 보내준다
-					if (!list[0].equals("\\")) {
-						for (String name:list) {
-							System.out.printf("** %s **\n",name);
-						}
-						fileNum = list.length;
-					}
-					// 파일 개수 출력
-					System.out.printf("** %d개 파일 **\n",fileNum);
-					
-				} catch (Exception e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				};
-				
-			} else if(command.startsWith("ul")) { // 업로드
-				
-				if (!command.contains(" ")) {
+
+				ls();
+
+			} else if (command.startsWith("ul")) { // 업로드
+
+				// 띄어쓰기, 즉 파일을 안 적었을 때 탈출
+				if (!command.contains(" "))
 					continue;
-				}
-				
-				String[] commands = command.split(" ",2);
-				
-				// split 잘못되면 client로그인 스트림 생성 실패 오류
-				String[] FileNames = commands[1].split("\\\\"); 
-				String FileName = FileNames[FileNames.length - 1];
-				
-				
-				String[] list = null;
-				try {
-					// 보내기 전 파일리스트를 가져온다
-					pw.println("ls");
-					list = (br.readLine()).split(":");
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					System.out.println("리스트 받기 실패");
-					e.printStackTrace();
-				}
-				
-				// 동일 파일 검사
-				String YorN = "Yes"; // 기본값은 true
-				for(String name:list) {
-					if (name.equals(FileName)) {
+
+				// 파일 이름 추출
+				String[] commands = command.split(" ", 2);
+				String[] fileNames = commands[1].split("\\\\");
+				String fileName = fileNames[fileNames.length - 1];
+
+				// 파일을 서버에 넣을거냐 기본값은 true
+				String YorN = "Yes";
+
+				// 파일이 서버에 있을 때
+				if (ls(fileName)) {
+					while (true) {
 						System.out.printf("파일이 이미 있습니다. 덮어쓰기 하실건가요??(Yes: 덮어쓰기 / No: 업로드 취소): ");
 						YorN = scan.nextLine();
-						break;
+						if (YorN.equals("Yes") || YorN.equals("No")) {
+							break;
+						} else {
+							System.out.println("Yes 또는 No 를 정확하게 입력해주세요");
+						}
 					}
+
 				}
-				
-				// 파일이 존재할 때
-				if (new File(commands[1]).exists()) {
+
+				// 파일이 존재하는지 검사하고, 존재한다면 ul를 해줌
+				File file = new File(commands[1]);
+				if (file.exists()) {
 					if (YorN.equals("Yes")) {
-						// 명령어와 파일 이름, 파일크기을 서버에 보낸다
-						
-						File file = new File(commands[1]);
-						
-						// ul와 파일 이름, 파일 길이를 보낸다(바이트 단위)
-						pw.println("ul " + FileName + " " + file.length());
-						// 파일을 보낸다
-						SendFile sendfile = new SendFile(cos,file);
+
+						ul(fileName, file);
+
 					}
 				} else {
 					System.out.println("파일이 존재하지 않습니다");
 				}
-				
-			} else if(command.startsWith("dl")) {// 다운로드
-				
+
+			} else if (command.startsWith("dl")) {// 다운로드
+
 				String[] commands = command.split(" ", 2);
-				
-				String[] list = null;
-				try {
-					// 보내기 전 파일리스트를 가져온다
-					pw.println("ls");
-					list = (br.readLine()).split(":");
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					System.out.println("리스트 받기 실패");
-					e.printStackTrace();
-				}
-				
-				// 동일 파일 검사
-				boolean canDl = false;
-				for(String name:list) {
-					if (name.equals(commands[1])) {
-						canDl = true;
-						break;
+
+				// 다운로드 받을 폴더, 없으면 생성, 다운로드 하기 전 동일 파일 검사
+				File downLoadFolder = new File("D:\\download");
+				if (downLoadFolder.exists()) {
+					try {
+						downLoadFolder.mkdir();
+					} catch (Exception e) {
+						System.out.println("폴더 생성 실패");
 					}
 				}
-				
-				if (canDl) { // 다운로드 할 파일이 존재할 때
-					//다운로드 명령과 다운로드할 파일을 요청
-	
-					pw.println("dl "+commands[1]);
-					
-					String size = "0";
-					try {
-						size = br.readLine();
-					} catch (IOException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					}
-					
-					
-					
-					// 다운로드 없으면 만들어 주기
-					File file = new File("D:\\download\\"+commands[1]);
-					
-					try {
-						// 파일 크기를 int형으로 바꿈
-						int byteSize = Integer.parseInt(size);
-						file.createNewFile();
-						// 파일에 넣기
-						FileOutputStream fout = new FileOutputStream(file);
-						
-						byte[] bytes = new byte[1024];
-						int readbit = 0;
-						
-						BufferedInputStream bir = new BufferedInputStream(cis);
-						DataInputStream dis = new DataInputStream(bir);
-						
-						while((readbit = dis.read(bytes)) != -1) {
-							byteSize -= readbit;
-							fout.write(bytes,0,readbit);
-							if (byteSize == 0) {
+
+				// 파일을 클라에 넣을거냐 기본값은 true
+				String YorN = "Yes";
+
+				String[] dlList = downLoadFolder.list();
+				for (String file : dlList) {
+					if (file.equals(commands[1])) {
+						while (true) {
+							System.out.printf("파일이 이미 있습니다. 덮어쓰기 하실건가요??(Yes: 덮어쓰기 / No: 업로드 취소): ");
+							YorN = scan.nextLine();
+							if (YorN.equals("Yes") || YorN.equals("No")) {
 								break;
+							} else {
+								System.out.println("Yes 또는 No 를 정확하게 입력해주세요");
 							}
 						}
-						
-					} catch (IOException e) {
-						// TODO: handle exception
-						System.out.println("파일 다운로드 실패");
 					}
-					
-				} else {
-					System.out.println("서버에 존재하지 않는 파일입니다");
 				}
-	
-			}
-			else {
+
+				// 다운로드 폴더에 이미 있는지 확인
+
+				// ls(String) 은 파일이 있을 때 true를 리턴
+				// 파일이 서버에 있을 때 dl를 요청
+				if (YorN.equals("Yes")) {
+					if (ls(commands[1])) {
+						pw.println("dl " + commands[1]);
+
+						String size = "0";
+						try {
+							size = br.readLine();
+
+							File file = new File(downLoadFolder.getAbsolutePath() + "//" + commands[1]);
+
+							try {
+								// 파일 크기를 int형으로 바꿈
+								int byteSize = Integer.parseInt(size);
+								file.createNewFile();
+								// 파일에 넣기
+								FileOutputStream fout = new FileOutputStream(file);
+
+								byte[] bytes = new byte[1024];
+								int readbit = 0;
+
+								BufferedInputStream bir = new BufferedInputStream(is);
+								DataInputStream dis = new DataInputStream(bir);
+
+								while ((readbit = dis.read(bytes)) != -1) {
+									byteSize -= readbit;
+									fout.write(bytes, 0, readbit);
+									if (byteSize == 0) {
+										break;
+									}
+								}
+
+							} catch (IOException e) {
+								// TODO: handle exception
+								System.out.println("파일 다운로드 실패");
+							}
+
+						} catch (IOException e1) {
+							// TODO Auto-generated catch block
+							System.out.println("사이즈 받기 실패");
+							e1.printStackTrace();
+						}
+					} else {
+						System.out.println("서버에 존재하지 않는 파일입니다");
+					}
+				}
+
+			} else {
 				System.out.println("**없는 명령어입니다**");
 			}
 
 		}
 	}
 
-	public ClientCommand(Socket scc) {
-		// TODO Auto-generated constructor stub
-		this.scc = scc;
-		try {
-			// 스트림 생성
-			this.cos = scc.getOutputStream();
-			this.cis = scc.getInputStream();
-			
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+	public ClientCommand(OutputStream os, InputStream is) {
+		// 스트림 생성
+		this.os = os;
+		this.is = is;
+		// pw,br 설정
+		pw = new PrintWriter(os, true);
+		br = new BufferedReader(new InputStreamReader(is));
 
 		execute();
+
 	}
 
 }

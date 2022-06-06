@@ -19,9 +19,6 @@ import java.util.Collections;
 import java.util.List;
 
 public class CommandThread extends Thread{
-	public static List<CommandThread> ClientList = 
-			Collections.synchronizedList(new ArrayList<CommandThread>());
-	
 	
 	private Socket sc = null;
 	
@@ -61,6 +58,15 @@ public class CommandThread extends Thread{
 		// ls를 모듈화 하여
 		// 업로드, 다운로드 할 때도 ls함수를 실행시켜준다
 		
+		// 폴더가 없다면 생성
+		if (!Folder.exists()) {
+			try {
+				Folder.mkdir();
+			} catch (Exception e){
+				System.out.println("폴더 생성 실패");
+			}
+		}
+		
 		while(true) {
 			// 초기화
 			msg = "";
@@ -68,19 +74,7 @@ public class CommandThread extends Thread{
 			try {
 				String command = br.readLine();
 				if (command.equals("ls")) {
-					
-					// 폴더가 없다면 생성
-					if (!Folder.exists()) {
-						try {
-							Folder.mkdir();
-							System.out.println("폴더 생성");
-						} catch (Exception e){
-							System.out.println("폴더 생성 실패");
-						}
-					}
-					
-					
-					
+						
 					msg = list(Folder);
 					
 					// 리스트 보내기
@@ -204,8 +198,6 @@ public class CommandThread extends Thread{
 			System.out.println("버퍼 읽기 실패");	
 		}
 		
-		// 아이디 체크가 되면 add, command를 받는다
-		ClientList.add(this);
 		// command를 받기 시작
 		command();
 		

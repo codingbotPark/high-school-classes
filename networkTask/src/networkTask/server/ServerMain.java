@@ -14,13 +14,13 @@ public class ServerMain {
 			ServerSocket ssc = new ServerSocket(5000); // 명령어 주고 받기용
 			
 			while (true) {
-				Socket scc = ssc.accept();
+				Socket sc = ssc.accept();
 				
 				// 다른 사람이 로그인 할 때도 계속 접속 가능해야해서 thread에서 검사해준다
-				System.out.println(scc.getInetAddress()+"접속함");
-				CommandThread ct = new CommandThread(scc);
-//				Thread ac = new Thread(scc, scu, scd);
-				// 임계구역 종료
+				System.out.println(sc.getInetAddress()+"접속함");
+				
+				CommandThread ct = new CommandThread(sc);
+				ct.start();
 				
 			}
 		} catch (IOException e) {
