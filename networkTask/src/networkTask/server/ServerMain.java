@@ -1,6 +1,6 @@
 // 강피셜 쉽게 해결할 수 있는 방법
 
-package networkTask.server;
+package kr.hs.dgsw.network.test01.n2307.server;
 
 import java.io.IOException;
 import java.net.ServerSocket;

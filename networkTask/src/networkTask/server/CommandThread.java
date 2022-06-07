@@ -1,4 +1,4 @@
-package networkTask.server;
+package kr.hs.dgsw.network.test01.n2307.server;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
@@ -14,14 +14,21 @@ import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.net.Socket;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
 
 public class CommandThread extends Thread{
 	
+	InputStream is = null;
+	OutputStream os = null;
+	PrintWriter pw = null;
+	BufferedReader br = null;
+	
+	// 파일
+	BufferedInputStream bir;
+	DataInputStream dis;
+	
 	private Socket sc = null;
 	
+	// 
 	public String list(File Folder) {
 		String msg = "\\";
 		String[] fileList;
@@ -39,24 +46,10 @@ public class CommandThread extends Thread{
 	}
 	
 	
-	InputStream is = null;
-	OutputStream os = null;
-	PrintWriter pw = null;
-	
-	// 파일
-	BufferedInputStream bir;
-	DataInputStream dis;
-	
 	public void command() {
-		BufferedReader br = new BufferedReader(new InputStreamReader(is));
+		
 		
 		File Folder = new File("C:\\files");
-		
-		// 보낼 메시지
-		String msg;
-		
-		// ls를 모듈화 하여
-		// 업로드, 다운로드 할 때도 ls함수를 실행시켜준다
 		
 		// 폴더가 없다면 생성
 		if (!Folder.exists()) {
@@ -67,13 +60,21 @@ public class CommandThread extends Thread{
 			}
 		}
 		
+		// 보낼 메시지
+		String msg;
+		// 명령어
+		String command;
+		// 나눈 명령
+		String[] commands;
+		
 		while(true) {
 			// 초기화
 			msg = "";
 			
 			try {
 				
-				String command = br.readLine();
+				command = br.readLine();
+				
 				
 				if (command.equals("ls")) {
 						
@@ -84,7 +85,7 @@ public class CommandThread extends Thread{
 					
 				} else if (command.startsWith("ul")) {
 					
-					String[] commands = command.split(" ",3);	
+					commands = command.split(" ",3);	
 					System.out.println(commands[1]);
 					File file = new File(Folder + "\\" + commands[1]);
 					System.out.println(file.getAbsolutePath());
@@ -120,11 +121,8 @@ public class CommandThread extends Thread{
 					}	
 				} else if (command.startsWith("dl")) {
 					
-					String[] commands = command.split(" ",2);
+					commands = command.split(" ",2);
 					File file = new File(Folder + "\\" +commands[1]);
-					
-//					System.out.println(file.exists());
-//					System.out.println(file.getAbsolutePath());
 					
 					pw.println(file.length());
 					
@@ -154,6 +152,7 @@ public class CommandThread extends Thread{
 				} else if (command.equals("quit")) {
 					sc.close();
 				}
+				
 			}catch (IOException e) {
 				// TODO Auto-generated catch block
 				System.out.println("catch");
@@ -185,6 +184,8 @@ public class CommandThread extends Thread{
 			
 			this.bir = new BufferedInputStream(is);
 			this.dis = new DataInputStream(bir);
+			
+			this.br = new BufferedReader(new InputStreamReader(is));
 		} catch (IOException e) {
 			// TODO: handle exception
 			System.out.println("서버 스트림 생성 실패");
@@ -195,9 +196,7 @@ public class CommandThread extends Thread{
 	@Override
 	public void run() {
 		// 아이디 비밀번호 체크
-		BufferedReader br = null;
 		String[] loginMsg = null;
-		br = new BufferedReader(new InputStreamReader(is));
 		
 		try {
 			while(true) {

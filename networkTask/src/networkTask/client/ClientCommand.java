@@ -1,4 +1,4 @@
-package networkTask.client;
+package kr.hs.dgsw.network.test01.n2307.client;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
