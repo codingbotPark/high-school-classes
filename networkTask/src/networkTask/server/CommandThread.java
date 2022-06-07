@@ -38,6 +38,8 @@ public class CommandThread extends Thread{
 			msg = "";
 			for(String file:fileList) {
 				msg+=(file + ":");
+				long fileSize = new File(Folder + "\\" +file).length();
+				msg+=(fileSize + ":");
 			}
 		}
 		
@@ -79,7 +81,6 @@ public class CommandThread extends Thread{
 				if (command.equals("ls")) {
 						
 					msg = list(Folder);
-					
 					// 리스트 보내기
 					pw.println(msg);
 					
@@ -93,7 +94,7 @@ public class CommandThread extends Thread{
 					try {
 						
 						// int형으로 변환
-						int byteSize = Integer.parseInt(commands[2]);
+						long byteSize = Long.parseLong(commands[2]);
 						System.out.println(byteSize);
 						// 파일 생성
 						file.createNewFile();

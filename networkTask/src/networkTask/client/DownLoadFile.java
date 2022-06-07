@@ -18,7 +18,7 @@ public class DownLoadFile {
 	
 	BufferedInputStream bir;
 	
-	int byteSize;
+	long byteSize;
 	
 	public void downLoad() {
 		try {
@@ -42,7 +42,7 @@ public class DownLoadFile {
 		}
 	}
 	
-	public DownLoadFile(InputStream is,File file,int size) {
+	public DownLoadFile(InputStream is,File file,long size) {
 		// TODO Auto-generated constructor stub
 
 		try {

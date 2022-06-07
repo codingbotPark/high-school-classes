@@ -24,6 +24,18 @@ public class ClientCommand {
 
 	Scanner scan = new Scanner(System.in);
 	String command;
+	
+	// 파일 사이즈를 지정
+	public String resize(String fileSize) {
+		long size = Long.parseLong(fileSize);
+		String[] units = {"","Kb","Mb","Gb","Tb"};
+		
+		int i = 0;
+		for (i = 0;size > 1024;i++) {
+			size/=1024;
+		}
+		return size + units[i];
+	}
 
 	public void ls() {
 		// 파일 목록과 파일 개수
@@ -40,10 +52,19 @@ public class ClientCommand {
 
 			// 비었다면 \을 서버에서 보내준다
 			if (!fileList[0].equals("\\")) {
-				for (String file : fileList) {
-					System.out.printf("** %s **\n", file);
+//				for (String file : fileList) {
+//					System.out.printf("** %s **\n", file);
+//				}
+				for (int i = 0;i<fileList.length;i++) {
+					if(i % 2 == 0) { // 짝수일 때
+						System.out.printf("** %20s ",fileList[i]);
+					} else {
+						System.out.printf("%10s **\n",resize(fileList[i]));
+					}
 				}
-				fileNum = fileList.length;
+				// 인덱스 짝수 = 파일 이름
+				// 인덱스 홀수 = 파일 크기
+				fileNum = fileList.length / 2;
 			}
 			System.out.printf("** %d개 파일 **\n", fileNum);
 
@@ -93,7 +114,7 @@ public class ClientCommand {
 			File file = new File(downLoadFolder.getAbsolutePath() + "//" + fileName);
 
 			// int형으로 변경해서 size를 보내준다
-			DownLoadFile downLoadFile = new DownLoadFile(is,file,Integer.parseInt(size));
+			DownLoadFile downLoadFile = new DownLoadFile(is,file,Long.parseLong(size));
 
 		} catch (IOException e1) {
 			// TODO Auto-generated catch block
@@ -200,6 +221,7 @@ public class ClientCommand {
 
 			} else if(command.equals("quit")) {
 				pw.println("quit");
+				break;
 			} else {
 				System.out.println("**없는 명령어입니다**");
 			}
