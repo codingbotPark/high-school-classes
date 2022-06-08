@@ -81,10 +81,16 @@ public class ClientCommand {
 		pw.println("ls");
 		try {
 			fileList = br.readLine();
-
 			// 파일 리스트는 ":" 을 간격으로 오기 때문에 contains를 사용해도 된다
-			if (fileList.contains(fileName))
-				return true;
+//			if (fileList.contains(fileName))
+//				return true;
+			
+			String[] fileInfos = fileList.split(":");
+			for (int i=0;i < fileInfos.length;i+=2) {
+				if (fileInfos[i].equals(fileName)) {
+					return true;
+				}
+			}
 
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -187,17 +193,18 @@ public class ClientCommand {
 
 				// 다운로드 받을 폴더, 없으면 생성, 다운로드 하기 전 동일 파일 검사
 				File downLoadFolder = new File("D:\\download");
-				if (downLoadFolder.exists()) {
+				if (!downLoadFolder.exists()) {
 					try {
 						downLoadFolder.mkdir();
 					} catch (Exception e) {
 						System.out.println("폴더 생성 실패");
 					}
 				}
+				
+				
 
 				// 파일을 클라에 넣을거냐 기본값은 true
 				String YorN = "Yes";
-
 				String[] dlList = downLoadFolder.list();
 				for (String file : dlList) {
 					if (file.equals(commands[1])) {
@@ -212,7 +219,7 @@ public class ClientCommand {
 						}
 					}
 				}
-
+	
 				// 다운로드 폴더에 이미 있는지 확인
 
 				// ls(String) 은 파일이 있을 때 true를 리턴
