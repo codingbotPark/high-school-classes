@@ -29,7 +29,18 @@ public class CommandThread extends Thread {
 	private Socket sc = null;
 
 	//
-	public String list(File Folder) {
+	public String list() {
+		// ls 할 때마다 Folder검사
+		File Folder = new File("C:\\files");
+		// 폴더가 없다면 생성
+		if (!Folder.exists()) {
+			try {
+				Folder.mkdir();
+			} catch (Exception e) {
+				System.out.println("폴더 생성 실패");
+			}
+		}
+		
 		String msg = "\\";
 		String[] fileList;
 		// fileList출력
@@ -77,7 +88,7 @@ public class CommandThread extends Thread {
 
 				if (command.equals("ls")) {
 
-					msg = list(Folder);
+					msg = list();
 					// 리스트 보내기
 					pw.println(msg);
 
