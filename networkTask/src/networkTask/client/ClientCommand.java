@@ -124,6 +124,13 @@ public class ClientCommand {
 	}
 
 	public void execute() {
+		System.out.println("***************");
+		System.out.println("*ls: 파일 리스트 *");
+		System.out.println("*ul: 파일 업로드 *");
+		System.out.println("*dl: 파일 다운로드*");
+		System.out.println("*quit: 연결종료 *");
+		System.out.println("***************");
+		
 		// while 조건 달거나 하기
 		while (true) {
 			System.out.printf("Write command: ");
