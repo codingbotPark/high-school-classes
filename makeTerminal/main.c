@@ -1,52 +1,3 @@
-// 제출기한
-// 5월 22일
-
-// 커널함수를 호출하여 다음과 같은 기능을 가진 프로그램을 구현하도록 한다.
-
-// 기본 기능
-// 1. 파일생성
-// 예시)
-//   파일명을 입력하세요 a
-//   파일권한을 입력하세요 777
-
-// 성공적으로 만들어졌습니다.
-// 같은 파일명이 있어 만들기 실패하였습니다.
-
-// 2. 파일삭제
-// 예시)
-//  파일명을 입력하세요 aa
-
-// 성공적으로 삭제하였습니다.
-
-// 3. 파일내용수정(문자열입력받아서 파일에 내용을 넣기)
-// 예시)
-
-//  파일명을 입력하세요 aa
-//  파일에 추가하실 내용을 입력하세요 안녕하세요
-
-// 성공적으로 파일내요을 수정하였습니다.
-
-// 4. 디렉토리보기(ls 명령어)
-// 예시)
-
-//  디렉토리 경로를 입력하세요
-
-// 5. 디렉토리만들기
-// 예시)
-
-//  디렉토리명 입력하세요
-
-// 6. 디렉토리삭제
-//  디렉토리명 입력하세요
-
-// 추가하고 싶은 기능 추가 가능
-
-// 제출파일
-// 1.원본소스
-// 2. 메뉴얼.ppt
-// 3.실행동영상파일
-// 압축해서 다음과 같은 파일명으로 제출하세요.
-
 // 기본 경로는 home/park
 
 #include <limits.h>
@@ -84,6 +35,8 @@ void checkEmpty(char commandOper[512]);
 int isDirectoryExists(char current[512]);
 
 int isFileExists(char path[512], char fileName[512]);
+
+int execute(char *command);
 
 int main()
 {
@@ -142,11 +95,11 @@ int main()
             break;
         }
 
-        // 연산자 확인
-        if (commandOper[0] == '\0'){
-            perror("cannot find command");
-            continue;
-        }
+        // // 연산자 확인
+        // if (commandOper[0] == '\0'){
+        //     perror("cannot find command");
+        //     continue;
+        // }
         checkEmpty(commandOper);
 
         if (!strcmp(command,"cd")){
@@ -237,7 +190,15 @@ int main()
             } else {
                 printf("not exists directory");
             }
+        } 
+        else {
+            // ------ 없을 떄 execl
+                execute(command);
+            // ------
         }
+
+
+
     }
     return 0;
 }
@@ -363,3 +324,29 @@ void checkEmpty(char commandOper[512]){
     }
 }
 
+
+
+// process 관리 프로그램에서 사용된 execute
+int execute(char *command)
+{
+    int child_status;
+    pid_t pid = fork();
+
+    if (!strstr(command, "quit"))
+    {
+
+        if (pid == 0)
+        {
+            execl("/bin/sh", "sh", "-c", command, NULL);
+        }
+        else if (pid == -1)
+        {
+            exit(0);
+        }
+        else
+        {
+            wait(&child_status);
+            return child_status;
+        }
+    }
+}
