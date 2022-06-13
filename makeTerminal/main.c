@@ -18,6 +18,8 @@
 #include "./ls.h"
 #include "./dir.h"
 
+#include <sys/wait.h>
+
 // 현재 절대경로를 구하는 함수
 char *findAbsolutePath();
 
@@ -36,7 +38,7 @@ int isDirectoryExists(char current[512]);
 
 int isFileExists(char path[512], char fileName[512]);
 
-int execute(char *command);
+int execute(char *commandLine);
 
 int main()
 {
@@ -95,12 +97,17 @@ int main()
             break;
         }
 
+        // 연산자와 commandOper를 확인하지 않고,
+        // 내가 지정하지 않은 명령어라면 else로
+        // execl함수가 실행되기 때문에 주석
+        // ----------------------
         // // 연산자 확인
         // if (commandOper[0] == '\0'){
         //     perror("cannot find command");
         //     continue;
         // }
-        checkEmpty(commandOper);
+        // checkEmpty(commandOper);
+        // ----------------------
 
         if (!strcmp(command,"cd")){
             // 복사된 경로로 먼저 만들고
@@ -192,9 +199,8 @@ int main()
             }
         } 
         else {
-            // ------ 없을 떄 execl
-                execute(command);
-            // ------
+            // 없을 땐 execl함수를 실행시킨다
+            execute(commandLine);
         }
 
 
@@ -324,29 +330,21 @@ void checkEmpty(char commandOper[512]){
     }
 }
 
-
-
-// process 관리 프로그램에서 사용된 execute
-int execute(char *command)
+int execute(char *commandLine)
 {
     int child_status;
     pid_t pid = fork();
-
-    if (!strstr(command, "quit"))
+    if (pid == 0)
     {
-
-        if (pid == 0)
-        {
-            execl("/bin/sh", "sh", "-c", command, NULL);
-        }
-        else if (pid == -1)
-        {
-            exit(0);
-        }
-        else
-        {
-            wait(&child_status);
-            return child_status;
-        }
+        execl("/bin/sh", "sh", "-c", commandLine, NULL);
+    }
+    else if (pid == -1)
+    {
+        exit(0);
+    }
+    else
+    {
+        wait(&child_status);
+        return child_status;
     }
 }
