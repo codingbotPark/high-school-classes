@@ -19,11 +19,11 @@ public class Command {
 				
 			// split이 잘 됐는지 확인한다
 			if (commandLine.startsWith("search") && commandLine.split(" ").length == 2) {
-				Search search = new Search(file,commandLine.split(" ")[1]);
+				SearchLogic searchLogic = new SearchLogic(file);
 			} else if (commandLine.startsWith("insert") && commandLine.split(" ").length == 2){
-				Insert insert = new Insert(file);
+				InsertLogic insertLogic = new InsertLogic(file);
 			} else if (commandLine.startsWith("delete") && commandLine.split(" ").length == 2) {
-				
+				DeleteLogic deleteLogic = new DeleteLogic(file);
 			} else {
 				System.out.println("잘못된 명령어 입니다");
 			}

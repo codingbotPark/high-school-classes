@@ -9,11 +9,13 @@ import java.io.File;
 // search는 비슷한 문자 검색,
 // delete는 비슷한 문자 검색
 
-public class Insert {
+public class InsertLogic{
 	File file;
 	
-	public Insert(File file) {
+	public InsertLogic(File file) {
+		
 		// TODO Auto-generated constructor stub
 		this.file = file;
+		
 	}
 }

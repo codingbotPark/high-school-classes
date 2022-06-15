@@ -68,10 +68,6 @@ public class Main {
 			out.write("\n");
 			out.close();
 			
-//			FileWriter fw = new FileWriter(file.getCanonicalPath());
-//			fw.write("\n");
-//			fw.close();
-			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
