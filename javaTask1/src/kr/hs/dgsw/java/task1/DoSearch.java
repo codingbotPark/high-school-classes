@@ -19,35 +19,21 @@ import java.util.ArrayList;
 // 그냥 contain 으로 찾으면 한글, 영어 둘 다 쌉가능
 // 그렇게 해서 찾은거는 그냥 출력(정렬해서 파일에 저장되기 때문)
 
-public class SearchLogic{
+public class DoSearch{
 	
 	File file;
-	
-	public void search() {
-		
-	}
-	
-//	public void SearchFor(String keyword) {
-//		// 검색이 번호로 이루어졌는지, 숫자로 이루어 졌는지 확인
-//		char keywordFirst = keyword.charAt(0);
-//		if (keywordFirst > 47 && keywordFirst < 58) {
-//			System.out.println("문자로 검색");
-//		} else {
-//			System.out.println("숫자로 검색");
-//		}
-//	}
-	
 
-	public SearchLogic(File file) {
+	public void printnSearchResult(String keyword) {
+		Search search = new Search(file);
+		String[] searchValues = search.search(keyword);
+		for (String temp:searchValues) {
+			System.out.println(temp);
+		}
+	}
+
+	public DoSearch(File file,String keyword) {
 		// TODO Auto-generated constructor stub
-		
-//		super(file);
-//		
-//		String[] contents = getContent();
-		
-		
-//		this.file = file;
-//		SearchFor(keyword);
-		
+		this.file = file;
+		printnSearchResult(keyword);
 	}
 }

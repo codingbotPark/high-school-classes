@@ -14,7 +14,7 @@ public class GetContent {
 	File file;
 	// search delete insert3개 다 필요함 함수
 
-	public String[] getContent() {
+	public ArrayList<String> getContent() {
 		ArrayList<String> fileContent = new ArrayList<String>();
 		
 		try {
@@ -34,8 +34,8 @@ public class GetContent {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
-		return fileContent.toArray(new String[0]);
+		return fileContent;
+//		return fileContent.toArray(new String[0]);
 	}
 
 	public GetContent(File file) {

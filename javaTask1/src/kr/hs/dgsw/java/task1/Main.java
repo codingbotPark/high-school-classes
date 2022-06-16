@@ -37,25 +37,21 @@ public class Main {
 	}
 	
 	// 인자로 받은 파일의 라인 개수를 리턴해준다
-	public int getFileLength(File file) {
-		int lineNum = 0;
+	public boolean isEmpty(File file) {
+		boolean isEmpty = true;
 		try {
 			BufferedReader br = new BufferedReader(new FileReader(file));
-
 			// buffer를 한 번 읽는다
-			String sLine = br.readLine();
-			while(sLine != null) {
-				sLine = br.readLine();
-				lineNum += 1;
+			String firstLine = br.readLine();
+			if (firstLine != null){
+				isEmpty = false;
 			}
-				
 			br.close();
-			
 		} catch (Exception e) {
 			System.out.println("getFileLength오류");
 			// TODO: handle exception
 		}
-		return lineNum;
+		return isEmpty;
 	}
 	
 	// 기본 세팅을 해준다(파일,도움말)
@@ -84,10 +80,9 @@ public class Main {
 		// 파일이 없다면 생성
 		main.confirmFile(file);
 		// 파일에 내용이 없다면 기본세팅을 해준다
-		if (main.getFileLength(file) < 1) {
-			main.setting(file);
-		}
-		
+//		if (main.isEmpty(file)) { // 비어있을 때
+//			main.setting(file);
+//		}
 		
 		
 		// 세팅 완료시 command로 넘어간다
