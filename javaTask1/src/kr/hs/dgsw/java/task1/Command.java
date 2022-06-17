@@ -40,7 +40,7 @@ public class Command {
 
 			// split이 잘 됐는지 확인한다
 			if (commandLine.startsWith("search") && checkCommand(commandLine,2,false)) {
-				DoSearch doSearch = new DoSearch(file, commandLine.split(" ")[1]);
+				DoSearch doSearch = new DoSearch(file,commandLine.split(" ",2)[1]);
 			} else if (commandLine.startsWith("insert") && checkCommand(commandLine,3,true)) {
 				DoInsert doInsert = new DoInsert(file,commandLine.split(" ",2)[1]);
 			} else if (commandLine.startsWith("delete") && checkCommand(commandLine,2,true)) {

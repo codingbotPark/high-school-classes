@@ -12,17 +12,23 @@ import java.util.ArrayList;
 
 public class DoInsert{
 	File file;
+	ArrayList<String> contents;
+	
+	public boolean isSameNum(String num) {
+		for(String content:contents) {
+			if (content.split(" ")[1].equals(num)) {
+				return true;
+			}
+		}
+		return false;
+	}
 	
 	// insert할 자리를 찾는다
 	// search에는 파일에 있는 내용을 찾는데, 
 	// insert에서는 들어갈 자리를 찾음 
 	public void insert(String insertValue) {
-		GetContent getContent = new GetContent(file);
-		ArrayList<String> contents = getContent.getContent();
-		
-		
-		// 동일한 내용을 포함하지 않을 때 insert
-		if (!contents.contains(insertValue)) {
+		// 동일한 전화번호를 포함하지 않을 때 insert
+		if (!isSameNum(insertValue.split(" ")[1])) {
 			int i = 0;
 			for (String content:contents) {
 				if (content.compareTo(insertValue) > 0) {
@@ -36,17 +42,16 @@ public class DoInsert{
 			ApplyToFile apply = new ApplyToFile(file);
 			apply.apply(contents);
 		}else {
-			System.out.println("이미 포함된 내용입니다");
+			System.out.println("이미 포함된 전화번호입니다");
 		}
-
 	}
 	
 	public DoInsert(File file,String insertValue) {
 		// TODO Auto-generated constructor stub
 		this.file = file;
+		GetContent getContent = new GetContent(file);
+		contents = getContent.getContent();
+		
 		insert(insertValue);
-		
-
-		
 	}
 }

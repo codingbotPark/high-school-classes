@@ -44,7 +44,7 @@ public class DoSearch{
 		return  resultStrings;
 	}
 
-	public void printnSearchResult(String keyword) {
+	public void printSearchResult(String keyword) {
 		for (String temp:search(keyword)) {
 			System.out.println(temp);
 		}
@@ -53,6 +53,6 @@ public class DoSearch{
 	public DoSearch(File file,String keyword) {
 		// TODO Auto-generated constructor stub
 		this.file = file;
-		printnSearchResult(keyword);
+		printSearchResult(keyword);
 	}
 }

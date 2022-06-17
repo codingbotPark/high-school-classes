@@ -46,12 +46,12 @@ public class DoDelete {
 			for (int i =0;i<listLength;i++) {
 				System.out.println(i+1+"번 "+selectedList.get(i));
 			}
-			System.out.printf("위 %d개의 검색결과가 있습니다,\n어떤것을 삭제할까요? : ",listLength);
 			
 			// 사용자에게 선택을 하게 한다
 			Scanner scan = new Scanner(System.in);
 			
 			while(true) {
+				System.out.printf("위 %d개의 검색결과가 있습니다,\n어떤것을 삭제할까요? : ",listLength);
 				int userCho = scan.nextInt();
 				// 제대로된 선택 값인지 확인
 				if (userCho > 0 && userCho <= listLength) {
