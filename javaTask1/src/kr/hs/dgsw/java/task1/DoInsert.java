@@ -16,29 +16,37 @@ public class DoInsert{
 	// insert할 자리를 찾는다
 	// search에는 파일에 있는 내용을 찾는데, 
 	// insert에서는 들어갈 자리를 찾음 
-	public ArrayList<String> insert(String insertValue) {
+	public void insert(String insertValue) {
 		GetContent getContent = new GetContent(file);
 		ArrayList<String> contents = getContent.getContent();
-		int i = 0;
-		for (String content:contents) {
-			if (content.compareTo(insertValue) > 0) {
-				break;
+		
+		
+		// 동일한 내용을 포함하지 않을 때 insert
+		if (!contents.contains(insertValue)) {
+			int i = 0;
+			for (String content:contents) {
+				if (content.compareTo(insertValue) > 0) {
+					break;
+				}
+				i++;
 			}
-			i++;
+			contents.add(i,insertValue);
+			
+			// 파일에 적용
+			ApplyToFile apply = new ApplyToFile(file);
+			apply.apply(contents);
+		}else {
+			System.out.println("이미 포함된 내용입니다");
 		}
 
-		contents.add(i,insertValue);
-		return contents;
 	}
 	
 	public DoInsert(File file,String insertValue) {
 		// TODO Auto-generated constructor stub
 		this.file = file;
-		ArrayList<String> insertedContent = insert(insertValue);
+		insert(insertValue);
 		
-		// 파일에 적용
-		ApplyToFile apply = new ApplyToFile(file);
-		apply.apply(insertedContent);
+
 		
 	}
 }

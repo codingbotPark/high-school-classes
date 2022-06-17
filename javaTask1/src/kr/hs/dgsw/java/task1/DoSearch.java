@@ -22,11 +22,30 @@ import java.util.ArrayList;
 public class DoSearch{
 	
 	File file;
+	
+	public ArrayList<String> search(String keyword){
+		GetContent getContent = new GetContent(file);
+		ArrayList<String> contents = getContent.getContent();
+		
+		ArrayList<String> resultStrings = new ArrayList<String>();
+		
+		if (keyword.equals("*")) {
+			resultStrings = contents;
+		} else {
+			for (String content:contents) {
+				// keyword가 문자열에 포함되는지 확인
+				if (content.contains(keyword)) {
+					resultStrings.add(content);
+				}
+			}
+		}
+		
+		
+		return  resultStrings;
+	}
 
 	public void printnSearchResult(String keyword) {
-		Search search = new Search(file);
-		String[] searchValues = search.search(keyword);
-		for (String temp:searchValues) {
+		for (String temp:search(keyword)) {
 			System.out.println(temp);
 		}
 	}

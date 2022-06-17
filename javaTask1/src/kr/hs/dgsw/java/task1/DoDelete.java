@@ -43,7 +43,10 @@ public class DoDelete {
 			// 하나 뿐인 요소를 resultLine에 넣는다
 			resultLine = selectedList.toArray(new String[0])[0];
 		} else {
-			System.out.println(listLength+"개의 검색결과가 있습니다, 어떤것을 삭제할까요? : ");
+			for (int i =0;i<listLength;i++) {
+				System.out.println(i+1+"번 "+selectedList.get(i));
+			}
+			System.out.printf("위 %d개의 검색결과가 있습니다,\n어떤것을 삭제할까요? : ",listLength);
 			
 			// 사용자에게 선택을 하게 한다
 			Scanner scan = new Scanner(System.in);
@@ -53,14 +56,13 @@ public class DoDelete {
 				// 제대로된 선택 값인지 확인
 				if (userCho > 0 && userCho <= listLength) {
 					resultLine = selectedList.toArray(new String[0])[userCho-1];
-							
+					break;
 				} else {
 					System.out.printf("1~%d사이의 값을 선택해주세요\n",listLength);
 				}
 			}
 			
 		}
-		
 		return resultLine;
 		
 	}
@@ -72,18 +74,11 @@ public class DoDelete {
 		GetContent getContent = new GetContent(file);
 		ArrayList<String> contents = getContent.getContent();
 		
-//		contents.remove(Arrays.asList(contents).indexOf(decidedValue));
+
 		
 		if (!decidedValue.equals("empty")) {
-			int i = 0;
-			for (String content:contents) {
-				if (content.equals(decidedValue)) {
-					break;
-				}
-				i++;
-			}
 			
-			contents.remove(i);
+			contents.remove(contents.indexOf(decidedValue));
 			
 			ApplyToFile apply = new ApplyToFile(file);
 			apply.apply(contents);
@@ -96,9 +91,5 @@ public class DoDelete {
 		// TODO Auto-generated constructor stub
 		this.file = file;
 		delete(deleteValue);
-//		ArrayList<String> deletedContent = delete(deleteValue);
-//		
-//		ApplyToFile apply = new ApplyToFile(file);
-//		apply.apply(deletedContent);
 	}
 }

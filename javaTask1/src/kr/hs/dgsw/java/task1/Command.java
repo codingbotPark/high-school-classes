@@ -55,7 +55,7 @@ public class Command {
 	public Command(File file) {
 		// TODO Auto-generated constructor stub
 		System.out.println("**전화번호는 붙여서 입력해주세요**");
-		System.out.println("검색 = search [이름/전화번호]");
+		System.out.println("검색 = search [이름/전화번호/*]");
 		System.out.println("등록 = insert [이름] [전화번호]");
 		System.out.println("검색 = delete [이름]");
 

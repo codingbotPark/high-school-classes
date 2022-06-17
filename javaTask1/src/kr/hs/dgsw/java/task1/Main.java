@@ -35,41 +35,6 @@ public class Main {
 			}
 		}
 	}
-	
-	// 인자로 받은 파일의 라인 개수를 리턴해준다
-	public boolean isEmpty(File file) {
-		boolean isEmpty = true;
-		try {
-			BufferedReader br = new BufferedReader(new FileReader(file));
-			// buffer를 한 번 읽는다
-			String firstLine = br.readLine();
-			if (firstLine != null){
-				isEmpty = false;
-			}
-			br.close();
-		} catch (Exception e) {
-			System.out.println("getFileLength오류");
-			// TODO: handle exception
-		}
-		return isEmpty;
-	}
-	
-	// 기본 세팅을 해준다(파일,도움말)
-	public void setting(File file) {
-		try {
-			FileOutputStream output = new FileOutputStream(file,false);
-			OutputStreamWriter writer = new OutputStreamWriter(output,"UTF-8");
-			BufferedWriter out = new BufferedWriter(writer);
-			
-			out.write("\n");
-			out.close();
-			
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
-	
 
 	public static void main(String[] args)  {
 		// 현재 위치에 파일 생성
@@ -80,10 +45,6 @@ public class Main {
 		// 파일이 없다면 생성
 		main.confirmFile(file);
 		// 파일에 내용이 없다면 기본세팅을 해준다
-//		if (main.isEmpty(file)) { // 비어있을 때
-//			main.setting(file);
-//		}
-		
 		
 		// 세팅 완료시 command로 넘어간다
 		Command command = new Command(file);

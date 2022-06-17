@@ -20,7 +20,6 @@ public class ApplyToFile {
 			BufferedWriter out = new BufferedWriter(writer);
 			
 			for(String content:contents) {
-//				System.out.println(content);
 				out.write(content+"\n");
 			}
 			
