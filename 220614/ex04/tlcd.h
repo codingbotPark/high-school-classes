@@ -5,9 +5,9 @@
 #include <util/delay.h>
 
 
-/* ======================================== ¸ğµâ Á¦¾î¿ë Á¤ÀÇ ========================================== */
-//- LCD Á¦¾î PORT & PIN ---------------------------------------------------------------------------
-#define TLCD_DDR			DDRA		//- Data Bus Á¦¾î Port
+/* ======================================== ëª¨ë“ˆ ì œì–´ìš© ì •ì˜ ========================================== */
+//- LCD ì œì–´ PORT & PIN ---------------------------------------------------------------------------
+#define TLCD_DDR			DDRA		//- Data Bus ì œì–´ Port
 #define TLCD_PORT			PORTA
 
 #define RS_BIT				PA0			//- Register Select : LOW - Command  HIGH - Data
@@ -18,13 +18,13 @@
 #define DATA_D6				PA6
 #define DATA_D7				PA7
 
-//- LCD Á¦¾î°ü·Ã »ó¼ö ------------------------------------------------------------------------------
-#define ALL_SET				0xFF		//- ¸ğµç Pin 1·Î ¼Â
-#define ALL_CLEAR			0x00		//- ¸ğµç Pin 0À¸·Î Å¬¸®¾î
+//- LCD ì œì–´ê´€ë ¨ ìƒìˆ˜ ------------------------------------------------------------------------------
+#define ALL_SET				0xFF		//- ëª¨ë“  Pin 1ë¡œ ì…‹
+#define ALL_CLEAR			0x00		//- ëª¨ë“  Pin 0ìœ¼ë¡œ í´ë¦¬ì–´
 
-#define DDRAM_ADDR 			0x80		//- DD(Display Data) RAM ÁÖ¼Ò
+#define DDRAM_ADDR 			0x80		//- DD(Display Data) RAM ì£¼ì†Œ
 
-//- LCD Á¦¾î°ü·Ã ¸í·É¾î ----------------------------------------------------------------------------
+//- LCD ì œì–´ê´€ë ¨ ëª…ë ¹ì–´ ----------------------------------------------------------------------------
 #define CMD_CLEAR_DISPLAY 	0x01		//- CLEAR_DISPLAY(0x01)
 #define CMD_RETURN_HOME 	0x02		//- RETURN_HOME(0x02)
 
@@ -35,11 +35,11 @@
 #define CMD_8BIT_MODE		0x03		//- FUNCTION_SET(0x02)|8BIT(0x01)
 #define CMD_4BIT_MODE		0x02		//- FUNCTION_SET(0x02)|4BIT(0x00)
 
-#define DDRAM_FS_ADDR		0x00		//- Ã¹¹øÂ° ¶óÀÎ Ä¿¼­ ½ÃÀÛ ÁÖ¼Ò
-#define DDRAM_FE_ADDR		0x0F		//- Ã¹¹øÂ° ¶óÀÎ Ä¿¼­   ³¡ ÁÖ¼Ò
-#define DDRAM_SS_ADDR		0x40		//- µÎ¹øÂ° ¶óÀÎ Ä¿¼­ ½ÃÀÛ ÁÖ¼Ò
-#define DDRAM_SE_ADDR		0x4F		//- µÎ¹øÂ° ¶óÀÎ Ä¿¼­   ³¡ ÁÖ¼Ò
-// ========================================= ÇÔ¼ö ¼±¾ğ ==============================================
+#define DDRAM_FS_ADDR		0x00		//- ì²«ë²ˆì§¸ ë¼ì¸ ì»¤ì„œ ì‹œì‘ ì£¼ì†Œ
+#define DDRAM_FE_ADDR		0x0F		//- ì²«ë²ˆì§¸ ë¼ì¸ ì»¤ì„œ   ë ì£¼ì†Œ
+#define DDRAM_SS_ADDR		0x40		//- ë‘ë²ˆì§¸ ë¼ì¸ ì»¤ì„œ ì‹œì‘ ì£¼ì†Œ
+#define DDRAM_SE_ADDR		0x4F		//- ë‘ë²ˆì§¸ ë¼ì¸ ì»¤ì„œ   ë ì£¼ì†Œ
+// ========================================= í•¨ìˆ˜ ì„ ì–¸ ==============================================
 void TXT_LCD_Init(void);
 void TXT_LCD_Enable(void);
 void TXT_LCD_Write(unsigned char nValue);

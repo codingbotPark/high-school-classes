@@ -1,4 +1,4 @@
-﻿/*
+/*
  * usart_printf.h
  *
  * Created: 2021-10-25 오전 7:40:00
@@ -30,12 +30,12 @@ static FILE device=FDEV_SETUP_STREAM(USART1_putchar, NULL, _FDEV_SETUP_WRITE);
 //static FILE in_device=FDEV_SETUP_STREAM(NULL, USART1_getchar, _FDEV_SETUP_READ);
 
 // == USART 초기화 함수
-//void USART_Init();
+void USART_Init();
 
 // == USART Interrupt 함수
-//ISR(USART1_RX_vect);
+ISR(USART1_RX_vect);
 
-//void USART_Transmitter(unsigned char txData);
+void USART_Transmitter(unsigned char txData);
 
 
 #endif /* USART_PRINTF_H_ */
