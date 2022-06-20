@@ -28,6 +28,7 @@ public class DoInsert{
 	// insert에서는 들어갈 자리를 찾음 
 	public void insert(String insertValue) {
 		// 동일한 전화번호를 포함하지 않을 때 insert
+				
 		if (!isSameNum(insertValue.split(" ")[1])) {
 			int i = 0;
 			for (String content:contents) {
