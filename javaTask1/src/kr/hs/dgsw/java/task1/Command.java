@@ -44,7 +44,14 @@ public class Command {
 					DoInsert doInsert = new DoInsert(file,commandLine.split(" ",2)[1]);
 			} else if (commandLine.startsWith("delete") && checkWordNum(commandLine,2)) {
 				DoDelete doDelete = new DoDelete(file,commandLine.split(" ",2)[1]);
-			} else {
+				
+			} else if(commandLine.startsWith("quit") && checkWordNum(commandLine,1)) {
+				scan.close();
+				System.out.println("**시스템이 종료되었습니다**");
+				System.exit(0);
+			}
+			
+			else {
 				System.out.println("잘못된 명령어 형식 입니다");
 			}
 
@@ -57,6 +64,7 @@ public class Command {
 		System.out.println("검색 = search [이름/전화번호/*]");
 		System.out.println("등록 = insert [이름] [전화번호]");
 		System.out.println("검색 = delete [이름]");
+		System.out.println("종료 = quit");
 		System.out.println("**********************");
 
 		this.file = file;

@@ -9,6 +9,8 @@ import java.util.Scanner;
 public class DoDelete {
 	File file;
 	
+	// 사용자에게 선택을 하게 한다
+	Scanner scan = new Scanner(System.in);
 	
 	// 삭제할 값 을 찾고, 정한다,
 	// delete는 정확하게 들어온 이름을 보고 하기 때문에 search와 다르다
@@ -47,8 +49,7 @@ public class DoDelete {
 				System.out.println(i+1+"번 "+selectedList.get(i));
 			}
 			
-			// 사용자에게 선택을 하게 한다
-			Scanner scan = new Scanner(System.in);
+			
 			
 			while(true) {
 				System.out.printf("위 %d개의 검색결과가 있습니다,\n어떤것을 삭제할까요? : ",listLength);
@@ -61,6 +62,7 @@ public class DoDelete {
 					System.out.printf("1~%d사이의 값을 선택해주세요\n",listLength);
 				}
 			}
+			
 			
 		}
 		return resultLine;
@@ -91,5 +93,6 @@ public class DoDelete {
 		// TODO Auto-generated constructor stub
 		this.file = file;
 		delete(deleteValue);
+
 	}
 }
