@@ -27,6 +27,8 @@ public abstract class AbstractCommand {
 			return new CommandLs(currentDirectory, line);
 		} else if (line.startsWith("quit")) {
 			return new CommandExit(currentDirectory, line);
+		} else if (line.startsWith("rm")){
+			return new CommandRm(currentDirectory,line);
 		} else {
 			throw new UnknownCommandException();
 		}

@@ -29,6 +29,7 @@ public class SimpleCommander {
 			try {
 				command = receiveCommand();
 			} catch (Exception e) {
+				e.printStackTrace();
 				System.out.println("Invalid command");
 				continue;
 			}
