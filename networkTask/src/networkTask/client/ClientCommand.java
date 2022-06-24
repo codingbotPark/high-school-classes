@@ -72,7 +72,7 @@ public class ClientCommand {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		;
+		
 	}
 
 	// ls를 사용하는데에, fileName을 넣으면 그 파일이 서버에 있는지(true), 없는지(false)를 리턴

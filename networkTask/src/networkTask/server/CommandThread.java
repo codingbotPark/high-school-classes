@@ -124,8 +124,6 @@ public class CommandThread extends Thread {
 						fout.flush();
 						fout.close();
 
-						System.out.println("여기로 나옴");
-
 						// 다 못받고 나왔다면
 						if (byteSize != 0) {
 							// 파일이 존재한다면
