@@ -62,12 +62,41 @@ namespace ConsoleApp2
             };
 
         // 테트리스의 블록 만들기
-        static byte[,] block_L = new byte[4, 4] {
+        //static byte[,] block_L = new byte[4, 4] {
+        //    {0,0,0,0 },
+        //    {0,1,0,0 },
+        //    {0,1,1,1 },
+        //    {0,0,0,0 },
+        //};
+
+        static byte[,,] block_L = new byte[4, 4, 4]{
+            {
             {0,0,0,0 },
             {0,1,0,0 },
             {0,1,1,1 },
             {0,0,0,0 },
+            },
+            {
+            {0,0,0,0 },
+            {0,1,1,0 },
+            {0,1,0,0 },
+            {0,1,0,0 },
+            },
+            {
+            {0,0,0,0 },
+            {0,1,1,1 },
+            {0,0,0,1 },
+            {0,0,0,0 },
+            },
+            {
+            {0,0,0,0 },
+            {0,0,1,0 },
+            {0,0,1,0 },
+            {0,1,1,0 },
+            },
         };
+
+        static int rotate = 0;
 
         static int x = 5;
         static int y = 5;
@@ -79,22 +108,7 @@ namespace ConsoleApp2
         {
 
 
-            //// 테트리스 블록 하나 출력
-            //for (int j = 0; j < 4; j++)
-            //{
-            //    for (int i = 0; i < 4; i++)
-            //    {
-            //        if (block_L[j, i] == 1)
-            //        {
-            //            Console.Write("*");
-            //        }
-            //        else
-            //        {
-            //            Console.Write("-");
-            //        }
-            //    }
-            //    Console.WriteLine();
-            //}
+
 
             ConsoleKeyInfo key_value;
             String ch;
@@ -106,7 +120,7 @@ namespace ConsoleApp2
             {
 
                 if (Console.KeyAvailable)
-                {   
+                {
                     // true를 줘서 키보드 입력이 출력되지 않게 한다
                     key_value = Console.ReadKey(true);
                     ch = key_value.Key.ToString();
@@ -114,15 +128,15 @@ namespace ConsoleApp2
                     // 블록 이동
                     if (ch == "A") // 왼쪽
                     {
-                        if (overlap_check(-1,0) == 0)
+                        if (overlap_check(-1, 0) == 0)
                         {
                             deleteBlock();
                             x--;
                             makeBlock();
                         }
-                        
-                    } 
-                    else if(ch == "S") // 아래
+
+                    }
+                    else if (ch == "S") // 아래
                     {
                         if (overlap_check(0, 1) == 0)
                         {
@@ -133,13 +147,25 @@ namespace ConsoleApp2
                         }
 
                     }
-                    else if(ch == "D") // 오른쪽
+                    else if (ch == "D") // 오른쪽
                     {
                         if (overlap_check(1, 0) == 0)
                         {
                             deleteBlock();
                             x++;
                             makeBlock();
+                        }
+
+                    }
+                    else if (ch == "R") // 회전
+                    {
+                        if (overlap_check_rotate() == 0)
+                        {
+
+                        deleteBlock();
+                        rotate++;
+                        if (rotate > 3) rotate = 0;
+                        makeBlock();
                         }
 
                     }
@@ -193,7 +219,7 @@ namespace ConsoleApp2
                 {
                     for (int i = 0; i < 4; i++)
                     {
-                        if (block_L[j, i] == 1)
+                        if (block_L[rotate, j, i] == 1)
                         {
                             // setCursorPointer는 c에서의 gotoXY와 같다
                             // 기준은 0,0이 왼쪽 위이다
@@ -206,21 +232,22 @@ namespace ConsoleApp2
                 }
             }
 
-                void deleteBlock()
+            void deleteBlock()
+            {
+                for (int j = 0; j < 4; j++)
                 {
-                    for (int j = 0; j < 4; j++)
+                    for (int i = 0; i < 4; i++)
                     {
-                        for (int i = 0; i < 4; i++)
+                        if (block_L[rotate, j, i] == 1)
                         {
-                            if (block_L[j, i] == 1)
-                            {
-                                Console.SetCursorPosition(i+x, j + y);
-                                Console.Write("-");
-                            }
+                            Console.SetCursorPosition(i + x, j + y);
+                            Console.Write("-");
                         }
                     }
                 }
+            }
 
+            // 블록이 맵을 나가는 것을 방지
             int overlap_check(int tmp_x, int tmp_y)
             {
                 int overlap_count = 0;
@@ -229,7 +256,7 @@ namespace ConsoleApp2
                 {
                     for (int i = 0; i < 4; i++)
                     {
-                        if (block_L[j,i] == 1 && background[j +y+tmp_y, i+x+tmp_x] == 1)
+                        if (block_L[rotate, j, i] == 1 && background[j + y + tmp_y, i + x + tmp_x] == 1)
                         {
                             overlap_count++;
                         }
@@ -239,160 +266,199 @@ namespace ConsoleApp2
                 return overlap_count;
             }
 
+            // 블록을 돌렸을 때 맵을 나가는 것을 방지
+            int overlap_check_rotate()
+            {
+                int overlap_count = 0;
+                int tmp_rotate = rotate + 1;
+                if (tmp_rotate > 3) tmp_rotate = 0;
 
-            //byte num = 0x23;
-            //byte num1 = 0x37;
+                for (int j = 0; j < 4; j++)
+                {
+                    for (int i = 0; i < 4; i++)
+                    {
+                        if (block_L[rotate, j, i] == 1 && background[j + y, i + x] == 1)
+                        {
+                            overlap_count++;
+                        }
+                    }
+                }
 
-            //// 줄 내리기
-            //Console.WriteLine("Hello World");
-            //// delay
-            //Thread.Sleep(1000);
-            //// console 클리어
-            //Console.Clear();
-            //Console.WriteLine("Hi")
-            // scanf와 비슷함
-            //Console.ReadLine();
-
-            //// 두 자리수 카운팅
-            //for (int i = 0; i < 10; i++)
-            //{
-            //    for (int j = 0; j < 10; j++)
-            //    {
-            //        // 10의 자리 수
-            //        for (int u = 0; u < 8; u++)
-            //        {
-            //            for (int w = 0; w < 8; w++)
-            //            {
-            //                if ((num_byte_3[i, u] & (0x80 >> w)) > 0)
-            //                {
-            //                    Console.Write("*");
-            //                }
-            //                else
-            //                {
-            //                    Console.Write("-");
-            //                }
-            //            }
-            //            for (int w = 0; w < 8; w++)
-            //            {
-            //                if ((num_byte_3[j, u] & (0x80 >> w)) > 0)
-            //                {
-            //                    Console.Write("*");
-            //                }
-            //                else
-            //                {
-            //                    Console.Write("-");
-            //                }
-            //            }
-            //            Console.WriteLine();
-            //        }
-            //        Thread.Sleep(100);
-            //        Console.Clear();
-            //    }
-            //}
-
-
-
-            // 2, 3 만 
-            //while (true)
-            //{
-            //    for (int j = 0; j < 8; j++)
-            //    {
-            //        for (int i = 0; i < 8; i++)
-            //        {
-            //            if ((num_byte_2[0, j] & (0x80 >> i)) > 0)
-            //            {
-            //                Console.Write("*");
-            //            }
-            //            else
-            //            {
-            //                Console.Write("-");
-            //            }
-            //        }
-            //        Console.WriteLine();
-            //    }
-            //    Thread.Sleep(1000);
-            //    Console.Clear();
-            //    for (int j = 0; j < 8; j++)
-            //    {
-            //        for (int i = 0; i < 8; i++)
-            //        {
-            //            if ((num_byte_2[1, j] & (0x80 >> i)) > 0)
-            //            {
-            //                Console.Write("*");
-            //            }
-            //            else
-            //            {
-            //                Console.Write("-");
-            //            }
-            //        }
-            //        Console.WriteLine();
-            //    }
-            //    Thread.Sleep(1000);
-            //    Console.Clear();
-            //}
-
-
-
-            // 숫자 출력
-            //for (int j = 0; j < 8; j++)
-            //{
-            //    for (int i = 0; i < 8; i++)
-            //    {
-            //        if ((num_byte[j] & 0x80 >> i) > 0)
-            //        {
-            //            Console.Write("*");
-            //        }
-            //        else
-            //        {
-            //            Console.Write("-");
-            //        }
-            //    }
-            //    Console.WriteLine();
-            //}
-
-
-            //// 0000 0000
-            //// 에서 왼쪽 끝은 msb, 오른쪽 끝은 lsb
-            //for (int i = 0; i < 8; i++)
-            //{
-            //    // 비트 연산으로 1이 있는 자리를 별로 만들기
-            //    if ((num & 0x80 >> i) > 0)
-            //    {
-            //        Console.Write("*");
-            //    }
-            //    else
-            //    {
-            //        Console.Write("-");
-            //    }
-            //}
-            //Console.WriteLine();
-            //for (int i = 0; i < 8; i++)
-            //{
-            //    // 비트 연산으로 1이 있는 자리를 별로 만들기
-            //    if ((num1 & 0x80 >> i) > 0)
-            //    {
-            //        Console.Write("*");
-            //    }
-            //    else
-            //    {
-            //        Console.Write("-");
-            //    }
-            //}
-
-
-
-            //// 숫자 카운팅
-            //while (true)
-            //{
-            //    Console.WriteLine(counter);
-            //    counter++;
-            //    Thread.Sleep(1000);
-            //    Console.Clear();
-            //}
+                return overlap_count;
+            }
 
         }
     }
 }
+
+//byte num = 0x23;
+//byte num1 = 0x37;
+
+//// 줄 내리기
+//Console.WriteLine("Hello World");
+//// delay
+//Thread.Sleep(1000);
+//// console 클리어
+//Console.Clear();
+//Console.WriteLine("Hi")
+// scanf와 비슷함
+//Console.ReadLine();
+
+//// 테트리스 블록 하나 출력
+//for (int j = 0; j < 4; j++)
+//{
+//    for (int i = 0; i < 4; i++)
+//    {
+//        if (block_L[j, i] == 1)
+//        {
+//            Console.Write("*");
+//        }
+//        else
+//        {
+//            Console.Write("-");
+//        }
+//    }
+//    Console.WriteLine();
+//}
+
+//// 두 자리수 카운팅
+//for (int i = 0; i < 10; i++)
+//{
+//    for (int j = 0; j < 10; j++)
+//    {
+//        // 10의 자리 수
+//        for (int u = 0; u < 8; u++)
+//        {
+//            for (int w = 0; w < 8; w++)
+//            {
+//                if ((num_byte_3[i, u] & (0x80 >> w)) > 0)
+//                {
+//                    Console.Write("*");
+//                }
+//                else
+//                {
+//                    Console.Write("-");
+//                }
+//            }
+//            for (int w = 0; w < 8; w++)
+//            {
+//                if ((num_byte_3[j, u] & (0x80 >> w)) > 0)
+//                {
+//                    Console.Write("*");
+//                }
+//                else
+//                {
+//                    Console.Write("-");
+//                }
+//            }
+//            Console.WriteLine();
+//        }
+//        Thread.Sleep(100);
+//        Console.Clear();
+//    }
+//}
+
+
+
+// 2, 3 만 
+//while (true)
+//{
+//    for (int j = 0; j < 8; j++)
+//    {
+//        for (int i = 0; i < 8; i++)
+//        {
+//            if ((num_byte_2[0, j] & (0x80 >> i)) > 0)
+//            {
+//                Console.Write("*");
+//            }
+//            else
+//            {
+//                Console.Write("-");
+//            }
+//        }
+//        Console.WriteLine();
+//    }
+//    Thread.Sleep(1000);
+//    Console.Clear();
+//    for (int j = 0; j < 8; j++)
+//    {
+//        for (int i = 0; i < 8; i++)
+//        {
+//            if ((num_byte_2[1, j] & (0x80 >> i)) > 0)
+//            {
+//                Console.Write("*");
+//            }
+//            else
+//            {
+//                Console.Write("-");
+//            }
+//        }
+//        Console.WriteLine();
+//    }
+//    Thread.Sleep(1000);
+//    Console.Clear();
+//}
+
+
+
+// 숫자 출력
+//for (int j = 0; j < 8; j++)
+//{
+//    for (int i = 0; i < 8; i++)
+//    {
+//        if ((num_byte[j] & 0x80 >> i) > 0)
+//        {
+//            Console.Write("*");
+//        }
+//        else
+//        {
+//            Console.Write("-");
+//        }
+//    }
+//    Console.WriteLine();
+//}
+
+
+//// 0000 0000
+//// 에서 왼쪽 끝은 msb, 오른쪽 끝은 lsb
+//for (int i = 0; i < 8; i++)
+//{
+//    // 비트 연산으로 1이 있는 자리를 별로 만들기
+//    if ((num & 0x80 >> i) > 0)
+//    {
+//        Console.Write("*");
+//    }
+//    else
+//    {
+//        Console.Write("-");
+//    }
+//}
+//Console.WriteLine();
+//for (int i = 0; i < 8; i++)
+//{
+//    // 비트 연산으로 1이 있는 자리를 별로 만들기
+//    if ((num1 & 0x80 >> i) > 0)
+//    {
+//        Console.Write("*");
+//    }
+//    else
+//    {
+//        Console.Write("-");
+//    }
+//}
+
+
+
+//// 숫자 카운팅
+//while (true)
+//{
+//    Console.WriteLine(counter);
+//    counter++;
+//    Thread.Sleep(1000);
+//    Console.Clear();
+//}
+
+
 
 
 //using System;
