@@ -42,8 +42,8 @@ namespace ConsoleApp2
             {1,0,0,0,0,0,0,0,0,0,0,1 },
             {1,0,0,0,0,0,0,0,0,0,0,1 },
             {1,0,0,0,0,0,0,0,0,0,0,1 },
-            {1,0,0,0,0,0,0,0,0,0,0,1 },
-            {1,0,0,0,0,0,0,0,0,0,0,1 },
+            {1,1,1,1,1,1,0,1,1,1,1,1 },
+            {1,1,1,1,1,1,0,1,1,1,1,1 },
             {1,1,1,1,1,1,1,1,1,1,1,1 },
         };
 
@@ -68,40 +68,63 @@ namespace ConsoleApp2
         //    {0,1,1,1 },
         //    {0,0,0,0 },
         //};
+        static byte[,,,] block = new byte[2, 4, 4, 4]
+                {
+            {
+                { {0, 0, 0, 0},
+                  {0, 1, 0, 0},
+                  {0, 1, 1, 1},
+                  {0, 0, 0, 0} },
 
-        static byte[,,] block_L = new byte[4, 4, 4]{
-            {
-            {0,0,0,0 },
-            {0,1,0,0 },
-            {0,1,1,1 },
-            {0,0,0,0 },
+                { {0, 0, 0, 0},
+                  {0, 1, 1, 0},
+                  {0, 1, 0, 0},
+                  {0, 1, 0, 0} },
+
+                { {0, 0, 0, 0},
+                  {0, 1, 1, 1},
+                  {0, 0, 0, 1},
+                  {0, 0, 0, 0} },
+
+                { {0, 0, 1, 0},
+                  {0, 0, 1, 0},
+                  {0, 0, 1, 1},
+                  {0, 0, 0, 0} }
             },
             {
-            {0,0,0,0 },
-            {0,1,1,0 },
-            {0,1,0,0 },
-            {0,1,0,0 },
+                { {0, 0, 0, 0},
+                  {0, 1, 1, 0},
+                  {0, 1, 1, 0},
+                  {0, 0, 0, 0} },
+
+                { {0, 0, 0, 0},
+                  {0, 1, 1, 0},
+                  {0, 1, 1, 0},
+                  {0, 0, 0, 0} },
+
+                { {0, 0, 0, 0},
+                  {0, 1, 1, 0},
+                  {0, 1, 1, 0},
+                  {0, 0, 0, 0} },
+
+                { {0, 0, 0, 0},
+                  {0, 1, 1, 0},
+                  {0, 1, 1, 0},
+                  {0, 0, 0, 0} }
             },
-            {
-            {0,0,0,0 },
-            {0,1,1,1 },
-            {0,0,0,1 },
-            {0,0,0,0 },
-            },
-            {
-            {0,0,0,0 },
-            {0,0,1,0 },
-            {0,0,1,0 },
-            {0,1,1,0 },
-            },
-        };
+                };
 
         static int rotate = 0;
+
+        static ConsoleColor[] colors = (ConsoleColor[])ConsoleColor.GetValues(typeof(ConsoleColor));
+        static int block_num;
+        static int[] block_color = new int[2] { 4, 9 };
 
         static int x = 5;
         static int y = 5;
 
         static int count = 0;
+
 
         // static은 객체화 하지 않아도 바로 메모리에 올라간다
         static void Main(string[] args)
@@ -162,25 +185,49 @@ namespace ConsoleApp2
                         if (overlap_check_rotate() == 0)
                         {
 
-                        deleteBlock();
-                        rotate++;
-                        if (rotate > 3) rotate = 0;
-                        makeBlock();
+                            deleteBlock();
+                            rotate++;
+                            if (rotate > 3) rotate = 0;
+                            makeBlock();
                         }
 
                     }
                 }
 
-                if (count > 100)
+                if (count >= 100)
                 {
                     count = 0;
-
                     if (overlap_check(0, 1) == 0)
                     {
                         deleteBlock();
                         y++;
                         makeBlock();
                     }
+                    else
+                    {
+                        insert_block();
+                        print_background_Value();
+                        
+                        for (int i = 1;i<21 ;i++)
+                        {
+                            line_check(i);
+                        }
+                        makeBackGround();
+                        print_background_Value();
+                        block_num++;
+                        if (block_num >= 2)
+                        {
+                            block_num = 0;
+                        }
+
+                        //line_check(19);
+                        //line_check(20);
+
+                        x = 3;
+                        y = 3;
+                    }
+
+
                 }
 
                 Thread.Sleep(10);
@@ -188,7 +235,85 @@ namespace ConsoleApp2
 
             }
 
-            void makeBackGround()
+
+
+            void makeBlock()
+            {
+                for (int j = 0; j < 4; j++)
+                {
+                    for (int i = 0; i < 4; i++)
+                    {
+                        if (block[block_num,rotate, j, i] == 1)
+                        {
+                            Console.ForegroundColor = colors[block_color[block_num]];
+                            // setCursorPointer는 c에서의 gotoXY와 같다
+                            // 기준은 0,0이 왼쪽 위이다
+                            Console.SetCursorPosition(i + x, j + y);
+                            Console.Write("*");
+
+                        } // 원래 else가 있었는데, background가 출력되고 출력을 하기 때문에 그냥 else일 때는 탈출
+                    }
+                    Console.WriteLine();
+                }
+            }
+
+            void deleteBlock()
+            {
+                for (int j = 0; j < 4; j++)
+                {
+                    for (int i = 0; i < 4; i++)
+                    {
+                        if (block[block_num,rotate, j, i] == 1)
+                        {
+                            Console.ForegroundColor = colors[7];
+                            Console.SetCursorPosition(i + x, j + y);
+                            Console.Write("-");
+                        }
+                    }
+                }
+            }
+
+            // 블록이 맵을 나가는 것을 방지
+            int overlap_check(int tmp_x, int tmp_y)
+            {
+                int overlap_count = 0;
+
+                for (int j = 0; j < 4; j++)
+                {
+                    for (int i = 0; i < 4; i++)
+                    {
+                        if (block[block_num,rotate, j, i] == 1 && background[j + y + tmp_y, i + x + tmp_x] == 1)
+                        {
+                            overlap_count++;
+                        }
+                    }
+                }
+
+                return overlap_count;
+            }
+
+            // 블록을 돌렸을 때 맵을 나가는 것을 방지
+            int overlap_check_rotate()
+            {
+                int overlap_count = 0;
+                int tmp_rotate = rotate + 1;
+                if (tmp_rotate > 3) tmp_rotate = 0;
+
+                for (int j = 0; j < 4; j++)
+                {
+                    for (int i = 0; i < 4; i++)
+                    {
+                        if (block[block_num,rotate, j, i] == 1 && background[j + y, i + x] == 1)
+                        {
+                            overlap_count++;
+                        }
+                    }
+                }
+
+                return overlap_count;
+            }
+
+            static void makeBackGround()
             {
 
                 int x_pos = 0;
@@ -213,308 +338,72 @@ namespace ConsoleApp2
                 }
             }
 
-            void makeBlock()
+            static void insert_block()
+        {
+            for (int j = 0; j < 4; j++)
             {
-                for (int j = 0; j < 4; j++)
+                for (int i = 0; i < 4; i++)
                 {
-                    for (int i = 0; i < 4; i++)
+                    if (block[block_num,rotate, j, i] == 1)
                     {
-                        if (block_L[rotate, j, i] == 1)
-                        {
-                            // setCursorPointer는 c에서의 gotoXY와 같다
-                            // 기준은 0,0이 왼쪽 위이다
-                            Console.SetCursorPosition(i + x, j + y);
-                            Console.Write("*");
-
-                        } // 원래 else가 있었는데, background가 출력되고 출력을 하기 때문에 그냥 else일 때는 탈출
+                        background[j + y, i + x] = 1;
                     }
-                    Console.WriteLine();
                 }
             }
+        }
 
-            void deleteBlock()
+            static void print_background_Value()
             {
-                for (int j = 0; j < 4; j++)
+                int xPos = 14;
+                int yPos = 0;
+
+                for (int j = 0; j < 22; j++)
                 {
-                    for (int i = 0; i < 4; i++)
+                    for (int i = 0; i < 12; i++)
                     {
-                        if (block_L[rotate, j, i] == 1)
+                        if (background[j, i] == 1)
                         {
-                            Console.SetCursorPosition(i + x, j + y);
-                            Console.Write("-");
+                            Console.ForegroundColor = colors[7];
+                            Console.SetCursorPosition(i + xPos, j + yPos);
+                            Console.Write("1");
+                        }
+                        else if (background[j, i] == 0)
+                        {
+                            Console.ForegroundColor = colors[7];
+                            Console.SetCursorPosition(i + xPos, j + yPos);
+                            Console.Write("0");
                         }
                     }
                 }
             }
 
-            // 블록이 맵을 나가는 것을 방지
-            int overlap_check(int tmp_x, int tmp_y)
+            // 10개가 모두 찼을 때 없애기
+            static void line_check(int line_num)
             {
-                int overlap_count = 0;
-
-                for (int j = 0; j < 4; j++)
+                int count_block = 0;
+                for (int i = 0; i < 10; i++)
                 {
-                    for (int i = 0; i < 4; i++)
+                    if (background[line_num, i + 1] == 1)
                     {
-                        if (block_L[rotate, j, i] == 1 && background[j + y + tmp_y, i + x + tmp_x] == 1)
-                        {
-                            overlap_count++;
-                        }
+                        count_block++;
                     }
                 }
 
-                return overlap_count;
-            }
-
-            // 블록을 돌렸을 때 맵을 나가는 것을 방지
-            int overlap_check_rotate()
-            {
-                int overlap_count = 0;
-                int tmp_rotate = rotate + 1;
-                if (tmp_rotate > 3) tmp_rotate = 0;
-
-                for (int j = 0; j < 4; j++)
+                if (count_block == 10)
                 {
-                    for (int i = 0; i < 4; i++)
+                    for (int j = line_num; j >1; j--)
                     {
-                        if (block_L[rotate, j, i] == 1 && background[j + y, i + x] == 1)
+                        for (int i = 0; i < 10; i++)
                         {
-                            overlap_count++;
+                            background[j, i + 1] = background[j - 1, i + 1];
                         }
                     }
-                }
 
-                return overlap_count;
+
+                }
             }
 
         }
     }
+
 }
-
-//byte num = 0x23;
-//byte num1 = 0x37;
-
-//// 줄 내리기
-//Console.WriteLine("Hello World");
-//// delay
-//Thread.Sleep(1000);
-//// console 클리어
-//Console.Clear();
-//Console.WriteLine("Hi")
-// scanf와 비슷함
-//Console.ReadLine();
-
-//// 테트리스 블록 하나 출력
-//for (int j = 0; j < 4; j++)
-//{
-//    for (int i = 0; i < 4; i++)
-//    {
-//        if (block_L[j, i] == 1)
-//        {
-//            Console.Write("*");
-//        }
-//        else
-//        {
-//            Console.Write("-");
-//        }
-//    }
-//    Console.WriteLine();
-//}
-
-//// 두 자리수 카운팅
-//for (int i = 0; i < 10; i++)
-//{
-//    for (int j = 0; j < 10; j++)
-//    {
-//        // 10의 자리 수
-//        for (int u = 0; u < 8; u++)
-//        {
-//            for (int w = 0; w < 8; w++)
-//            {
-//                if ((num_byte_3[i, u] & (0x80 >> w)) > 0)
-//                {
-//                    Console.Write("*");
-//                }
-//                else
-//                {
-//                    Console.Write("-");
-//                }
-//            }
-//            for (int w = 0; w < 8; w++)
-//            {
-//                if ((num_byte_3[j, u] & (0x80 >> w)) > 0)
-//                {
-//                    Console.Write("*");
-//                }
-//                else
-//                {
-//                    Console.Write("-");
-//                }
-//            }
-//            Console.WriteLine();
-//        }
-//        Thread.Sleep(100);
-//        Console.Clear();
-//    }
-//}
-
-
-
-// 2, 3 만 
-//while (true)
-//{
-//    for (int j = 0; j < 8; j++)
-//    {
-//        for (int i = 0; i < 8; i++)
-//        {
-//            if ((num_byte_2[0, j] & (0x80 >> i)) > 0)
-//            {
-//                Console.Write("*");
-//            }
-//            else
-//            {
-//                Console.Write("-");
-//            }
-//        }
-//        Console.WriteLine();
-//    }
-//    Thread.Sleep(1000);
-//    Console.Clear();
-//    for (int j = 0; j < 8; j++)
-//    {
-//        for (int i = 0; i < 8; i++)
-//        {
-//            if ((num_byte_2[1, j] & (0x80 >> i)) > 0)
-//            {
-//                Console.Write("*");
-//            }
-//            else
-//            {
-//                Console.Write("-");
-//            }
-//        }
-//        Console.WriteLine();
-//    }
-//    Thread.Sleep(1000);
-//    Console.Clear();
-//}
-
-
-
-// 숫자 출력
-//for (int j = 0; j < 8; j++)
-//{
-//    for (int i = 0; i < 8; i++)
-//    {
-//        if ((num_byte[j] & 0x80 >> i) > 0)
-//        {
-//            Console.Write("*");
-//        }
-//        else
-//        {
-//            Console.Write("-");
-//        }
-//    }
-//    Console.WriteLine();
-//}
-
-
-//// 0000 0000
-//// 에서 왼쪽 끝은 msb, 오른쪽 끝은 lsb
-//for (int i = 0; i < 8; i++)
-//{
-//    // 비트 연산으로 1이 있는 자리를 별로 만들기
-//    if ((num & 0x80 >> i) > 0)
-//    {
-//        Console.Write("*");
-//    }
-//    else
-//    {
-//        Console.Write("-");
-//    }
-//}
-//Console.WriteLine();
-//for (int i = 0; i < 8; i++)
-//{
-//    // 비트 연산으로 1이 있는 자리를 별로 만들기
-//    if ((num1 & 0x80 >> i) > 0)
-//    {
-//        Console.Write("*");
-//    }
-//    else
-//    {
-//        Console.Write("-");
-//    }
-//}
-
-
-
-//// 숫자 카운팅
-//while (true)
-//{
-//    Console.WriteLine(counter);
-//    counter++;
-//    Thread.Sleep(1000);
-//    Console.Clear();
-//}
-
-
-
-
-//using System;
-//using System.Collections.Generic;
-//using System.Linq;
-//using System.Text;
-//using System.Threading.Tasks;
-
-//using System.Threading;
-
-//namespace ConsoleApp2
-//{
-//    class Program
-//    {
-
-
-//        static void Main(string[] args)
-//        {
-//            int i, j;
-//            int num = 0
-
-//            // new 키워드를 사용하면 heap 영역에 들어가게 된다
-//            byte[,] font = new byte[2, 8] {
-//                {0x00,0x38,0x44,0x04,0x08,0x10,0x20,0x7c},
-//                {0x00,0x38,0x44,0x04,0x18,0x04,0x44,0x38}
-//            };
-
-//            Console.Clear();
-
-//            while (true)
-//            {
-
-//                for (j = 0; j < 8; j++)
-//                {
-//                    for (i = 0; i < 8; i++)
-//                    {
-//                        if ((font[num, j] & (0x01 << (7 - i))) > 0)
-//                        {
-//                            Console.Write("*");
-//                        }
-//                        else
-//                        {
-//                            Console.Write(" ");
-//                        }
-//                    }
-
-//                    Console.WriteLine("");
-//                }
-//                num++;
-//                if (num > 1) num = 0;
-
-//                Thread.Sleep(1000);
-//                Console.Clear();
-
-//            }
-
-//        }
-//    }
-//}
