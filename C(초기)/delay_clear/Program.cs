@@ -1,4 +1,4 @@
-﻿﻿using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -47,6 +47,33 @@ namespace ConsoleApp2
             {1,1,1,1,1,1,1,1,1,1,1,1 },
         };
 
+        /** 색 번호가 저장 */
+        static int[,] colorOfBackground = new int[22, 12]
+        {
+            {7,7,7,7,7,7,7,7,7,7,7,7 },
+            {7,7,7,7,7,7,7,7,7,7,7,7 },
+            {7,7,7,7,7,7,7,7,7,7,7,7 },
+            {7,7,7,7,7,7,7,7,7,7,7,7 },
+            {7,7,7,7,7,7,7,7,7,7,7,7 },
+            {7,7,7,7,7,7,7,7,7,7,7,7 },
+            {7,7,7,7,7,7,7,7,7,7,7,7 },
+            {7,7,7,7,7,7,7,7,7,7,7,7 },
+            {7,7,7,7,7,7,7,7,7,7,7,7 },
+            {7,7,7,7,7,7,7,7,7,7,7,7 },
+            {7,7,7,7,7,7,7,7,7,7,7,7 },
+            {7,7,7,7,7,7,7,7,7,7,7,7 },
+            {7,7,7,7,7,7,7,7,7,7,7,7 },
+            {7,7,7,7,7,7,7,7,7,7,7,7 },
+            {7,7,7,7,7,7,7,7,7,7,7,7 },
+            {7,7,7,7,7,7,7,7,7,7,7,7 },
+            {7,7,7,7,7,7,7,7,7,7,7,7 },
+            {7,7,7,7,7,7,7,7,7,7,7,7 },
+            {7,7,7,7,7,7,7,7,7,7,7,7 },
+            {7,7,7,7,7,7,7,7,7,7,7,7 },
+            {7,7,7,7,7,7,7,7,7,7,7,7 },
+            {7,7,7,7,7,7,7,7,7,7,7,7 },
+        };
+
         static byte[,] num_byte_3 = new byte[10, 8] {
             { 0x00,0x38,0x44,0x4c,0x54,0x64,0x44,0x38}, // 0
                 {0x00,0x10,0x30,0x50,0x10,0x10,0x10,0x7c}, // 1
@@ -61,13 +88,6 @@ namespace ConsoleApp2
 
             };
 
-        // 테트리스의 블록 만들기
-        //static byte[,] block_L = new byte[4, 4] {
-        //    {0,0,0,0 },
-        //    {0,1,0,0 },
-        //    {0,1,1,1 },
-        //    {0,0,0,0 },
-        //};
         static byte[,,,] block = new byte[2, 4, 4, 4]
                 {
             {
@@ -129,8 +149,6 @@ namespace ConsoleApp2
         // static은 객체화 하지 않아도 바로 메모리에 올라간다
         static void Main(string[] args)
         {
-
-
 
 
             ConsoleKeyInfo key_value;
@@ -207,8 +225,8 @@ namespace ConsoleApp2
                     {
                         insert_block();
                         print_background_Value();
-                        
-                        for (int i = 1;i<21 ;i++)
+
+                        for (int i = 1; i < 21; i++)
                         {
                             line_check(i);
                         }
@@ -243,7 +261,7 @@ namespace ConsoleApp2
                 {
                     for (int i = 0; i < 4; i++)
                     {
-                        if (block[block_num,rotate, j, i] == 1)
+                        if (block[block_num, rotate, j, i] == 1)
                         {
                             Console.ForegroundColor = colors[block_color[block_num]];
                             // setCursorPointer는 c에서의 gotoXY와 같다
@@ -263,7 +281,7 @@ namespace ConsoleApp2
                 {
                     for (int i = 0; i < 4; i++)
                     {
-                        if (block[block_num,rotate, j, i] == 1)
+                        if (block[block_num, rotate, j, i] == 1)
                         {
                             Console.ForegroundColor = colors[7];
                             Console.SetCursorPosition(i + x, j + y);
@@ -282,7 +300,7 @@ namespace ConsoleApp2
                 {
                     for (int i = 0; i < 4; i++)
                     {
-                        if (block[block_num,rotate, j, i] == 1 && background[j + y + tmp_y, i + x + tmp_x] == 1)
+                        if (block[block_num, rotate, j, i] == 1 && background[j + y + tmp_y, i + x + tmp_x] == 1)
                         {
                             overlap_count++;
                         }
@@ -303,7 +321,7 @@ namespace ConsoleApp2
                 {
                     for (int i = 0; i < 4; i++)
                     {
-                        if (block[block_num,rotate, j, i] == 1 && background[j + y, i + x] == 1)
+                        if (block[block_num, rotate, j, i] == 1 && background[j + y, i + x] == 1)
                         {
                             overlap_count++;
                         }
@@ -323,6 +341,7 @@ namespace ConsoleApp2
                 {
                     for (int i = 0; i < 12; i++)
                     {
+                        Console.ForegroundColor = colors[colorOfBackground[j, i]];
                         if (background[j, i] == 1)
                         {
                             Console.SetCursorPosition(i + x_pos, j + y_pos);
@@ -339,18 +358,25 @@ namespace ConsoleApp2
             }
 
             static void insert_block()
-        {
-            for (int j = 0; j < 4; j++)
             {
-                for (int i = 0; i < 4; i++)
+                for (int j = 0; j < 4; j++)
                 {
-                    if (block[block_num,rotate, j, i] == 1)
+                    for (int i = 0; i < 4; i++)
                     {
-                        background[j + y, i + x] = 1;
+                        if (block[block_num, rotate, j, i] == 1)
+                        {
+                            Console.ForegroundColor = colors[block_color[block_num]];
+                            // setCursorPointer는 c에서의 gotoXY와 같다
+                            // 기준은 0,0이 왼쪽 위이다
+                            Console.SetCursorPosition(i + x, j + y);
+                            Console.Write("*");
+
+                            colorOfBackground[j + y, i + x] = block_color[block_num];
+                            background[j + y, i + x] = 1;
+                        }
                     }
                 }
             }
-        }
 
             static void print_background_Value()
             {
@@ -391,11 +417,12 @@ namespace ConsoleApp2
 
                 if (count_block == 10)
                 {
-                    for (int j = line_num; j >1; j--)
+                    for (int j = line_num; j > 1; j--)
                     {
                         for (int i = 0; i < 10; i++)
                         {
                             background[j, i + 1] = background[j - 1, i + 1];
+                            colorOfBackground[j, i + 1] = colorOfBackground[j - 1, i + 1];
                         }
                     }
 
