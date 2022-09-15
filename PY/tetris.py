@@ -1,6 +1,7 @@
 import time
 import os
 import ctypes
+from turtle import back
 from xml.dom.expatbuilder import makeBuilder
 import numpy as np
 import msvcrt
@@ -12,12 +13,15 @@ def gotoxy(x,y):
     ctypes.windll.kernel32.SetConsoleCursorPosition(ctypes.windll.kernel32.GetStdHandle(-11),(((y&0xFFFF)<<0x10)|(x&0xFFFF)))
 
 def draw_background():
+    
     for j in range(0,22):
         for i in range(0,12):
             if background[j,i] == 1:
-                print("*", end="")
+                gotoxy(i,j)
+                print("*")
             else:
-                print("-", end="")
+                gotoxy(i,j)
+                print("-")
         print("")
 
 def print_background_value():
@@ -33,7 +37,7 @@ def print_background_value():
 def make_block(color):
     for j in range(0, 4):
         for i in range(0,4):
-            if block_L[j,i] == 1:
+            if block_L[block_num,j,i] == 1:
                 gotoxy(i+x, j+y)
                 print("\033[%dm" % color + "*" + '\033[0m');
         print("")
@@ -41,7 +45,7 @@ def make_block(color):
 def delete_block():
     for j in range(0, 4):
         for i in range(0,4):
-            if block_L[j,i] == 1:
+            if block_L[block_num,j,i] == 1:
                 gotoxy(i+x, j+y)
                 print("-")
         print("")
@@ -57,13 +61,12 @@ def delete_block():
 #         return False
 #     return True
 
-def overlap_check(xx, yy):
+def overlap_check(xPos, yPos):
     overlap_count = 1
-    if ((x + xx) >= 0) and ((x + xx) <= 8) and ((y + yy) <= 18): 
-        tmp_back = background[0 + y + yy: 4 + y + yy, 0 + x + xx:4 + x + xx]
-        overlap_block = (tmp_back & block_L)
+    if(x + xPos >= 0) and (x + xPos <= 8)  and (y + yPos <= 18) :
+        tmp_back = background[0 + y + yPos:4 + y + yPos, 0 + x + xPos:4 + x + xPos]
+        overlap_block = (tmp_back & block_L[block_num])
         overlap_count = overlap_block.sum()
-
     return overlap_count
 
 
@@ -79,7 +82,7 @@ def overlap_check2(tmp_x,tmp_y):
 
     for i in range(4):
         for j in range(4):
-            if block_L[j][i] == 1 and background[j + y + tmp_y,i + x + tmp_x] == 1:
+            if block_L[block_num][j][i] == 1 and background[j + y + tmp_y,i + x + tmp_x] == 1:
                 # overlap_counter+=1
                 return False
     # return overlap_counter
@@ -91,7 +94,7 @@ def overlap_check_rotate():
 
     if (x >= 0) and (x <= 8) and (y <= 18):
         tmp_back = background[0 + y:4 + y, 0 + x : 4 + x]
-        tmp_block_L = np.dot(block_L.T, reverse_col) * (-1)
+        tmp_block_L = np.dot(block_L[block_num].T, reverse_col) * (-1)
         overlap_block  = (tmp_back & tmp_block_L)
         overlap_count = overlap_block.sum()
 
@@ -100,8 +103,15 @@ def overlap_check_rotate():
 def insert_block():
     for j in range(0, 4):
         for i in range(0,4):
-            if block_L[j,i] == 1:
+            if block_L[block_num,j,i] == 1:
                 background[j+y, i + x] = 1
+
+def lineCheck(line):
+    count_block = np.count_nonzero(background[line] == 1)
+    if (count_block == 12): # 기본적으로 2개가 추가
+        for i in range(line, 1, -1):
+            # background[i] = np.tile(np.repeat(background[i-1],1),1) 
+            background[i] = background[i-1]
 
 background = np.array([[1,1,1,1,1,1,1,1,1,1,1,1],
                        [1,0,0,0,0,0,0,0,0,0,0,1],
@@ -122,8 +132,8 @@ background = np.array([[1,1,1,1,1,1,1,1,1,1,1,1],
                        [1,0,0,0,0,0,0,0,0,0,0,1],
                        [1,0,0,0,0,0,0,0,0,0,0,1],
                        [1,0,0,0,0,0,0,0,0,0,0,1],
-                       [1,0,0,0,0,0,0,0,0,0,0,1],
-                       [1,0,0,0,0,0,0,0,0,0,0,1],
+                       [1,1,1,1,1,1,0,1,1,1,1,1],
+                       [1,1,1,1,1,1,0,1,1,1,1,1],
                        [1,1,1,1,1,1,1,1,1,1,1,1]])
 
 reverse_col = np.array([[0,0,0,-1],
@@ -131,15 +141,20 @@ reverse_col = np.array([[0,0,0,-1],
                         [0,-1,0,0],
                         [-1,0,0,0]])
 
-block_L = np.array([[0,0,0,0],
+block_L = np.array([[[0,0,0,0],
                      [0,1,0,0],
                      [0,1,1,1],
-                     [0,0,0,0]]) 
+                     [0,0,0,0]],
+
+                     [[0,0,0,0],
+                     [0,1,1,0],
+                     [0,1,1,0],
+                     [0,0,0,0],]])
 
 
 text_color = np.array([30,31,32,33,34,35,36,37])
 
-rotate = 0
+block_num = 0
 x = 3
 y = 3
            
@@ -185,7 +200,7 @@ while True:
             #         rotate = 0
             #     make_block(text_color[1])
             delete_block()
-            block_L = np.dot(block_L.T, reverse_col) * (-1)
+            block_L[block_num] = np.dot(block_L[block_num].T, reverse_col)*(-1)
             make_block(text_color[1])
     
     # --------------------------------------------------------
@@ -199,9 +214,20 @@ while True:
             # 블록 넣어주기
             insert_block()
             print_background_value()
+
+            for i in range(1,21):
+                lineCheck(i)
+
+
+            draw_background()
+            print_background_value()
+
+
             x = 3
             y = 3
-
+            block_num+=1
+            if block_num >= len(block_L):
+                block_num = 0
         
     # --------------------------------------------------------
     count += 1
