@@ -20,10 +20,20 @@ def draw_background():
                 print("-", end="")
         print("")
 
+def print_background_value():
+    for j in range(0,22):
+        for i in range(0,12):
+            if background[j,i] == 1:
+                gotoxy(i + 15,j)
+                print("1")
+            else:
+                gotoxy(i+15,j)
+                print("0")
+
 def make_block(color):
     for j in range(0, 4):
         for i in range(0,4):
-            if block_L[rotate,j,i] == 1:
+            if block_L[j,i] == 1:
                 gotoxy(i+x, j+y)
                 print("\033[%dm" % color + "*" + '\033[0m');
         print("")
@@ -31,7 +41,7 @@ def make_block(color):
 def delete_block():
     for j in range(0, 4):
         for i in range(0,4):
-            if block_L[rotate,j,i] == 1:
+            if block_L[j,i] == 1:
                 gotoxy(i+x, j+y)
                 print("-")
         print("")
@@ -51,7 +61,7 @@ def overlap_check(xx, yy):
     overlap_count = 1
     if ((x + xx) >= 0) and ((x + xx) <= 8) and ((y + yy) <= 18): 
         tmp_back = background[0 + y + yy: 4 + y + yy, 0 + x + xx:4 + x + xx]
-        overlap_block = (tmp_back & block_L[rotate])
+        overlap_block = (tmp_back & block_L)
         overlap_count = overlap_block.sum()
 
     return overlap_count
@@ -77,19 +87,21 @@ def overlap_check2(tmp_x,tmp_y):
     
 
 def overlap_check_rotate():
-    # 예외처리
     overlap_count = 1
-    tmp_rotate = rotate
-    tmp_rotate += 1
-    if tmp_rotate == 4:
-        tmp_rotate = 0
 
     if (x >= 0) and (x <= 8) and (y <= 18):
         tmp_back = background[0 + y:4 + y, 0 + x : 4 + x]
-        overlap_check = (tmp_back & block_L[tmp_rotate])
-        overlap_count = overlap_check.sum()
+        tmp_block_L = np.dot(block_L.T, reverse_col) * (-1)
+        overlap_block  = (tmp_back & tmp_block_L)
+        overlap_count = overlap_block.sum()
 
     return overlap_count
+
+def insert_block():
+    for j in range(0, 4):
+        for i in range(0,4):
+            if block_L[j,i] == 1:
+                background[j+y, i + x] = 1
 
 background = np.array([[1,1,1,1,1,1,1,1,1,1,1,1],
                        [1,0,0,0,0,0,0,0,0,0,0,1],
@@ -114,25 +126,16 @@ background = np.array([[1,1,1,1,1,1,1,1,1,1,1,1],
                        [1,0,0,0,0,0,0,0,0,0,0,1],
                        [1,1,1,1,1,1,1,1,1,1,1,1]])
 
-block_L = np.array([[[0,0,0,0],
+reverse_col = np.array([[0,0,0,-1],
+                        [0,0,-1,0],
+                        [0,-1,0,0],
+                        [-1,0,0,0]])
+
+block_L = np.array([[0,0,0,0],
                      [0,1,0,0],
                      [0,1,1,1],
-                     [0,0,0,0]],
-    
-                    [[0,0,0,0],
-                     [0,1,1,0],
-                     [0,1,0,0],
-                     [0,1,0,0]],
-                   
-                    [[0,0,0,0],
-                     [1,1,1,0],
-                     [0,0,1,0],
-                     [0,0,0,0]],
-                   
-                    [[0,0,1,0],
-                     [0,0,1,0],
-                     [0,1,1,0],
-                     [0,0,0,0]]]) 
+                     [0,0,0,0]]) 
+
 
 text_color = np.array([30,31,32,33,34,35,36,37])
 
@@ -148,6 +151,7 @@ time.sleep(1)
 cls()
 draw_background()
 make_block(text_color[1])
+print_background_value()
                                        
 while True:
     
@@ -174,12 +178,15 @@ while True:
                 make_block(text_color[1])
 
         elif key == b'r':
-            if  overlap_check_rotate() == 0:
-                delete_block()
-                rotate += 1
-                if (rotate == 4):
-                    rotate = 0
-                make_block(text_color[1])
+            # if  overlap_check_rotate() == 0:
+            #     delete_block()
+            #     rotate += 1
+            #     if (rotate == 4):
+            #         rotate = 0
+            #     make_block(text_color[1])
+            delete_block()
+            block_L = np.dot(block_L.T, reverse_col) * (-1)
+            make_block(text_color[1])
     
     # --------------------------------------------------------
     if count == 100:
@@ -188,6 +195,13 @@ while True:
             delete_block()
             y += 1
             make_block(text_color[1])
+        else:
+            # 블록 넣어주기
+            insert_block()
+            print_background_value()
+            x = 3
+            y = 3
+
         
     # --------------------------------------------------------
     count += 1
