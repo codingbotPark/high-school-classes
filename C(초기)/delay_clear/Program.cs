@@ -226,6 +226,7 @@ namespace ConsoleApp2
                         insert_block();
                         print_background_Value();
 
+                        // 첫 번째 라인을 0으로 만들어야 한다
                         for (int i = 1; i < 21; i++)
                         {
                             line_check(i);
