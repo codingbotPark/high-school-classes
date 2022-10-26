@@ -35,10 +35,13 @@ export const InputArea = styled(Area)`
         outline:none;
     }
     border-right:1px solid lightgray;
+    padding-right:30px;
 
 `
 export const ResultArea = styled(Area)`
     padding-left:30px;
+    display:flex;
+    flex-direction:column;
 `
 
 
@@ -54,19 +57,26 @@ export const InputTemp = styled.div`
 
 export const InputTitle = styled.textarea`
     font-size:50px;
+    height:50px;
     height:65px;
     font-weight:bold;
+    transition:all 0s;
 `
 export const InputBook = styled.textarea`
     margin:10px 0px;
     font-size:25px;
     font-weight:bold;
     height:35px;
+    transition:all 0s;
 `
 export const InputContent = styled.textarea`
     margin:20px 0px;
     font-size:20px;
     font-weight:normal;
+    transition:all 0s;
+    // 70이하일 때 계산 필요
+    height:28px;
+    /* min-height:70%; */
 `
 
 

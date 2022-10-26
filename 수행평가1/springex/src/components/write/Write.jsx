@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
 import { useCallback } from "react";
 import { useRef } from "react";
@@ -12,43 +12,80 @@ const Write = () => {
   const titleRef = useRef();
   const bookNameRef = useRef();
   const contentRef = useRef();
-  const [titleLine, setTitleLine] = useState(1);
-  const [bookNameLine, setBookNameLine] = useState(1);
-  const [contentLine, setContentLine] = useState(1);
+  const [titleHeight, setTitleHeight] = useState(65);
+  const [bookNameHeight, setBookNameHeight] = useState(35);
+  const [contentHeight, setContentHeight] = useState(28);
+
+  // todo
+  useEffect(() => {
+    window.addEventListener('resize',settingInputHeight)
+    return () => {window.removeEventListener('resize',settingInputHeight)}
+  },[])
+
+  // --------
+
+  function settingInputHeight() {
+    handleResizeHeight(titleRef);
+    handleResizeHeight(bookNameRef);
+    handleResizeHeight(contentRef);
+  }
+
+  // --------
 
   function inputHandler(e, setter) {
     setter(e.target.value);
   }
 
-  function textAreaResize(ref, px) {
+  /** 바꿀 textarea의 ref와 setter */
+  function handleResizeHeight(ref,setter){
     if (ref === null || ref.current === null) return;
+    ref.current.style.height = ref.current.scrollHeight + "px";
+    setter(ref.current.style.height);
   }
 
-  const handleResizeHeight = useCallback(
-    (ref, px) => {
-      if (ref === null || ref.current === null) return;
-      ref.current.height = "";
-    },
-    [titleLine, bookNameLine, contentLine]
-  );
+//   const handleResizeHeight = useCallback(
+//     (ref) => {
+//       if (ref === null || ref.current === null) return;
+//       ref.current.style.height = ref.current.scrollHeight + "px";
+//     },
+//     [titleRef.current.style.height, bookNameRef.current.style.height, contentRef.current.style.height]
+//   );
+
 
   return (
     <W.Wrapper>
       <W.InnerWrapper>
         <W.InputArea>
-          <W.InputTitle placeholder="제목을 입력하세요" />
-          <W.InputBook placeholder="책 이름을 입력하세요" />
+          <W.InputTitle
+            ref={titleRef}
+            placeholder="제목을 입력하세요"
+            onChange={(e) => {
+              inputHandler(e, setTitle);
+              handleResizeHeight(titleRef,setTitleHeight);
+            }}
+          />
+          <W.InputBook
+            ref={bookNameRef}
+            placeholder="책 이름을 입력하세요"
+            onChange={(e) => {
+              inputHandler(e, setBookNameHeight);
+              handleResizeHeight(bookNameRef,setBookNameHeight);
+            }}
+          />
           <W.InputTemp />
-          <W.InputContent placeholder="내용을 입력하세요" />
+          <W.InputContent
+            ref={contentRef}
+            placeholder="내용을 입력하세요"
+            onChange={(e) => {
+              inputHandler(e.setContent);
+              handleResizeHeight(contentRef,setContentHeight);
+            }}
+          />
         </W.InputArea>
         <W.ResultArea>
-            <W.ResultTitle>{title}</W.ResultTitle>
-            <W.ResultBook>{bookNameLine}</W.ResultBook>
-          <W.ResultContent>
-            {
-                "<h1>ㅎㅇ</h1>"
-            }
-          </W.ResultContent>
+          <W.ResultTitle height={titleHeight} >{title}</W.ResultTitle>
+          <W.ResultBook height={bookNameHeight} >{bookName}</W.ResultBook>
+          <W.ResultContent height={contentHeight} >{"<h1>ㅎㅇ</h1>"}</W.ResultContent>
         </W.ResultArea>
       </W.InnerWrapper>
     </W.Wrapper>
