@@ -2,6 +2,8 @@ export const lightTheme = {
     isDark: false,
     main:"#5E7CC2",
     fontColor: "#434343",
+    titleFontColor:"#FFFFFF",
+
     description: "#646464",
     htmlBackground: "#FFFFFF",
     background: "#FFFFFF",
@@ -20,6 +22,8 @@ export const lightTheme = {
     isDark: true,
     main:"#5E7CC2",
     fontColor: "#FFFFFF",
+    titleFontColor:"#434343",
+
     description: "#333333",
     htmlBackground: "#181818",
     background: "#202020",

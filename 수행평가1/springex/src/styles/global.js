@@ -6,17 +6,11 @@ export const GlobalStyle = createGlobalStyle`
         color:${(props) => props.theme.fontColor};
         transition:0.2s;
       }
-      html{
-        height:100%;
-      }
-      div{
-        background-color:${(props) => props.theme.background};
-        
-      }
       #__next{
         background-color:${(props) => props.theme.htmlBackground};
       }
       body{
+        margin:0px;
         font-family: -apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
       }
       a {
@@ -36,7 +30,7 @@ export const GlobalStyle = createGlobalStyle`
         color:${(props) => props.theme.fontColor}
       }
 
-      @media only screen and (max-width: 768px) {
+      /* @media only screen and (max-width: 768px) {
         body {
           font-size: 12px;
         }
@@ -46,5 +40,5 @@ export const GlobalStyle = createGlobalStyle`
         body {
           font-size: 10px;
         }
-      }
+      } */
     `

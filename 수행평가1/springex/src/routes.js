@@ -1,7 +1,10 @@
-import Main from "./components/main/Main";
+// import Main from "./components/main/Main";
+import MainPage from "./pages/MainPage";
 import NotFound from "./common/notFound/NotFound";
+import WritePage from "./pages/WritePage"
 
 export default [
-    {path: '', element:<Main/>, nav:true, footer:true},
-    {path: '*', element:<NotFound/>, nav:true,footer:true }
+    {path: '', element:<MainPage/>, header:true, footer:true},
+    {path: '*', element:<NotFound/>, header:true,footer:true },
+    {path: '/write', element:<WritePage/>, header:true, footer:true},
 ]
