@@ -12,9 +12,6 @@ const Write = () => {
   const titleRef = useRef();
   const bookNameRef = useRef();
   const contentRef = useRef();
-  const [titleHeight, setTitleHeight] = useState(65);
-  const [bookNameHeight, setBookNameHeight] = useState(35);
-  const [contentHeight, setContentHeight] = useState(28);
   const [convertedContent,setConvertedContent] = useState()
 
   // todo
@@ -38,11 +35,10 @@ const Write = () => {
   }
 
   /** 바꿀 textarea의 ref와 setter */
-  function handleResizeHeight(ref,setter,defaultPx){
+  function handleResizeHeight(ref,defaultPx){
     if (ref === null || ref.current === null) return;
     ref.current.style.height = defaultPx+"px"
     ref.current.style.height = ref.current.scrollHeight + "px";
-    setter(ref.current.style.height);
   }
 
 //   const handleResizeHeight = useCallback(
@@ -62,7 +58,7 @@ const Write = () => {
             placeholder="제목을 입력하세요"
             onChange={(e) => {
               inputHandler(e, setTitle);
-              handleResizeHeight(titleRef,setTitleHeight,65);
+              handleResizeHeight(titleRef,70);
             }}
           />
           <W.InputBook
@@ -70,7 +66,7 @@ const Write = () => {
             placeholder="책 이름을 입력하세요"
             onChange={(e) => {
               inputHandler(e, setBookName);
-              handleResizeHeight(bookNameRef,setBookNameHeight,35);
+              handleResizeHeight(bookNameRef,38);
             }}
           />
           <W.LatTemp />
@@ -79,7 +75,7 @@ const Write = () => {
             placeholder="내용을 입력하세요"
             onChange={(e) => {
               inputHandler(e,setContent);
-              handleResizeHeight(contentRef,setContentHeight,28);
+              handleResizeHeight(contentRef,30);
             }}
           />
         </W.InputArea>
@@ -87,10 +83,10 @@ const Write = () => {
         <W.LngTemp/>
 
         <W.ResultArea>
-          <W.ResultTitle height={titleHeight} >{title}</W.ResultTitle>
-          <W.ResultBook height={bookNameHeight} >{bookName}</W.ResultBook>
-          <W.ResultContent height={contentHeight} >{
-
+          <W.ResultTitle >{title}</W.ResultTitle>
+          <W.ResultBook >{bookName}</W.ResultBook>
+          <W.ResultContent >{
+            content
             
           }</W.ResultContent>
         </W.ResultArea>

@@ -32,6 +32,7 @@ export const InputArea = styled(Area)`
         resize:none;
         border:none;
         outline:none;
+        font-family:'Tahoma';
     }
     padding-right:30px;
 
@@ -58,7 +59,7 @@ export const LngTemp = styled.div`
 
 export const InputTitle = styled.textarea`
     font-size:50px;
-    height:65px;
+    height:70px;
     font-weight:bold;
     
     transition:all 0s;
@@ -67,7 +68,7 @@ export const InputBook = styled.textarea`
     margin:10px 0px;
     font-size:25px;
     font-weight:bold;
-    height:35px;
+    height:38px;
     transition:all 0s;
 `
 export const InputContent = styled.textarea`
@@ -76,7 +77,7 @@ export const InputContent = styled.textarea`
     font-weight:normal;
     transition:all 0s;
     // 70이하일 때 계산 필요
-    height:28px;
+    height:30px;
 `
 
 
@@ -96,6 +97,6 @@ export const ResultBook = styled.h3`
 export const ResultContent = styled.p`
     margin:20px 0px;
     font-size:20px;
-    font-weight:normal;
+    font-weight:500;
     height:fit-content;
 `
