@@ -4,8 +4,10 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.*;
+import java.io.IOException;
 import java.time.LocalDateTime;
 
 @Entity
@@ -40,5 +42,17 @@ public class Post {
         this.writer = writer;
         this.imgName = imgName;
         this.imgByte = imgByte;
+    }
+
+    public void updatePost(String title, String bookName, String content, MultipartFile img){
+        try {
+            this.title = title;
+            this.bookName = bookName;
+            this.content = content;
+            this.imgName = img.getName();
+            this.imgByte = img.getBytes();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

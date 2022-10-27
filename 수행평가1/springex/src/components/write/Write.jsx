@@ -9,6 +9,8 @@ const Write = () => {
   const [bookName, setBookName] = useState("");
   const [content, setContent] = useState("");
 
+  const [image,setImage] = useState();
+
   const titleRef = useRef();
   const bookNameRef = useRef();
   const contentRef = useRef();
@@ -94,7 +96,14 @@ const Write = () => {
         </W.InnerWrapper>
 
         <W.SubmitArea>
+            <W.SubmitAreaWrapper>
+            <W.SubmitImgWrapper>
+              
+            </W.SubmitImgWrapper>
+            <W.SubmitButtonWrapper>
 
+            </W.SubmitButtonWrapper>
+            </W.SubmitAreaWrapper>
         </W.SubmitArea>
       </W.WrapperLayout>
     </W.Wrapper>

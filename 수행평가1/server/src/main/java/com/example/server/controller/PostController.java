@@ -1,16 +1,20 @@
 package com.example.server.controller;
 
 import com.example.server.dto.CreatePost;
+import com.example.server.dto.LoadPost;
+import com.example.server.dto.UpdatePost;
 import com.example.server.entity.Post;
 import com.example.server.repository.PostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("board")
@@ -20,8 +24,19 @@ public class PostController {
     PostRepository postRepository;
 
     @GetMapping("findall")
-    public List<Post> findall(){
-        List<Post> postList = postRepository.findAll();
+    public List<LoadPost> findall(){
+        List<LoadPost> postList = postRepository.findAll().stream().map((i) -> {
+            return new LoadPost(
+                    i.getId(),
+                    i.getTitle(),
+                    i.getBookName(),
+                    i.getContent(),
+                    i.getWriter(),
+                    i.getTime(),
+                    i.getViews()
+            );
+        }).collect(Collectors.toList());
+
         return postList;
     }
 
@@ -45,8 +60,45 @@ public class PostController {
         }
     }
 
-    @GetMapping("update")
-    public
+    @PostMapping("update/{id}")
+    public void update(
+            @PathVariable("id") Long id,
+            @RequestBody UpdatePost updatePost
+            ){
+        Post findedPost = postRepository.findById(id).orElseThrow(() -> {throw new RuntimeException("수정하려는 글을 못 찾았습니다");});
+        findedPost.updatePost(
+                updatePost.getTitle(),
+                updatePost.getBookName(),
+                updatePost.getContent(),
+                updatePost.getImg()
+        );
+        postRepository.save(findedPost);
+    }
+    
+    @DeleteMapping("delete/{id}")
+    public void delete(
+            @PathVariable("id") Long id
+    ){
+        Post post = postRepository.findById(id).orElseThrow(() -> {throw new RuntimeException("삭제하려는 글을 못 찾았습니다");});
+        postRepository.delete(post);
+    }
+
+
+    @GetMapping("find/{id}")
+    public LoadPost find(
+            @PathVariable("id") Long id
+    ){
+        Post findedPost = postRepository.findById(id).orElseThrow(() -> {throw new RuntimeException("글을 못 찾았습니다");});
+        return new LoadPost(
+                findedPost.getId(),
+                findedPost.getTitle(),
+                findedPost.getBookName(),
+                findedPost.getContent(),
+                findedPost.getWriter(),
+                findedPost.getTime(),
+                findedPost.getViews()
+        );
+    }
 
 
     // 이미지 src로 들고올 수 있도록

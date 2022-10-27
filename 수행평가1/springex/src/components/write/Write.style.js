@@ -53,14 +53,8 @@ export const ResultArea = styled(Area)`
     flex-direction:column;
 `
 
-export const SubmitArea = styled.div`
-    width:100%;
-    height:600px;
-    background-color:black;
-    display:flex;
-    justify-content:space-between;
-    
-`
+
+
 
 
 export const LatTemp = styled.div`
@@ -119,4 +113,28 @@ export const ResultContent = styled.p`
     font-weight:500;
     height:fit-content;
     white-space:pre-wrap;
+`
+
+
+export const SubmitArea = styled.div`
+    width:100%;
+    background-color:black;
+    justify-content:space-between;
+    align-items:center;
+    display:flex;
+    flex-wrap:wrap;
+
+`
+export const SubmitImgWrapper = styled.div`
+    height:400px;
+    width:500px;
+    background-color:white;
+    margin:50px;
+    `
+export const SubmitButtonWrapper = styled.div`
+    height:400px;
+    width:500px;
+    background-color:white;
+    
+    margin:50px;
 `
