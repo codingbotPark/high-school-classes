@@ -9,11 +9,20 @@ export const Wrapper = styled.div`
     margin-top:40px;
 `
 
-export const InnerWrapper = styled.div`
+export const WrapperLayout = styled.div`
+    display:flex;
+    flex-direction:column;
     width:90%;
+`
+
+export const InnerWrapper = styled.div`
+    width:100%;
+    /* width:90%; */
     min-height:calc(100vh - 80px);
     display:flex;
 `
+
+
 
 const Area = styled.div`
     width:50%;
@@ -36,11 +45,21 @@ export const InputArea = styled(Area)`
     }
     padding-right:30px;
 
+
 `
 export const ResultArea = styled(Area)`
     padding-left:30px;
     display:flex;
     flex-direction:column;
+`
+
+export const SubmitArea = styled.div`
+    width:100%;
+    height:600px;
+    background-color:black;
+    display:flex;
+    justify-content:space-between;
+    
 `
 
 
@@ -99,4 +118,5 @@ export const ResultContent = styled.p`
     font-size:20px;
     font-weight:500;
     height:fit-content;
+    white-space:pre-wrap;
 `

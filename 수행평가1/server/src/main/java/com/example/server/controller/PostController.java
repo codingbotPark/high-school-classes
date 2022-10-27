@@ -45,6 +45,9 @@ public class PostController {
         }
     }
 
+    @GetMapping("update")
+    public
+
 
     // 이미지 src로 들고올 수 있도록
     @GetMapping(value = "/img/{id}", produces = MediaType.APPLICATION_OCTET_STREAM_VALUE)
