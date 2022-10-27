@@ -73,7 +73,7 @@ const Write = () => {
               handleResizeHeight(bookNameRef,setBookNameHeight,35);
             }}
           />
-          <W.InputTemp />
+          <W.LatTemp />
           <W.InputContent
             ref={contentRef}
             placeholder="내용을 입력하세요"
@@ -83,6 +83,9 @@ const Write = () => {
             }}
           />
         </W.InputArea>
+
+        <W.LngTemp/>
+
         <W.ResultArea>
           <W.ResultTitle height={titleHeight} >{title}</W.ResultTitle>
           <W.ResultBook height={bookNameHeight} >{bookName}</W.ResultBook>

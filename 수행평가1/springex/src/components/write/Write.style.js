@@ -33,7 +33,6 @@ export const InputArea = styled(Area)`
         border:none;
         outline:none;
     }
-    border-right:1px solid lightgray;
     padding-right:30px;
 
 `
@@ -41,18 +40,19 @@ export const ResultArea = styled(Area)`
     padding-left:30px;
     display:flex;
     flex-direction:column;
-    /* height:100%;
-    background-color:black; */
 `
 
 
-export const InputTemp = styled.div`
+export const LatTemp = styled.div`
     height:1px;
     background-color:lightgray;
     width:44%;
 `
-
-
+export const LngTemp = styled.div`
+    height:95%;
+    width:1.5px;
+    background-color:lightgray;
+`
 
 
 
@@ -60,6 +60,7 @@ export const InputTitle = styled.textarea`
     font-size:50px;
     height:65px;
     font-weight:bold;
+    
     transition:all 0s;
 `
 export const InputBook = styled.textarea`
