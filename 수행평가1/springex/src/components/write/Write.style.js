@@ -95,7 +95,9 @@ export const InputContent = styled.textarea`
     font-weight:normal;
     transition:all 0s;
     // 70이하일 때 계산 필요
-    height:30px;
+    height:70%;
+    line-height: 34px;
+ 
 `
 
 
@@ -119,7 +121,10 @@ export const ResultContent = styled.div`
     font-weight:500;
     height:fit-content;
     white-space:pre-wrap;
-    
+    >p{
+        /* margin:0ex; */
+        margin:10px 0px;
+    }
 `
 
 
