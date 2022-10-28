@@ -1,6 +1,7 @@
 import React from 'react';
 import { useState } from 'react';
 import { useEffect } from 'react';
+import * as R from "./ReadmeParser.style"
 
 // 스타일은 각자
 const ReadmeParser = ({content}) => {
@@ -9,23 +10,25 @@ const ReadmeParser = ({content}) => {
 
     let counter = 1;
 
+    // function 
+
     function unitContentParser(line){
         const splitedLine = line.split(" ");
         switch(splitedLine[0]){ // 라인의 첫 번째
             case "#":
                 splitedLine.shift();
-                return <h1 key={counter++}>{splitedLine}</h1>
+                return <R.H1 key={counter++}>{splitedLine.join(" ")}</R.H1>
             case "##":
                 splitedLine.shift();
-                return <h2 key={counter++}>{splitedLine}</h2>
+                return <R.H2 key={counter++}>{splitedLine.join(" ")}</R.H2>
             case "###":
                 splitedLine.shift();
-                return <h3 key={counter++}>{splitedLine}</h3>
+                return <R.H3 key={counter++}>{splitedLine.join(" ")}</R.H3>
             case ">":
                 splitedLine.shift();
                 return <blockquote key={counter++}><p>{splitedLine}</p></blockquote>
             default:
-                return <p key={counter++}>{line}</p>
+                return <R.P key={counter++}>{line}</R.P>
         }
     }
 

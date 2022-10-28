@@ -93,6 +93,8 @@ const Write = () => {
           <W.ResultArea>
             <W.ResultTitle>{title}</W.ResultTitle>
             <W.ResultBook>{bookName}</W.ResultBook>
+            <W.LatTemp />
+
             <W.ResultContent>
               
                 <ReadmeParser content={content} />

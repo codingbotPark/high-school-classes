@@ -45,6 +45,7 @@ export const InputArea = styled.div`
     textarea{
         resize:none;
         border:none;
+        padding:0px;
         outline:none;
         font-family:'Tahoma';
     }
@@ -79,7 +80,6 @@ export const InputTitle = styled.textarea`
     font-size:50px;
     height:70px;
     font-weight:bold;
-    
     transition:all 0s;
 `
 export const InputBook = styled.textarea`
@@ -90,12 +90,10 @@ export const InputBook = styled.textarea`
     transition:all 0s;
 `
 export const InputContent = styled.textarea`
-    margin:20px 0px;
+    margin:10px 0px;
     font-size:20px;
     font-weight:normal;
     transition:all 0s;
-    // 70이하일 때 계산 필요
-    height:70%;
     line-height: 34px;
  
 `
@@ -106,6 +104,7 @@ export const ResultTitle = styled.h1`
     height:fit-content;
     font-weight:bold;
     margin:0px;
+    min-height:70px;
     
 `
 export const ResultBook = styled.h3`
@@ -113,18 +112,17 @@ export const ResultBook = styled.h3`
     margin:10px 0px;
     font-size:25px;
     font-weight:bold;
+    min-height:38px;
+
 `
 /* export const ResultContent = styled.p` */
 export const ResultContent = styled.div`
-    margin:20px 0px;
+    margin:0px 0px 10px 0px;
     font-size:20px;
     font-weight:500;
     height:fit-content;
     white-space:pre-wrap;
-    >p{
-        /* margin:0ex; */
-        margin:10px 0px;
-    }
+
 `
 
 
