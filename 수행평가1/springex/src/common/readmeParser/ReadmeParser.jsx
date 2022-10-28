@@ -10,23 +10,23 @@ const ReadmeParser = ({content}) => {
 
     let counter = 1;
 
-    // function 
+    function processFrontCommand(splitedLine){
+        splitedLine.shift();
+        return splitedLine.join(" ")
+    }
 
     function unitContentParser(line){
         const splitedLine = line.split(" ");
         switch(splitedLine[0]){ // 라인의 첫 번째
             case "#":
-                splitedLine.shift();
-                return <R.H1 key={counter++}>{splitedLine.join(" ")}</R.H1>
+                // splitedLine.shift();
+                return <R.H1 key={counter++}>{processFrontCommand(splitedLine)}</R.H1>
             case "##":
-                splitedLine.shift();
-                return <R.H2 key={counter++}>{splitedLine.join(" ")}</R.H2>
+                return <R.H2 key={counter++}>{processFrontCommand(splitedLine)}</R.H2>
             case "###":
-                splitedLine.shift();
-                return <R.H3 key={counter++}>{splitedLine.join(" ")}</R.H3>
+                return <R.H3 key={counter++}>{processFrontCommand(splitedLine)}</R.H3>
             case ">":
-                splitedLine.shift();
-                return <blockquote key={counter++}><p>{splitedLine}</p></blockquote>
+                return <R.Q key={counter++}>{processFrontCommand(splitedLine)}</R.Q>
             default:
                 return <R.P key={counter++}>{line}</R.P>
         }
