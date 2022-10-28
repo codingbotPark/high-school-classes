@@ -36,7 +36,7 @@ const Write = () => {
   function inputHandler(e, setter) {
     // console.log(e.target.value.split("\n"));
     // console.log(e.target.value.split("\n").split(""))
-
+    console.log(e.target.value)
     setter(e.target.value);
   }
 
