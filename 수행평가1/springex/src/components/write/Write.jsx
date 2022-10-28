@@ -9,12 +9,11 @@ const Write = () => {
   const [bookName, setBookName] = useState("");
   const [content, setContent] = useState("");
 
-  const [image,setImage] = useState();
+  const [image, setImage] = useState();
 
   const titleRef = useRef();
   const bookNameRef = useRef();
   const contentRef = useRef();
-  const [convertedContent, setConvertedContent] = useState();
 
   useEffect(() => {
     window.addEventListener("resize", settingInputHeight);
@@ -35,6 +34,7 @@ const Write = () => {
 
   function inputHandler(e, setter) {
     console.log(e.target.value.split("\n"));
+    // console.log(e.target.value.split("\n").split(""))
 
     setter(e.target.value);
   }
@@ -91,19 +91,38 @@ const Write = () => {
           <W.ResultArea>
             <W.ResultTitle>{title}</W.ResultTitle>
             <W.ResultBook>{bookName}</W.ResultBook>
-            <W.ResultContent>{content}</W.ResultContent>
+            <W.ResultContent>
+              {
+                content.split("\n").map((i, idx) => {
+                  //enter로 한 번 나눈다
+                  console.log(i);
+                  const splitedLine = i.split(" ");
+
+                  switch (
+                    splitedLine[0] // 라인을 스페이스바로 나눴을 때 첫 명령
+                  ) {
+                    case "#":
+                      // 명령어 라인 삭제
+                      // console.log(splitedLine)
+                      splitedLine.shift();
+                      return <h1 key={idx}>{splitedLine}</h1>;
+                    case "##":
+
+                    default: // 첫 줄에 명령어가 없을 때(bold, a 파악)
+                      return <p key={idx}></p>;
+                  }
+
+                })
+              }
+            </W.ResultContent>
           </W.ResultArea>
         </W.InnerWrapper>
 
         <W.SubmitArea>
-            <W.SubmitAreaWrapper>
-            <W.SubmitImgWrapper>
-              
-            </W.SubmitImgWrapper>
-            <W.SubmitButtonWrapper>
-
-            </W.SubmitButtonWrapper>
-            </W.SubmitAreaWrapper>
+          <W.SubmitAreaWrapper>
+            <W.SubmitImgWrapper></W.SubmitImgWrapper>
+            <W.SubmitButtonWrapper></W.SubmitButtonWrapper>
+          </W.SubmitAreaWrapper>
         </W.SubmitArea>
       </W.WrapperLayout>
     </W.Wrapper>

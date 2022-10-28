@@ -32,8 +32,13 @@ const Area = styled.div`
     height:100%;
     overflow-y:auto;
 `
-export const InputArea = styled(Area)`
+export const InputArea = styled.div`
+    width:50%;
     
+    display:flex;
+    flex-direction:column;
+    height:100%;
+    overflow-y:auto;
     *{
         ::placeholder{color:lightgray;}
     }
@@ -44,9 +49,9 @@ export const InputArea = styled(Area)`
         font-family:'Tahoma';
     }
     padding-right:30px;
-
-
 `
+
+
 export const ResultArea = styled(Area)`
     padding-left:30px;
     display:flex;
@@ -107,23 +112,30 @@ export const ResultBook = styled.h3`
     font-size:25px;
     font-weight:bold;
 `
-export const ResultContent = styled.p`
+/* export const ResultContent = styled.p` */
+export const ResultContent = styled.div`
     margin:20px 0px;
     font-size:20px;
     font-weight:500;
     height:fit-content;
     white-space:pre-wrap;
+    
 `
 
 
 export const SubmitArea = styled.div`
     width:100%;
     background-color:black;
-    justify-content:space-between;
+    justify-content:center;
     align-items:center;
     display:flex;
     flex-wrap:wrap;
 
+`
+export const SubmitAreaWrapper = styled.div`
+    width:fit-content;
+    display:flex;
+    justify-content:center;
 `
 export const SubmitImgWrapper = styled.div`
     height:400px;
