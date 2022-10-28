@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useState } from "react";
 import { useCallback } from "react";
 import { useRef } from "react";
+import ReadmeParser from "../../common/readmeParser/ReadmeParser";
 import * as W from "./Write.style";
 
 const Write = () => {
@@ -33,7 +34,7 @@ const Write = () => {
   // --------
 
   function inputHandler(e, setter) {
-    console.log(e.target.value.split("\n"));
+    // console.log(e.target.value.split("\n"));
     // console.log(e.target.value.split("\n").split(""))
 
     setter(e.target.value);
@@ -53,6 +54,7 @@ const Write = () => {
   //     },
   //     [titleRef.current.style.height, bookNameRef.current.style.height, contentRef.current.style.height]
   //   );
+
 
   return (
     <W.Wrapper>
@@ -92,8 +94,10 @@ const Write = () => {
             <W.ResultTitle>{title}</W.ResultTitle>
             <W.ResultBook>{bookName}</W.ResultBook>
             <W.ResultContent>
-              {
-                content.split("\n").map((i, idx) => {
+              
+                <ReadmeParser content={content} />
+
+                {/* {content.split("\n").map((i, idx) => {
                   //enter로 한 번 나눈다
                   console.log(i);
                   const splitedLine = i.split(" ");
@@ -112,8 +116,8 @@ const Write = () => {
                       return <p key={idx}></p>;
                   }
 
-                })
-              }
+                })} */}
+              
             </W.ResultContent>
           </W.ResultArea>
         </W.InnerWrapper>
