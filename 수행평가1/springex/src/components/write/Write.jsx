@@ -98,27 +98,6 @@ const Write = () => {
             <W.ResultContent>
               
                 <ReadmeParser content={content} />
-
-                {/* {content.split("\n").map((i, idx) => {
-                  //enter로 한 번 나눈다
-                  console.log(i);
-                  const splitedLine = i.split(" ");
-
-                  switch (
-                    splitedLine[0] // 라인을 스페이스바로 나눴을 때 첫 명령
-                  ) {
-                    case "#":
-                      // 명령어 라인 삭제
-                      // console.log(splitedLine)
-                      splitedLine.shift();
-                      return <h1 key={idx}>{splitedLine}</h1>;
-                    case "##":
-
-                    default: // 첫 줄에 명령어가 없을 때(bold, a 파악)
-                      return <p key={idx}></p>;
-                  }
-
-                })} */}
               
             </W.ResultContent>
           </W.ResultArea>
