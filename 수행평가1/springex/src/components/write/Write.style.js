@@ -130,25 +130,22 @@ export const SubmitImgWrapper = styled.div`
   width: 400px;
   margin: 50px;
   border-radius: 15px;
-  >img{
-    width:100%;
-    height:100%;
-    border-radius:15px;
-    object-fit:cover;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  > img {
+    width: 100%;
+    height: 100%;
+    border-radius: 15px;
+    object-fit: cover;
   }
 `;
-export const SubmitButtonWrapper = styled.div`
-  height: 300px;
-  width: 400px;
-  margin: 50px;
-  display:flex;
-  flex-direction:column;
-  justify-content:space-around;
-  align-items:Center;
-  > input{
-      display: none;
+export const SubmitImgButton = styled.div`
+  margin-top: 20px;
+  > input {
+    display: none;
   }
-  > *{
+  > label {
     display: inline-block;
     padding: 0.5em 0.75em;
     color: white;
@@ -159,7 +156,45 @@ export const SubmitButtonWrapper = styled.div`
     cursor: pointer;
     border-radius: 0.25em;
   }
-  >button{
+`;
+
+export const SubmitButtonWrapper = styled.div`
+  height: 300px;
+  width: 400px;
+  margin: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: Center;
+
+  > button {
+    /* padding: 0.5em 0.75em; */
+    padding: 1em 1.5em;
+    color: white;
+    font-size: inherit;
+    line-height: normal;
+    vertical-align: middle;
+    background-color: ${(props) => props.theme.main};
+    cursor: pointer;
+    border-radius: 0.25em;
+  }
+`;
+
+export const AuthorInput = styled.div`
+  display: flex;
+  justify-content: center;
+  > div {
+    background-color: ${(props) => props.theme.main};
+    color: white;
+    padding: 0.5em 0.75em;
+    border-radius: 0.4em 0px 0px 0.4em;
+    cursor: default;
+    padding: 10px 15px;
+  }
+  > input {
+    border: 1px solid ${(props) => props.theme.main};
+    border-radius: 0px 0.4em 0.4em 0px;
+    padding: 10px 15px;
 
   }
 `;
@@ -169,14 +204,14 @@ export const SubmitImgInputArea = styled.div`
   height: 100%;
   background-color: lightgray;
   border-radius: 15px;
-  display:flex;
-  justify-content:Center;
-  align-items:Center;
-  flex-direction:Column;
-  > input{
-      display: none;
+  display: flex;
+  justify-content: Center;
+  align-items: Center;
+  flex-direction: Column;
+  > input {
+    display: none;
   }
-  > label{
+  > label {
     display: inline-block;
     padding: 0.5em 0.75em;
     color: white;
@@ -188,4 +223,3 @@ export const SubmitImgInputArea = styled.div`
     border-radius: 0.25em;
   }
 `;
-

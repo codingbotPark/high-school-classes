@@ -3,25 +3,33 @@ package com.example.server.controller;
 import com.example.server.dto.CreatePost;
 import com.example.server.dto.LoadPost;
 import com.example.server.dto.UpdatePost;
+import com.example.server.entity.Image;
 import com.example.server.entity.Post;
+import com.example.server.repository.ImageRepository;
 import com.example.server.repository.PostRepository;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Log4j2
 @RestController
 @RequestMapping("board")
+@RequiredArgsConstructor
 public class PostController {
 
-    @Autowired
-    PostRepository postRepository;
+    private final PostRepository postRepository;
+    private final ImageRepository imageRepository;
 
     @GetMapping("/findall")
     public List<LoadPost> findall(){
@@ -41,22 +49,33 @@ public class PostController {
         return postList;
     }
 
-    @PostMapping("create")
+    @PostMapping(value = "create")
     public void create(
             @RequestBody CreatePost createPost
     ){
+        Image image = imageRepository.findById(createPost.getImageId())
+                .orElseThrow(() -> {throw new RuntimeException("이미지가 없습니다");});
         // 저장하기 전 처리
+        Post tempPost = new Post(
+                createPost.getTitle(),
+                createPost.getBookName(),
+                createPost.getContent(),
+                createPost.getWriter(),
+                image.getImgName(),
+                image.getImgByte()
+        );
+        postRepository.save(tempPost);
+    }
+
+    @PostMapping("image")
+    public Long image(
+            MultipartFile file
+    ) {
         try {
-            Post tempPost = new Post(
-                    createPost.getTitle(),
-                    createPost.getBookName(),
-                    createPost.getContent(),
-                    createPost.getWriter(),
-                    createPost.getImgFile().getName(),
-                    createPost.getImgFile().getBytes()
-            );
-            postRepository.save(tempPost);
-        } catch (IOException e) { // bytes의 예외처리
+            Image image = new Image(file.getName(), file.getBytes());
+
+            return imageRepository.save(image).getImageId();
+        } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }

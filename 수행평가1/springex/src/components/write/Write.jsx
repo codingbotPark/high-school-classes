@@ -52,6 +52,10 @@ const Write = () => {
     setImage(...e.target.files);
   }
 
+  useEffect(() => {
+    console.log(image);
+  },[image])
+
   function formatFile(file){
     return URL.createObjectURL(file)
   }
@@ -62,19 +66,31 @@ const Write = () => {
   }
 
   function createPost(){
-    const imgForm = new FormData()
-    imgForm.append(image)
+  
+    const form = new FormData()
+    form.append("file",image)
+    customAxios.post("/board/image",form)
+    .then((result) => {
+      customAxios.post("/board/create",{
+        title,
+        bookName,
+        content,
+        writer:author,
+        imageId:result.data,
+      }).then((response) => console.log(response))
+      .catch((error) => console.log(error))
+    })
+    .catch((error) => console.log(error));
 
-    customAxios.post("/board/create",{
-      title:title,
-      boookName:bookName,
-      content:content,
-      writer:author,
-      imgFile:imgForm,
-    }).then((result) => console.log(result))
-    .catch((error) => console.log(error))
+
+    // customAxios.post("/board/create",form, image, {
+    //   headers: {
+    //     "Content-Type": "multipart/formDate"
+    //   }
+    // })
+    // .then((result) => console.log(result))
+    // .catch((error) => console.log(error))
   }
-
 
   return (
     <W.Wrapper>
@@ -134,9 +150,7 @@ const Write = () => {
                 time={formatNow()}
                 views={100}
               />
-              
-            </W.SubmitImgWrapper>
-            <W.SubmitButtonWrapper>
+              <W.SubmitImgButton>
               <label htmlFor="fileBox">
                 {image ? "책사진 변경" : "책사진 업로드"}
               </label>
@@ -145,6 +159,16 @@ const Write = () => {
                 id="fileBox"
                 onChange={(e) => handleChangeFile(e)}
               />
+              </W.SubmitImgButton>
+              
+            </W.SubmitImgWrapper>
+            <W.SubmitButtonWrapper>
+              
+              
+              <W.AuthorInput>
+              <div>글쓴이</div>
+              <input onChange={(e) => inputHandler(e,setAuthor)} type="text" placeholder="글쓴이 닉네임" />
+              </W.AuthorInput>
               <button
                 onClick={createPost}
               >글 생성하기</button>

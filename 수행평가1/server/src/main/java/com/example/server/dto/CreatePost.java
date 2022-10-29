@@ -11,5 +11,5 @@ public class CreatePost {
     private String bookName;
     private String content;
     private String writer;
-    private MultipartFile imgFile;
+    private Long imageId;
 }
