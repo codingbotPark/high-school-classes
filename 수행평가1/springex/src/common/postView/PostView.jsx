@@ -1,19 +1,16 @@
 import dumBook from "../../assets/main/dumBook.jpg";
 import React from "react";
-import * as P from "./PostView.style"
+import * as P from "./PostView.style";
 
-const PostView = ({
-    img,
-    title,
-    author,
-    time,
-    views
-}) => {
+const PostView = ({ img, title, author, time, views }) => {
   return (
     <P.PostWrapper>
-      <P.PostImgWrapper>
-        <P.PostImg src={img} />
-      </P.PostImgWrapper>
+      {img && (
+        <P.PostImgWrapper>
+          <P.PostImg src={img} />
+        </P.PostImgWrapper>
+      )}
+
       <P.PostInfoWrapper>
         <P.PostInfoHeader>
           <P.PostInfoTitle>{title}</P.PostInfoTitle>

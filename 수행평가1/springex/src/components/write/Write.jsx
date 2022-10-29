@@ -4,12 +4,15 @@ import { useCallback } from "react";
 import { useRef } from "react";
 import PostView from "../../common/postView/PostView";
 import ReadmeParser from "../../common/readmeParser/ReadmeParser";
+import customAxios from "../../util/customAxios";
 import * as W from "./Write.style";
 
 const Write = () => {
   const [title, setTitle] = useState("");
   const [bookName, setBookName] = useState("");
   const [content, setContent] = useState("");
+
+  const [author,setAuthor] = useState();
 
   const [image, setImage] = useState();
 
@@ -35,7 +38,6 @@ const Write = () => {
   // --------
 
   function inputHandler(e, setter) {
-    console.log(e.target.value);
     setter(e.target.value);
   }
 
@@ -57,6 +59,20 @@ const Write = () => {
   function formatNow(){
     const date = new Date()
     return `${date.getFullYear()}년${date.getMonth()}월${date.getDate()}일 ${date.getHours()}시${date.getMinutes()}분`
+  }
+
+  function createPost(){
+    const imgForm = new FormData()
+    imgForm.append(image)
+
+    customAxios.post("/board/create",{
+      title:title,
+      boookName:bookName,
+      content:content,
+      writer:author,
+      imgFile:imgForm,
+    }).then((result) => console.log(result))
+    .catch((error) => console.log(error))
   }
 
 
@@ -129,7 +145,9 @@ const Write = () => {
                 id="fileBox"
                 onChange={(e) => handleChangeFile(e)}
               />
-              <button>글 생성하기</button>
+              <button
+                onClick={createPost}
+              >글 생성하기</button>
             </W.SubmitButtonWrapper>
           </W.SubmitAreaWrapper>
         </W.SubmitArea>
