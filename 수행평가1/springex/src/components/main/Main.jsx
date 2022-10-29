@@ -9,6 +9,7 @@ import { useEffect } from "react";
 import customAxios from "../../util/customAxios";
 import { posts } from "../../global/posts";
 import { useRecoilState } from "recoil";
+import PostView from "../../common/postView/PostView";
 
 const Main = () => {
   const [postList,setPostList] = useRecoilState(posts)
@@ -28,23 +29,12 @@ const Main = () => {
       <M.PostListWrapper>
         {postList.map((i) => (
           <Link to={`/read/${i.id}`}  key={i.id}>
-            <M.PostWrapper>
-              <M.PostImgWrapper>
-                <M.PostImg src={dumBook} />
-                {/* <M.PostImg src={i.img} /> */}
-              </M.PostImgWrapper>
-              <M.PostInfoWrapper>
-                <M.PostInfoHeader>
-                  <M.PostInfoTitle>{i.title}</M.PostInfoTitle>
-                  <M.PostInfoAuthor>{i.author}</M.PostInfoAuthor>
-                </M.PostInfoHeader>
-                <M.PostInfoTemp />
-                <M.PostInfoContent>
-                  <M.PostInfoTime>{i.time}</M.PostInfoTime>
-                  <M.PostInfoViews>{i.views}</M.PostInfoViews>
-                </M.PostInfoContent>
-              </M.PostInfoWrapper>
-            </M.PostWrapper>
+            <PostView
+              title={i.title}
+              author={i.author}
+              time={i.time}
+              views={i.views}
+            />
           </Link>
         ))}
       </M.PostListWrapper>
