@@ -23,7 +23,7 @@ public class PostController {
     @Autowired
     PostRepository postRepository;
 
-    @GetMapping("findall")
+    @GetMapping("/findall")
     public List<LoadPost> findall(){
         List<LoadPost> postList = postRepository.findAll().stream().map((i) -> {
             return new LoadPost(
@@ -36,6 +36,7 @@ public class PostController {
                     i.getViews()
             );
         }).collect(Collectors.toList());
+        System.out.println(postList);
 
         return postList;
     }
