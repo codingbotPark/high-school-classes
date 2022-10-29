@@ -14,9 +14,19 @@ export const InnerWrapper = styled.section`
 `;
 
 export const Header = styled.header``;
-export const Title = styled.h1`
-  font-size: 50px;
+export const TitleWrapper = styled.div`
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
   margin: 10px 0px;
+  >img{
+    cursor:pointer;
+    height:30px;
+  }
+`
+export const Title = styled.h1`
+  margin:0px;
+  font-size: 50px;
 `;
 export const BookName = styled.h3`
   font-size: 23px;

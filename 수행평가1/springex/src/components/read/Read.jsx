@@ -7,18 +7,19 @@ import { posts } from "../../global/posts";
 import { useEffect } from "react";
 import { useState } from "react";
 import customAxios from "../../util/customAxios";
-import { useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 import config from "../../config/config.json";
+
+import edit from "../../assets/read/edit.svg"
 
 const Read = () => {
   const [post, setPost] = useState();
 
   const location = useLocation();
-
+  const splitedURL = location.pathname.split("/");
+  const postIndex = splitedURL[splitedURL.length - 1];
   useEffect(() => {
-    const splitedURL = location.pathname.split("/");
-    const postIndex = splitedURL[splitedURL.length - 1];
     customAxios
       .get(`/board/find/${postIndex}`)
       .then((result) => {
@@ -39,7 +40,12 @@ const Read = () => {
         <>
           <R.InnerWrapper>
             <R.Header>
+              <R.TitleWrapper>
               <R.Title>{post.title}</R.Title>
+              <Link to={`/edit/${postIndex}`} title="수정하기">
+              <img src={edit} alt="수정"/>
+              </Link>
+              </R.TitleWrapper>
               <R.BookName>{post.bookName}</R.BookName>
             </R.Header>
             <R.RowTemp />
