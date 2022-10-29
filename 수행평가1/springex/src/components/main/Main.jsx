@@ -13,13 +13,15 @@ import { useRecoilState } from "recoil";
 const Main = () => {
   const [postList,setPostList] = useRecoilState(posts)
 
-  useEffect(() => {
-    customAxios.get("http://localhost:8080/board/findall")
-    .then((result) => {
-        setPostList(result.data)
-    })
-    .catch((error) => {console.log(error)})
-  },[])
+  // useEffect(() => {
+  //   customAxios.get("http://localhost:8080/board/findall")
+  //   .then((result) => {
+  //       setPostList(result.data)
+  //   })
+  //   .catch((error) => {console.log(error)})
+  // },[])
+
+
 
   return (
     <M.Wrapper>
@@ -28,7 +30,8 @@ const Main = () => {
           <Link to={`/read/${i.id}`}  key={i.id}>
             <M.PostWrapper>
               <M.PostImgWrapper>
-                <M.PostImg src={i.img} />
+                <M.PostImg src={dumBook} />
+                {/* <M.PostImg src={i.img} /> */}
               </M.PostImgWrapper>
               <M.PostInfoWrapper>
                 <M.PostInfoHeader>

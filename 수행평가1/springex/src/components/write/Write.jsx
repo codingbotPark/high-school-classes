@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useState } from "react";
 import { useCallback } from "react";
 import { useRef } from "react";
+import PostView from "../../common/postView/PostView";
 import ReadmeParser from "../../common/readmeParser/ReadmeParser";
 import * as W from "./Write.style";
 
@@ -46,7 +47,7 @@ const Write = () => {
   }
 
   function handleChangeFile(e) {
-    setImage(...e.target.files)
+    setImage(...e.target.files);
   }
 
   return (
@@ -97,26 +98,19 @@ const Write = () => {
         <W.SubmitArea>
           <W.SubmitAreaWrapper>
             <W.SubmitImgWrapper>
-              {
-                image ?
-                <img
-                  src={URL.createObjectURL(image)}
-                />
-                : 
-              <W.SubmitImgInputArea>
-                <h3>아직 업로드 된 이미지가 없습니다</h3>
-                <label htmlFor="fileBox">업로드</label>
-                <input
-                  type="file"
-                  id="fileBox"
-                  onChange={(e) => handleChangeFile(e)}
-                />
-              </W.SubmitImgInputArea>
-              }
+              {/* <imgsrc={URL.createObjectURL(image)}/> */}
+
+              <PostView
+                title={title}
+                author={"박병관"}
+                time={"2022년10월29일 16시54분"}
+                views={100}
+              />
+              
             </W.SubmitImgWrapper>
             <W.SubmitButtonWrapper>
               <label htmlFor="fileBox">
-                {image ? "썸네일 변경" : "썸네일 업로드"}
+                {image ? "책사진 변경" : "책사진 업로드"}
               </label>
               <input
                 type="file"

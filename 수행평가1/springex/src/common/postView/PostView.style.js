@@ -1,34 +1,5 @@
 import styled from "styled-components";
 
-export const Wrapper = styled.div`
-    width:100%;
-    min-height:calc(100vh - 180px);
-    display:flex;
-    justify-content:center;
-    align-items:center;
-`
-
-export const PostListWrapper = styled.div`
-    margin:70px 0px;
-
-    width:90%;
-    height:80%;
-    display:grid;
-
-    /* grid-template-rows:repeat(3,1fr); */
-    /* grid-template-columns:repeat(3,1fr); */
-    grid-template-columns:repeat(auto-fill,minmax(100px,300px));
-    justify-content:center;
-    
-    row-gap:50px;
-    column-gap:50px;
-
-    @media (max-width:1120px) {
-        row-gap:5px;
-        column-gap:5px;
-    }
-`
-
 export const PostWrapper = styled.div`
     width:300px;
     height:300px;
@@ -40,6 +11,7 @@ export const PostWrapper = styled.div`
     :hover{
         transform:translateY(-10px);
     }
+    cursor:pointer; 
 `
 export const PostImgWrapper = styled.div`
     width:100%;
