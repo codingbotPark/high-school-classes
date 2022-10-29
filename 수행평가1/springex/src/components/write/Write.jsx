@@ -8,12 +8,14 @@ import ReadmeParser from "../../common/readmeParser/ReadmeParser";
 import customAxios from "../../util/customAxios";
 import * as W from "./Write.style";
 
+import config from "../../config/config.json";
+
 const Write = ({ mode = "write" }) => {
   const [title, setTitle] = useState("");
   const [bookName, setBookName] = useState("");
   const [content, setContent] = useState("");
 
-  const [author, setAuthor] = useState("글쓴이가 비었습니다");
+  const [author, setAuthor] = useState("익명");
   const [views, setViews] = useState(0);
 
   const [image, setImage] = useState();
@@ -28,11 +30,15 @@ const Write = ({ mode = "write" }) => {
       if (location.state.post) {
         // 값이 location에 잘 저장되어 왔을 때
         const post = location.state.post;
+        // const imgSrc = `${config.server}/board/img/${post.id}`
+        // console.log(typeof(imgSrc))
+
         setTitle(post.title);
         setBookName(post.bookName);
         setContent(post.content);
         setAuthor(post.author);
         setViews(post.views);
+        setImage(`${config.server}/board/img/${post.id}`);
       } else {
         // location에 저장되어 오지 않았을 때 서버 통신
       }
@@ -47,7 +53,7 @@ const Write = ({ mode = "write" }) => {
   useEffect(() => {
     // 높이 세팅
     settingInputHeight();
-  }, [title,bookName,content]);
+  }, [title, bookName, content]);
 
   // --------
 
@@ -73,10 +79,6 @@ const Write = ({ mode = "write" }) => {
   function handleChangeFile(e) {
     setImage(...e.target.files);
   }
-
-  useEffect(() => {
-    console.log(image);
-  }, [image]);
 
   function formatFile(file) {
     return URL.createObjectURL(file);
@@ -170,7 +172,10 @@ const Write = ({ mode = "write" }) => {
               {/* <imgsrc={URL.createObjectURL(image)}/> */}
 
               <PostView
-                img={image && formatFile(image)}
+                img={
+                  image &&
+                  (typeof image === "string" ? image : formatFile(image))
+                }
                 title={title}
                 author={author}
                 time={formatNow()}
@@ -193,10 +198,13 @@ const Write = ({ mode = "write" }) => {
                 <input
                   onChange={(e) => inputHandler(e, setAuthor)}
                   type="text"
+                  value={author || ""}
                   placeholder="글쓴이 닉네임"
                 />
               </W.AuthorInput>
-              <button onClick={createPost}>글 생성하기</button>
+              <button onClick={createPost}>
+                {mode === "edit" ? "글 수정하기" : "글 생성하기"}
+              </button>
             </W.SubmitButtonWrapper>
           </W.SubmitAreaWrapper>
         </W.SubmitArea>
