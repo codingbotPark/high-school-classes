@@ -14,75 +14,12 @@ const Main = () => {
   const [postList,setPostList] = useRecoilState(posts)
 
   useEffect(() => {
-    customAxios.get("/findall")
+    customAxios.get("http://localhost:8080/board/findall")
     .then((result) => {
-        console.log(result)
-        setPostList(result)
+        setPostList(result.data)
     })
     .catch((error) => {console.log(error)})
   },[])
-
-//   const posts = [
-//     {
-//       id: 1,
-//       img: dumBook,
-//       title: "인간 관계론 독서감상문",
-//       author: "박병관",
-//       time: "2022년 10월 26일 14:23",
-//       views: 100,
-//     },
-//     {
-//       id: 2,
-//       img: dumBook,
-//       title: "인간 관계론 독서감상문",
-//       author: "박병관",
-//       time: "2022년 10월 26일 14:23",
-//       views: 100,
-//     },
-//     {
-//       id: 3,
-//       img: dumBook,
-//       title: "인간 관계론 독서감상문",
-//       author: "박병관",
-//       time: "2022년 10월 26일 14:23",
-//       views: 100,
-//     },
-//     {
-//       id: 4,
-//       img: dumBook,
-//       title: "인간 관계론 독서감상문",
-//       author: "박병관",
-//       time: "2022년 10월 26일 14:23",
-//       views: 100,
-//     },
-//     ,
-//     {
-//       id: 5,
-//       img: dumBook,
-//       title: "인간 관계론 독서감상문",
-//       author: "박병관",
-//       time: "2022년 10월 26일 14:23",
-//       views: 100,
-//     },
-//     {
-//       id: 6,
-//       img: dumBook,
-//       title: "인간 관계론 독서감상문",
-//       author: "박병관",
-//       time: "2022년 10월 26일 14:23",
-//       views: 100,
-//     },
-//     ,
-//     {
-//       id: 7,
-//       img: dumBook,
-//       title: "인간 관계론 독서감상문",
-//       author: "박병관",
-//       time: "2022년 10월 26일 14:23",
-//       views: 100,
-//     },
-//   ];
-
 
   return (
     <M.Wrapper>
