@@ -1,2 +1,2 @@
-import WritePage from "../components/write/Write"
+import WritePage from "../components/write/Write";
 export default WritePage

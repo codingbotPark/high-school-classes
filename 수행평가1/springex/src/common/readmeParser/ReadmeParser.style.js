@@ -20,3 +20,7 @@ export const Q = styled.p`
 export const P = styled.p`
     margin:10px 0px 0px 0px;
 `
+
+export const Wrapper= styled.div`
+    width:100%;
+`

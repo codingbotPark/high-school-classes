@@ -51,11 +51,11 @@ const ReadmeParser = ({ content }) => {
   }, [content]);
 
   return (
-    <>
+    <R.Wrapper>
       {
         result
       }
-    </>
+    </R.Wrapper>
   );
 };
 

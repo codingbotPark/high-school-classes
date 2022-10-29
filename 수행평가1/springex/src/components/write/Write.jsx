@@ -2,33 +2,52 @@ import React, { useEffect } from "react";
 import { useState } from "react";
 import { useCallback } from "react";
 import { useRef } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import PostView from "../../common/postView/PostView";
 import ReadmeParser from "../../common/readmeParser/ReadmeParser";
 import customAxios from "../../util/customAxios";
 import * as W from "./Write.style";
 
-const Write = () => {
+const Write = ({ mode = "write" }) => {
   const [title, setTitle] = useState("");
   const [bookName, setBookName] = useState("");
   const [content, setContent] = useState("");
 
-  const [author,setAuthor] = useState("글쓴이가 비었습니다");
-  const [views,setViews] = useState(0)
+  const [author, setAuthor] = useState("글쓴이가 비었습니다");
+  const [views, setViews] = useState(0);
 
   const [image, setImage] = useState();
-
 
   const titleRef = useRef();
   const bookNameRef = useRef();
   const contentRef = useRef();
 
+  const location = useLocation();
   useEffect(() => {
+    if (mode === "edit") {
+      if (location.state.post) {
+        // 값이 location에 잘 저장되어 왔을 때
+        const post = location.state.post;
+        setTitle(post.title);
+        setBookName(post.bookName);
+        setContent(post.content);
+        setAuthor(post.author);
+        setViews(post.views);
+      } else {
+        // location에 저장되어 오지 않았을 때 서버 통신
+      }
+    }
+
     window.addEventListener("resize", settingInputHeight);
     return () => {
       window.removeEventListener("resize", settingInputHeight);
     };
   }, []);
+
+  useEffect(() => {
+    // 높이 세팅
+    settingInputHeight();
+  }, [title,bookName,content]);
 
   // --------
 
@@ -57,35 +76,36 @@ const Write = () => {
 
   useEffect(() => {
     console.log(image);
-  },[image])
+  }, [image]);
 
-  function formatFile(file){
-    return URL.createObjectURL(file)
+  function formatFile(file) {
+    return URL.createObjectURL(file);
   }
   /**글 미리보기 날짜 형태를 포멧 */
-  function formatNow(){
-    const date = new Date()
-    return `${date.getFullYear()}년${date.getMonth()}월${date.getDate()}일 ${date.getHours()}시${date.getMinutes()}분`
+  function formatNow() {
+    const date = new Date();
+    return `${date.getFullYear()}년${date.getMonth()}월${date.getDate()}일 ${date.getHours()}시${date.getMinutes()}분`;
   }
 
-  const navigate = useNavigate()
-  function createPost(){
-  
-    const form = new FormData()
-    form.append("file",image)
-    customAxios.post("/board/image",form)
-    .then((result) => {
-      customAxios.post("/board/create",{
-        title,
-        bookName,
-        content,
-        writer:author,
-        imageId:result.data,
-      }).then((response) => navigate("/"))
-      .catch((error) => console.log(error))
-    })
-    .catch((error) => console.log(error));
-
+  const navigate = useNavigate();
+  function createPost() {
+    const form = new FormData();
+    form.append("file", image);
+    customAxios
+      .post("/board/image", form)
+      .then((result) => {
+        customAxios
+          .post("/board/create", {
+            title,
+            bookName,
+            content,
+            writer: author,
+            imageId: result.data,
+          })
+          .then((response) => navigate("/"))
+          .catch((error) => console.log(error));
+      })
+      .catch((error) => console.log(error));
 
     // customAxios.post("/board/create",form, image, {
     //   headers: {
@@ -103,6 +123,7 @@ const Write = () => {
           <W.InputArea>
             <W.InputTitle
               ref={titleRef}
+              value={title}
               placeholder="제목을 입력하세요"
               onChange={(e) => {
                 inputHandler(e, setTitle);
@@ -111,6 +132,7 @@ const Write = () => {
             />
             <W.InputBook
               ref={bookNameRef}
+              value={bookName}
               placeholder="책 이름을 입력하세요"
               onChange={(e) => {
                 inputHandler(e, setBookName);
@@ -120,6 +142,7 @@ const Write = () => {
             <W.LatTemp />
             <W.InputContent
               ref={contentRef}
+              value={content}
               placeholder="내용을 입력하세요"
               onChange={(e) => {
                 inputHandler(e, setContent);
@@ -147,7 +170,6 @@ const Write = () => {
               {/* <imgsrc={URL.createObjectURL(image)}/> */}
 
               <PostView
-                // img={formatFile(image)}
                 img={image && formatFile(image)}
                 title={title}
                 author={author}
@@ -155,27 +177,26 @@ const Write = () => {
                 views={views}
               />
               <W.SubmitImgButton>
-              <label htmlFor="fileBox">
-                {image ? "책사진 변경" : "책사진 업로드"}
-              </label>
-              <input
-                type="file"
-                id="fileBox"
-                onChange={(e) => handleChangeFile(e)}
-              />
+                <label htmlFor="fileBox">
+                  {image ? "책사진 변경" : "책사진 업로드"}
+                </label>
+                <input
+                  type="file"
+                  id="fileBox"
+                  onChange={(e) => handleChangeFile(e)}
+                />
               </W.SubmitImgButton>
-              
             </W.SubmitImgWrapper>
             <W.SubmitButtonWrapper>
-              
-              
               <W.AuthorInput>
-              <div>글쓴이</div>
-              <input onChange={(e) => inputHandler(e,setAuthor)} type="text" placeholder="글쓴이 닉네임" />
+                <div>글쓴이</div>
+                <input
+                  onChange={(e) => inputHandler(e, setAuthor)}
+                  type="text"
+                  placeholder="글쓴이 닉네임"
+                />
               </W.AuthorInput>
-              <button
-                onClick={createPost}
-              >글 생성하기</button>
+              <button onClick={createPost}>글 생성하기</button>
             </W.SubmitButtonWrapper>
           </W.SubmitAreaWrapper>
         </W.SubmitArea>
