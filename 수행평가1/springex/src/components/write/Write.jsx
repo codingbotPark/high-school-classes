@@ -34,9 +34,7 @@ const Write = () => {
   // --------
 
   function inputHandler(e, setter) {
-    // console.log(e.target.value.split("\n"));
-    // console.log(e.target.value.split("\n").split(""))
-    console.log(e.target.value)
+    console.log(e.target.value);
     setter(e.target.value);
   }
 
@@ -47,14 +45,9 @@ const Write = () => {
     ref.current.style.height = ref.current.scrollHeight + "px";
   }
 
-  //   const handleResizeHeight = useCallback(
-  //     (ref) => {
-  //       if (ref === null || ref.current === null) return;
-  //       ref.current.style.height = ref.current.scrollHeight + "px";
-  //     },
-  //     [titleRef.current.style.height, bookNameRef.current.style.height, contentRef.current.style.height]
-  //   );
-
+  function handleChangeFile(e) {
+    setImage(...e.target.files)
+  }
 
   return (
     <W.Wrapper>
@@ -96,17 +89,42 @@ const Write = () => {
             <W.LatTemp />
 
             <W.ResultContent>
-              
-                <ReadmeParser content={content} />
-              
+              <ReadmeParser content={content} />
             </W.ResultContent>
           </W.ResultArea>
         </W.InnerWrapper>
 
         <W.SubmitArea>
           <W.SubmitAreaWrapper>
-            <W.SubmitImgWrapper></W.SubmitImgWrapper>
-            <W.SubmitButtonWrapper></W.SubmitButtonWrapper>
+            <W.SubmitImgWrapper>
+              {
+                image ?
+                <img
+                  src={URL.createObjectURL(image)}
+                />
+                : 
+              <W.SubmitImgInputArea>
+                <h3>아직 업로드 된 이미지가 없습니다</h3>
+                <label htmlFor="fileBox">업로드</label>
+                <input
+                  type="file"
+                  id="fileBox"
+                  onChange={(e) => handleChangeFile(e)}
+                />
+              </W.SubmitImgInputArea>
+              }
+            </W.SubmitImgWrapper>
+            <W.SubmitButtonWrapper>
+              <label htmlFor="fileBox">
+                {image ? "썸네일 변경" : "썸네일 업로드"}
+              </label>
+              <input
+                type="file"
+                id="fileBox"
+                onChange={(e) => handleChangeFile(e)}
+              />
+              <button>글 생성하기</button>
+            </W.SubmitButtonWrapper>
           </W.SubmitAreaWrapper>
         </W.SubmitArea>
       </W.WrapperLayout>
