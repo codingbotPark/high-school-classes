@@ -1,51 +1,69 @@
-
 import styled from "styled-components";
 
 export const Wrapper = styled.div`
-    width:100%;
-    min-height:calc(100vh - 180px);
-    display:flex;
-    justify-content:center;
-`
+  width: 100%;
+  min-height: calc(100vh - 180px);
+  display: flex;
+  justify-content: center;
+`;
 export const InnerWrapper = styled.section`
-    max-width:900px;
-    width:70%;
-    margin-top:60px;
-`
+  max-width: 900px;
+  width: 70%;
+  margin-top: 60px;
+`;
 
-export const Header = styled.header`
-
-`
+export const Header = styled.header``;
 export const Title = styled.h1`
-    font-size:50px;
-    margin:10px 0px;
-`
+  font-size: 50px;
+  margin: 10px 0px;
+`;
 export const BookName = styled.h3`
-    font-size:23px;
-    margin:10px 0px;
-`
+  font-size: 23px;
+  margin: 10px 0px;
+`;
 
 export const RowTemp = styled.div`
-    height:1px;
-    width:70%;
-    background-color:lightgray;
-    margin:20px 0px;
-`
+  height: 1px;
+  width: 30%;
+  background-color: lightgray;
+  margin: 20px 0px;
+`;
 
 export const Article = styled.article`
-    width:100%;
-`
+  width: 100%;
+`;
+
+export const ClosingArea = styled.div`
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 100px 0px;
+  word-break:keep-all;
+  font-size:20px;
+`;
+export const ClosingImg = styled.img`
+  height: 250px;
+
+  object-fit: contain;
+  margin: 0px 60px;
+  @media (max-width: 1400px) {
+    height: 200px;
+  }
+  @media (max-width: 900px) {
+    height: 150px;
+  }
+`;
 
 export const CommentArea = styled.div`
-    margin:100px 0px;
-    border-radius:15px;
-    width:100%;
-    height:100px;
-    box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.1);
-    display:flex;
-    flex-direction:column;
-
-`
+  margin: 70px 0px 100px 0px;
+  border-radius: 15px;
+  width: 100%;
+  height: 100px;
+  box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+`;
 export const CommentTitle = styled.h2`
-    margin:20px 20px;
-`
+  margin: 20px 20px;
+`;

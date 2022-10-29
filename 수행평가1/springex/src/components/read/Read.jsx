@@ -6,16 +6,30 @@ import { useRecoilState } from "recoil";
 import { posts } from "../../global/posts";
 import { useEffect } from "react";
 import { useState } from "react";
+import customAxios from "../../util/customAxios";
+import { useLocation } from "react-router-dom";
+
+import config from "../../config/config.json"
 
 const Read = () => {
-  const [post, setPost] = useState({
-    title:"인간관계론 독서감상문",
-    bookName:"인간관계론",
-    content: "안녕하세요\n# 저는 박병관입니다\n## 이건 제목2 \n###이건 제목3 \n> 이건 인용",
-  });
+  const [post, setPost] = useState();
 
+  const location = useLocation()
+  
   useEffect(() => {
-    
+    const splitedURL = location.pathname.split("/")
+    const postIndex = splitedURL[splitedURL.length -1]
+    customAxios.get(`/board/find/${postIndex}`)
+    .then((result) => {
+      const data = result.data
+      setPost({
+        id:postIndex,
+        title:data.title,
+        bookName:data.bookName,
+        content:data.content,
+      })
+    })
+    .catch((error) => console.log(error))
   }, []);
 
   return (
@@ -30,9 +44,20 @@ const Read = () => {
           <R.Article>
             <ReadmeParser content={post.content} />
           </R.Article>
-          <R.CommentArea>
+          
+          <R.ClosingArea>
+            <strong>
+            이 글에 흥미가 생겼으면
+            </strong>
+            <R.ClosingImg src={`${config.server}/board/img/${post.id}`} alt="감상문 책" />
+            <strong>
+            를 직접 보세요
+            </strong>
+          </R.ClosingArea>
+
+          {/* <R.CommentArea>
             <R.CommentTitle>댓글</R.CommentTitle>
-          </R.CommentArea>
+          </R.CommentArea> */}
         </R.InnerWrapper>
       )}
     </R.Wrapper>

@@ -11,16 +11,21 @@ import { posts } from "../../global/posts";
 import { useRecoilState } from "recoil";
 import PostView from "../../common/postView/PostView";
 
+import config from "../../config/config.json"
+
 const Main = () => {
   const [postList,setPostList] = useRecoilState(posts)
+  const [image,setImage] = useState()
 
-  // useEffect(() => {
-  //   customAxios.get("http://localhost:8080/board/findall")
-  //   .then((result) => {
-  //       setPostList(result.data)
-  //   })
-  //   .catch((error) => {console.log(error)})
-  // },[])
+  useEffect(() => {
+    customAxios.get("/board/findall")
+    .then((result) => {
+
+        setPostList(result.data)
+
+    })
+    .catch((error) => {console.log(error)})
+  },[])
 
 
   return (
@@ -29,6 +34,7 @@ const Main = () => {
         {postList.map((i) => (
           <Link to={`/read/${i.id}`}  key={i.id}>
             <PostView
+              img={`${config.server}/board/img/${i.id}`}
               title={i.title}
               author={i.author}
               time={i.time}
