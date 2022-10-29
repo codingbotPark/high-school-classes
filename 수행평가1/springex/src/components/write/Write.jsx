@@ -30,13 +30,11 @@ const Write = ({ mode = "write" }) => {
       if (location.state.post) {
         // 값이 location에 잘 저장되어 왔을 때
         const post = location.state.post;
-        // const imgSrc = `${config.server}/board/img/${post.id}`
-        // console.log(typeof(imgSrc))
 
         setTitle(post.title);
         setBookName(post.bookName);
         setContent(post.content);
-        setAuthor(post.author);
+        setAuthor(post.writer);
         setViews(post.views);
         setImage(`${config.server}/board/img/${post.id}`);
       } else {
@@ -90,6 +88,7 @@ const Write = ({ mode = "write" }) => {
   }
 
   const navigate = useNavigate();
+
   function createPost() {
     const form = new FormData();
     form.append("file", image);
@@ -97,7 +96,9 @@ const Write = ({ mode = "write" }) => {
       .post("/board/image", form)
       .then((result) => {
         customAxios
-          .post("/board/create", {
+          // .post("/board/create", {
+            // edit모드일 땐 update로 보낸다
+          .post(`/board/${mode === "edit" ? `update/${location.state.post.id}` : "create"}`, {
             title,
             bookName,
             content,
@@ -108,14 +109,10 @@ const Write = ({ mode = "write" }) => {
           .catch((error) => console.log(error));
       })
       .catch((error) => console.log(error));
+  }
 
-    // customAxios.post("/board/create",form, image, {
-    //   headers: {
-    //     "Content-Type": "multipart/formDate"
-    //   }
-    // })
-    // .then((result) => console.log(result))
-    // .catch((error) => console.log(error))
+  function updatePost(){
+    console.log("업데이트")
   }
 
   return (
@@ -202,7 +199,7 @@ const Write = ({ mode = "write" }) => {
                   placeholder="글쓴이 닉네임"
                 />
               </W.AuthorInput>
-              <button onClick={createPost}>
+              <button onClick={mode === "edit" ? updatePost : createPost}>
                 {mode === "edit" ? "글 수정하기" : "글 생성하기"}
               </button>
             </W.SubmitButtonWrapper>

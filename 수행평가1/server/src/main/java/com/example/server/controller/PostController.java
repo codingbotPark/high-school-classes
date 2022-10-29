@@ -67,6 +67,36 @@ public class PostController {
         postRepository.save(tempPost);
     }
 
+    @PostMapping("update/{id}")
+    public void update(
+            @PathVariable("id") Long id,
+            @RequestBody UpdatePost updatePost
+    ){
+        Post findedPost = postRepository.findById(id).orElseThrow(() -> {throw new RuntimeException("수정하려는 글을 못 찾았습니다");});
+        findedPost.updatePost(
+                updatePost.getTitle(),
+                updatePost.getBookName(),
+                updatePost.getContent(),
+                updatePost.getImg()
+        );
+        postRepository.save(findedPost);
+    }
+
+//    @PostMapping("update/{id}")
+//    public void update(
+//            @PathVariable("id") Long id,
+//            @RequestBody UpdatePost updatePost
+//    ){
+//        Post findedPost = postRepository.findById(id).orElseThrow(() -> {throw new RuntimeException("수정하려는 글을 못 찾았습니다");});
+//        findedPost.updatePost(
+//                updatePost.getTitle(),
+//                updatePost.getBookName(),
+//                updatePost.getContent(),
+//                updatePost.getImg()
+//        );
+//        postRepository.save(findedPost);
+//    }
+
     @PostMapping("image")
     public Long image(
             MultipartFile file
@@ -80,20 +110,7 @@ public class PostController {
         }
     }
 
-    @PostMapping("update/{id}")
-    public void update(
-            @PathVariable("id") Long id,
-            @RequestBody UpdatePost updatePost
-            ){
-        Post findedPost = postRepository.findById(id).orElseThrow(() -> {throw new RuntimeException("수정하려는 글을 못 찾았습니다");});
-        findedPost.updatePost(
-                updatePost.getTitle(),
-                updatePost.getBookName(),
-                updatePost.getContent(),
-                updatePost.getImg()
-        );
-        postRepository.save(findedPost);
-    }
+
     
     @DeleteMapping("delete/{id}")
     public void delete(
