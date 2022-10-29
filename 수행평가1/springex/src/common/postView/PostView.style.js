@@ -6,6 +6,7 @@ export const PostWrapper = styled.div`
     display:flex;
     flex-direction:column;
     justify-content:flex-end;
+    align-items:Center;
     /* float:bottom; */
     position:relative;
     :hover{
@@ -23,7 +24,9 @@ export const PostImgWrapper = styled.div`
 `
 export const PostImg = styled.img`
     /* width:0%; */
+    object-fit:contain;
     height:100%;
+    width:95%;
 `
 
 export const PostInfoWrapper = styled.div`

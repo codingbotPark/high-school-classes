@@ -50,6 +50,16 @@ const Write = () => {
     setImage(...e.target.files);
   }
 
+  function formatFile(file){
+    return URL.createObjectURL(file)
+  }
+  /**글 미리보기 날짜 형태를 포멧 */
+  function formatNow(){
+    const date = new Date()
+    return `${date.getFullYear()}년${date.getMonth()}월${date.getDate()}일 ${date.getHours()}시${date.getMinutes()}분`
+  }
+
+
   return (
     <W.Wrapper>
       <W.WrapperLayout>
@@ -101,9 +111,11 @@ const Write = () => {
               {/* <imgsrc={URL.createObjectURL(image)}/> */}
 
               <PostView
+                // img={formatFile(image)}
+                img={image && formatFile(image)}
                 title={title}
                 author={"박병관"}
-                time={"2022년10월29일 16시54분"}
+                time={formatNow()}
                 views={100}
               />
               

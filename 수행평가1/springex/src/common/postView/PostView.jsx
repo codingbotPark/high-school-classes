@@ -3,7 +3,7 @@ import React from "react";
 import * as P from "./PostView.style"
 
 const PostView = ({
-    img=dumBook,
+    img,
     title,
     author,
     time,

@@ -23,7 +23,6 @@ const Main = () => {
   // },[])
 
 
-
   return (
     <M.Wrapper>
       <M.PostListWrapper>
