@@ -19,10 +19,13 @@ export const TitleWrapper = styled.div`
   justify-content:space-between;
   align-items:center;
   margin: 10px 0px;
-  >img{
+  >div{
+    >img{
     cursor:pointer;
-    height:30px;
+    height:40px;
   }
+  }
+
 `
 export const Title = styled.h1`
   margin:0px;
@@ -31,7 +34,16 @@ export const Title = styled.h1`
 export const BookName = styled.h3`
   font-size: 23px;
   margin: 10px 0px;
+
 `;
+
+export const ArticleInfo = styled.div`
+  display:flex;
+  >div{
+    margin-right:20px;
+  }
+`
+
 
 export const RowTemp = styled.div`
   height: 1px;

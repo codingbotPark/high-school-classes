@@ -7,11 +7,13 @@ import { posts } from "../../global/posts";
 import { useEffect } from "react";
 import { useState } from "react";
 import customAxios from "../../util/customAxios";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 import config from "../../config/config.json";
 
 import edit from "../../assets/read/edit.svg"
+
+import useFormatLocalDate from "../../hooks/useFormatLocalDate"
 
 const Read = () => {
   const [post, setPost] = useState();
@@ -19,20 +21,31 @@ const Read = () => {
   const location = useLocation();
   const splitedURL = location.pathname.split("/");
   const postIndex = splitedURL[splitedURL.length - 1];
+  const formatLocalDate = useFormatLocalDate()
   useEffect(() => {
     customAxios
       .get(`/board/find/${postIndex}`)
       .then((result) => {
         const data = result.data;
+        console.log(data);
         setPost({
           id: postIndex,
           title: data.title,
           bookName: data.bookName,
           content: data.content,
+          writer:data.writer,
+          views:data.views,
+          time:formatLocalDate(data.time),
         });
       })
       .catch((error) => console.log(error));
   }, []);
+
+  // 글 정보를 navigate정보로 넘겨준다
+  const navigate = useNavigate();
+  function onClickEdit(){
+    navigate(`/edit/${postIndex}`,{state:{post}})
+  }
 
   return (
     <R.Wrapper>
@@ -42,11 +55,16 @@ const Read = () => {
             <R.Header>
               <R.TitleWrapper>
               <R.Title>{post.title}</R.Title>
-              <Link to={`/edit/${postIndex}`} title="수정하기">
+              <div onClick={onClickEdit} title="수정하기" >
               <img src={edit} alt="수정"/>
-              </Link>
+              </div>
               </R.TitleWrapper>
               <R.BookName>{post.bookName}</R.BookName>
+              <R.ArticleInfo>
+                <div>작성자 : {post.writer} </div>
+                <div>조회수 : {post.views} </div>
+                <div>날짜 : {post.time}</div>
+              </R.ArticleInfo>
             </R.Header>
             <R.RowTemp />
             <R.Article>
