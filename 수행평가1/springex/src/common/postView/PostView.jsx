@@ -3,6 +3,7 @@ import React from "react";
 import * as P from "./PostView.style";
 
 const PostView = ({ img, title, author, time, views }) => {
+
   return (
     <P.PostWrapper>
       {img && (
@@ -19,7 +20,7 @@ const PostView = ({ img, title, author, time, views }) => {
         <P.PostInfoTemp />
         <P.PostInfoContent>
           <P.PostInfoTime>{time}</P.PostInfoTime>
-          <P.PostInfoViews>{views}</P.PostInfoViews>
+          <P.PostInfoViews>조회수 {views}</P.PostInfoViews>
         </P.PostInfoContent>
       </P.PostInfoWrapper>
     </P.PostWrapper>

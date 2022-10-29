@@ -27,6 +27,12 @@ const Main = () => {
     .catch((error) => {console.log(error)})
   },[])
 
+  function formatLocalDate(localDate){
+    const splitedDate = localDate.split("T")
+    const frontOne = splitedDate[0].split("-")
+    const backOne = splitedDate[1].split(":")
+    return `${frontOne[0]}년${frontOne[1]}월${frontOne[2]}일 ${backOne[0]}시${backOne[1]}분`
+  }
 
   return (
     <M.Wrapper>
@@ -37,7 +43,7 @@ const Main = () => {
               img={`${config.server}/board/img/${i.id}`}
               title={i.title}
               author={i.author}
-              time={i.time}
+              time={formatLocalDate(i.time)}
               views={i.views}
             />
           </Link>

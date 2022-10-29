@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useState } from "react";
 import { useCallback } from "react";
 import { useRef } from "react";
+import { useNavigate } from "react-router-dom";
 import PostView from "../../common/postView/PostView";
 import ReadmeParser from "../../common/readmeParser/ReadmeParser";
 import customAxios from "../../util/customAxios";
@@ -12,9 +13,11 @@ const Write = () => {
   const [bookName, setBookName] = useState("");
   const [content, setContent] = useState("");
 
-  const [author,setAuthor] = useState();
+  const [author,setAuthor] = useState("글쓴이가 비었습니다");
+  const [views,setViews] = useState(0)
 
   const [image, setImage] = useState();
+
 
   const titleRef = useRef();
   const bookNameRef = useRef();
@@ -65,6 +68,7 @@ const Write = () => {
     return `${date.getFullYear()}년${date.getMonth()}월${date.getDate()}일 ${date.getHours()}시${date.getMinutes()}분`
   }
 
+  const navigate = useNavigate()
   function createPost(){
   
     const form = new FormData()
@@ -77,7 +81,7 @@ const Write = () => {
         content,
         writer:author,
         imageId:result.data,
-      }).then((response) => console.log(response))
+      }).then((response) => navigate("/"))
       .catch((error) => console.log(error))
     })
     .catch((error) => console.log(error));
@@ -146,9 +150,9 @@ const Write = () => {
                 // img={formatFile(image)}
                 img={image && formatFile(image)}
                 title={title}
-                author={"박병관"}
+                author={author}
                 time={formatNow()}
-                views={100}
+                views={views}
               />
               <W.SubmitImgButton>
               <label htmlFor="fileBox">

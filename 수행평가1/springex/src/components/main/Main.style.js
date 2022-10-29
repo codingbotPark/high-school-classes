@@ -24,8 +24,8 @@ export const PostListWrapper = styled.div`
     column-gap:50px;
 
     @media (max-width:1120px) {
-        row-gap:5px;
-        column-gap:5px;
+        row-gap:30px;
+        column-gap:30px;
     }
 `
 

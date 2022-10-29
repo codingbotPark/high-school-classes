@@ -2,14 +2,15 @@ import styled from "styled-components";
 
 export const Wrapper = styled.div`
   width: 100%;
-  min-height: calc(100vh - 180px);
   display: flex;
-  justify-content: center;
+  flex-direction:column;
+  align-items:center;
 `;
 export const InnerWrapper = styled.section`
   max-width: 900px;
   width: 70%;
   margin-top: 60px;
+  min-height: calc(100vh - 180px);
 `;
 
 export const Header = styled.header``;
@@ -38,9 +39,15 @@ export const ClosingArea = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 100px 0px;
+  margin: 110px 0px;
   word-break:keep-all;
   font-size:20px;
+
+  background-color:${(props) => props.theme.main};
+  padding:30px 0px;
+  > *{
+  color:white;
+  }
 `;
 export const ClosingImg = styled.img`
   height: 250px;
@@ -56,9 +63,10 @@ export const ClosingImg = styled.img`
 `;
 
 export const CommentArea = styled.div`
-  margin: 70px 0px 100px 0px;
+  margin: 0px 0px 100px 0px;
   border-radius: 15px;
-  width: 100%;
+  max-width: 900px;
+  width: 70%;
   height: 100px;
   box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.1);
   display: flex;
