@@ -36,7 +36,7 @@ const Write = ({ mode = "write" }) => {
         setContent(post.content);
         setAuthor(post.writer);
         setViews(post.views);
-        setImage(`${config.server}/board/img/${post.id}`);
+        setImage(`${config.server}/img/${post.id}`);
       } else {
         // location에 저장되어 오지 않았을 때 서버 통신
       }
@@ -99,12 +99,12 @@ const Write = ({ mode = "write" }) => {
       const form = new FormData();
       form.append("file", image);
       customAxios
-        .post(`/board/${mode==="edit"?
+        .post(`/${mode==="edit"?
          `update/image/${location.state.post.id}` 
         : "image"}`, form)
         .then((result) => {
           customAxios
-            .post(`/board/${mode === "edit" ? `update/${location.state.post.id}` : "writer"}`, {
+            .post(`/${mode === "edit" ? `update/${location.state.post.id}` : "writer"}`, {
               title,
               bookName,
               content,
@@ -118,7 +118,7 @@ const Write = ({ mode = "write" }) => {
 
     } else {
 
-      customAxios.post(`/board/update/${location.state.post.id}`,{
+      customAxios.post(`/update/${location.state.post.id}`,{
         title,
         bookName,
         content,

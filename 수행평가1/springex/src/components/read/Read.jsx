@@ -26,7 +26,7 @@ const Read = () => {
   const formatLocalDate = useFormatLocalDate()
   useEffect(() => {
     customAxios
-      .get(`/board/find/${postIndex}`)
+      .get(`/view/${postIndex}`)
       .then((result) => {
         const data = result.data;
         console.log(data);
@@ -76,7 +76,7 @@ const Read = () => {
           <R.ClosingArea>
             <strong>이 글에 흥미가 생겼다면</strong>
             <R.ClosingImg
-              src={`${config.server}/board/img/${post.id}?${Date.now()}`}
+              src={`${config.server}/img/${post.id}?${Date.now()}`}
               alt="감상문 책"
             />
             <strong>을 직접 읽어보세요</strong>

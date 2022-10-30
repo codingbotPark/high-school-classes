@@ -18,9 +18,11 @@ const Main = () => {
   const [postList,setPostList] = useRecoilState(posts)
 
   useEffect(() => {
-    customAxios.get("/board/findall")
+    customAxios.get("/list")
+    // customAxios.get("/board/list")
     .then((result) => {
         console.log("서버통신")
+        console.log(result.data)
         setPostList(result.data)
 
     })
@@ -35,9 +37,9 @@ const Main = () => {
         {postList.map((i) => (
           <Link to={`/read/${i.id}`}  key={i.id}>
             <PostView
-              img={`${config.server}/board/img/${i.id}?${Date.now()}`}
+              img={`${config.server}/img/${i.id}?${Date.now()}`}
               title={i.title}
-              author={i.author}
+              author={i.writer}
               time={formatLocalDate(i.time)}
               views={i.views}
             />

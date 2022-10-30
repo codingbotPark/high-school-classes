@@ -25,14 +25,14 @@ import java.util.stream.Collectors;
 
 @Log4j2
 @RestController
-@RequestMapping("board")
+//@RequestMapping("board")
 @RequiredArgsConstructor
 public class PostController {
 
     private final PostRepository postRepository;
     private final ImageRepository imageRepository;
 
-    @GetMapping("/findall")
+    @GetMapping("/list")
     public List<LoadPost> findall(){
         List<LoadPost> postList = postRepository.findAll().stream().map((i) -> {
             return new LoadPost(
@@ -133,7 +133,8 @@ public class PostController {
     }
 
 
-    @GetMapping("find/{id}")
+//    @GetMapping("find/{id}")
+    @GetMapping("view/{id}")
     public LoadPost find(
             @PathVariable("id") Long id
     ){
