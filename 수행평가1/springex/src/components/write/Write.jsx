@@ -51,8 +51,8 @@ const Write = ({ mode = "write" }) => {
   useEffect(() => {
     // 높이 세팅
     settingInputHeight();
-  }, [title, bookName, content]);
-
+  }, [title , bookName , content]);
+  
   // --------
 
   function settingInputHeight() {
@@ -93,7 +93,9 @@ const Write = ({ mode = "write" }) => {
     const form = new FormData();
     form.append("file", image);
     customAxios
-      .post("/board/image", form)
+      .post(`/board/${mode==="edit"?
+       `update/image/${location.state.post.id}` 
+      : "image"}`, form)
       .then((result) => {
         customAxios
           // .post("/board/create", {
@@ -109,10 +111,6 @@ const Write = ({ mode = "write" }) => {
           .catch((error) => console.log(error));
       })
       .catch((error) => console.log(error));
-  }
-
-  function updatePost(){
-    console.log("업데이트")
   }
 
   return (
@@ -199,7 +197,7 @@ const Write = ({ mode = "write" }) => {
                   placeholder="글쓴이 닉네임"
                 />
               </W.AuthorInput>
-              <button onClick={mode === "edit" ? updatePost : createPost}>
+              <button onClick={createPost}>
                 {mode === "edit" ? "글 수정하기" : "글 생성하기"}
               </button>
             </W.SubmitButtonWrapper>

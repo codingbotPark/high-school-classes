@@ -10,5 +10,5 @@ public class UpdatePost {
     private String title;
     private String bookName;
     private String content;
-    private MultipartFile img;
+    private String writer;
 }

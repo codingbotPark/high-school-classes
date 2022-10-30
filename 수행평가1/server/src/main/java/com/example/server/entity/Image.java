@@ -24,4 +24,8 @@ public class Image {
         this.imgName = imgName;
         this.imgByte = imgByte;
     }
+    public void updateImage(String imgName,byte[] imgByte){
+        this.imgName = imgName;
+        this.imgByte = imgByte;
+    }
 }

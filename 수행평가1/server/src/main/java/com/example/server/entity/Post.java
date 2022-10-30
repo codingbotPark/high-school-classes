@@ -44,15 +44,17 @@ public class Post {
         this.imgByte = imgByte;
     }
 
-    public void updatePost(String title, String bookName, String content, MultipartFile img){
-        try {
+    public void viewCount(){
+        this.views++;
+    }
+
+    public void updatePost(String title, String bookName, String content, String writer,String imgName, byte[] imgByte){
             this.title = title;
             this.bookName = bookName;
             this.content = content;
-            this.imgName = img.getName();
-            this.imgByte = img.getBytes();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+            this.writer = writer;
+            this.imgName = imgName;
+            this.imgByte = imgByte;
+
     }
 }

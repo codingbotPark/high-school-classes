@@ -1,4 +1,4 @@
-import axios, { AxiosError } from "axios";
+import axios from "axios";
 import config from "../config/config.json"
 
 const customAxios = axios.create({

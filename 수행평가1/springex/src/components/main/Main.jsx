@@ -16,14 +16,16 @@ import useFormatLocalDate from "../../hooks/useFormatLocalDate";
 
 const Main = () => {
   const [postList,setPostList] = useRecoilState(posts)
-  const [image,setImage] = useState()
+  const [postIds,setPostIds] = useState()
 
   useEffect(() => {
     customAxios.get("/board/findall")
     .then((result) => {
-
+        console.log("서버통신")
         setPostList(result.data)
-
+        result.data.map((i) => {
+          console.log(i.id)
+        })
     })
     .catch((error) => {console.log(error)})
   },[])
@@ -36,7 +38,7 @@ const Main = () => {
         {postList.map((i) => (
           <Link to={`/read/${i.id}`}  key={i.id}>
             <PostView
-              img={`${config.server}/board/img/${i.id}`}
+              img={`${config.server}/board/img/${i.id}?${Date.now()}`}
               title={i.title}
               author={i.author}
               time={formatLocalDate(i.time)}

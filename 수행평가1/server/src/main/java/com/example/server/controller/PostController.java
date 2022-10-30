@@ -67,35 +67,45 @@ public class PostController {
         postRepository.save(tempPost);
     }
 
+    // 업데이트할 때의 게시글
     @PostMapping("update/{id}")
     public void update(
             @PathVariable("id") Long id,
             @RequestBody UpdatePost updatePost
     ){
+        Image image = imageRepository.findById(id).orElseThrow(() -> {throw new RuntimeException("이미지가 없습니다");});
+        
         Post findedPost = postRepository.findById(id).orElseThrow(() -> {throw new RuntimeException("수정하려는 글을 못 찾았습니다");});
         findedPost.updatePost(
                 updatePost.getTitle(),
                 updatePost.getBookName(),
                 updatePost.getContent(),
-                updatePost.getImg()
+                updatePost.getWriter(),
+                image.getImgName(),
+                image.getImgByte()
         );
         postRepository.save(findedPost);
     }
 
-//    @PostMapping("update/{id}")
-//    public void update(
-//            @PathVariable("id") Long id,
-//            @RequestBody UpdatePost updatePost
-//    ){
-//        Post findedPost = postRepository.findById(id).orElseThrow(() -> {throw new RuntimeException("수정하려는 글을 못 찾았습니다");});
-//        findedPost.updatePost(
-//                updatePost.getTitle(),
-//                updatePost.getBookName(),
-//                updatePost.getContent(),
-//                updatePost.getImg()
-//        );
-//        postRepository.save(findedPost);
-//    }
+    
+    // 업데이트 할 때의 img
+    @PostMapping("update/image/{id}")
+    public Long image(
+            @PathVariable("id") Long id,
+            MultipartFile file
+    ) {
+        Image upImg = imageRepository.findById(id).orElseThrow(() -> {throw  new RuntimeException("이미지를 못 찾았습니다");});
+        try {
+            upImg.updateImage(
+                    file.getName(),
+                    file.getBytes()
+            );
+
+            return imageRepository.save(upImg).getImageId();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
     @PostMapping("image")
     public Long image(
@@ -126,6 +136,8 @@ public class PostController {
             @PathVariable("id") Long id
     ){
         Post findedPost = postRepository.findById(id).orElseThrow(() -> {throw new RuntimeException("글을 못 찾았습니다");});
+        findedPost.viewCount();
+        postRepository.save(findedPost);
         return new LoadPost(
                 findedPost.getId(),
                 findedPost.getTitle(),
