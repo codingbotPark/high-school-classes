@@ -3,11 +3,11 @@ import React from "react";
 import * as P from "./PostView.style";
 
 const PostView = ({ img, title, author, time, views }) => {
-
   return (
     <P.PostWrapper>
       {img && (
         <P.PostImgWrapper>
+          {/* <P.PostImg src={typeof img && (typeof img === "string" ? img : URL.createObjectURL(img) )} /> */}
           <P.PostImg src={img} />
         </P.PostImgWrapper>
       )}

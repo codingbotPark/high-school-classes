@@ -37,7 +37,6 @@ const Write = ({ mode = "write" }) => {
         setAuthor(post.writer);
         setViews(post.views);
         setImage(`${config.server}/board/img/${post.id}`);
-
       } else {
         // location에 저장되어 오지 않았을 때 서버 통신
       }
@@ -80,8 +79,12 @@ const Write = ({ mode = "write" }) => {
   }
 
   function formatFile(file) {
-    return URL.createObjectURL(file);
+    const temp = URL.createObjectURL(file)
+    return temp
+    // console.log(temp.substring(5,temp.length-1))
+    // return temp.substring(5,temp.length-1)
   }
+
   /**글 미리보기 날짜 형태를 포멧 */
   function formatNow() {
     const date = new Date();
@@ -91,7 +94,7 @@ const Write = ({ mode = "write" }) => {
   const navigate = useNavigate();
 
   function createPost() {
-    if (typeof(image) === "object") {
+    if (typeof image === "object") {
 
       const form = new FormData();
       form.append("file", image);

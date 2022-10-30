@@ -76,7 +76,7 @@ const Read = () => {
           <R.ClosingArea>
             <strong>이 글에 흥미가 생겼다면</strong>
             <R.ClosingImg
-              src={`${config.server}/board/img/${post.id}`}
+              src={`${config.server}/board/img/${post.id}?${Date.now()}`}
               alt="감상문 책"
             />
             <strong>을 직접 읽어보세요</strong>
@@ -84,10 +84,12 @@ const Read = () => {
           {/* <R.CommentArea>
             <R.CommentTitle>댓글</R.CommentTitle>
           </R.CommentArea> */}
+          <Link to="/">
           <R.DirectArea>
             <img src={goBack} alt="목록으로" />
             목록으로
           </R.DirectArea>
+          </Link>
         </>
       )}
     </R.Wrapper>

@@ -16,16 +16,13 @@ import useFormatLocalDate from "../../hooks/useFormatLocalDate";
 
 const Main = () => {
   const [postList,setPostList] = useRecoilState(posts)
-  const [postIds,setPostIds] = useState()
 
   useEffect(() => {
     customAxios.get("/board/findall")
     .then((result) => {
         console.log("서버통신")
         setPostList(result.data)
-        result.data.map((i) => {
-          console.log(i.id)
-        })
+
     })
     .catch((error) => {console.log(error)})
   },[])
