@@ -97,3 +97,22 @@ export const CommentArea = styled.div`
 export const CommentTitle = styled.h2`
   margin: 20px 20px;
 `;
+
+export const DirectArea = styled.div`
+  box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.1);
+  width:200px;
+  height:80px;
+  margin-bottom:100px;
+  border-radius:15px;
+  display:flex;
+  justify-content:Center;
+  align-items:center;
+  cursor:pointer;
+  :hover {
+    transform: translateX(-10px);
+  }
+  >img{
+    width:30px;
+    margin-right:20px;
+  }
+`

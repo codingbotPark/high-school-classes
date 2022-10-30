@@ -15,6 +15,8 @@ import edit from "../../assets/read/edit.svg"
 
 import useFormatLocalDate from "../../hooks/useFormatLocalDate"
 
+import goBack from "../../assets/read/leftArrow.svg"
+
 const Read = () => {
   const [post, setPost] = useState();
 
@@ -82,6 +84,10 @@ const Read = () => {
           {/* <R.CommentArea>
             <R.CommentTitle>댓글</R.CommentTitle>
           </R.CommentArea> */}
+          <R.DirectArea>
+            <img src={goBack} alt="목록으로" />
+            목록으로
+          </R.DirectArea>
         </>
       )}
     </R.Wrapper>
