@@ -10,6 +10,8 @@ import * as W from "./Write.style";
 
 import config from "../../config/config.json";
 
+
+
 const Write = ({ mode = "write" }) => {
   const [title, setTitle] = useState("");
   const [bookName, setBookName] = useState("");

@@ -17,8 +17,13 @@ import useFormatLocalDate from "../../hooks/useFormatLocalDate"
 
 import goBack from "../../assets/read/leftArrow.svg"
 
+import deleteSvg from "../../assets/read/delete.svg"
+
 const Read = () => {
   const [post, setPost] = useState();
+
+  const [postList,setPostList] = useRecoilState(posts)
+
 
   const location = useLocation();
   const splitedURL = location.pathname.split("/");
@@ -48,6 +53,20 @@ const Read = () => {
   function onClickEdit(){
     navigate(`/edit/${postIndex}`,{state:{post}})
   }
+  function onClickDelete(){
+    const list = postList
+    list.filter((i) => {
+      return i.id !== postIndex
+    })
+    setPostList(list)
+
+    customAxios.delete(`delete/${postIndex}`)
+    .then((result) => {
+
+      navigate("/");
+    })
+    .catch((error) => console.log(error))
+  }
 
   return (
     <R.Wrapper>
@@ -57,8 +76,9 @@ const Read = () => {
             <R.Header>
               <R.TitleWrapper>
               <R.Title>{post.title}</R.Title>
-              <div onClick={onClickEdit} title="수정하기" >
-              <img src={edit} alt="수정"/>
+              <div>
+              <img src={edit} alt="수정" onClick={onClickEdit} title="수정하기"/>
+              <img src={deleteSvg} alt="삭제" onClick={onClickDelete} title="삭제하기" />
               </div>
               </R.TitleWrapper>
               <R.BookName>{post.bookName}</R.BookName>

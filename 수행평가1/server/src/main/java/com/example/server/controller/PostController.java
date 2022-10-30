@@ -132,7 +132,9 @@ public class PostController {
             @PathVariable("id") Long id
     ){
         Post post = postRepository.findById(id).orElseThrow(() -> {throw new RuntimeException("삭제하려는 글을 못 찾았습니다");});
+        Image image = imageRepository.findById(id).orElseThrow(() -> {throw new RuntimeException("삭제하려는 이미지를 못 찾았습니다");});
         postRepository.delete(post);
+        imageRepository.delete(image);
     }
 
 
