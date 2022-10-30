@@ -7,6 +7,7 @@ import com.example.server.entity.Image;
 import com.example.server.entity.Post;
 import com.example.server.repository.ImageRepository;
 import com.example.server.repository.PostRepository;
+import com.example.server.util.Comparator;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,7 +46,9 @@ public class PostController {
                     i.getViews()
             );
         }).collect(Collectors.toList());
+
         System.out.println(postList);
+        postList.sort(new Comparator());
 
         return postList;
     }
