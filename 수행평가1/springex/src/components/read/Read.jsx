@@ -79,9 +79,9 @@ const Read = () => {
             />
             <strong>을 직접 읽어보세요</strong>
           </R.ClosingArea>
-          <R.CommentArea>
+          {/* <R.CommentArea>
             <R.CommentTitle>댓글</R.CommentTitle>
-          </R.CommentArea>
+          </R.CommentArea> */}
         </>
       )}
     </R.Wrapper>

@@ -31,8 +31,9 @@ public class Post {
     private byte[] imgByte;
 
     // 업데이트 됐을 때 시간 변경
-    @UpdateTimestamp
+    @CreationTimestamp
     private LocalDateTime time;
+
     private int views;
 
     public Post(String title,String bookName, String content, String writer, String imgName, byte[] imgByte) {
@@ -48,13 +49,14 @@ public class Post {
         this.views++;
     }
 
-    public void updatePost(String title, String bookName, String content, String writer,String imgName, byte[] imgByte){
+    public void updatePost(String title, String bookName, String content, String writer,String imgName, byte[] imgByte, LocalDateTime time){
             this.title = title;
             this.bookName = bookName;
             this.content = content;
             this.writer = writer;
             this.imgName = imgName;
             this.imgByte = imgByte;
+            this.time = time;
 
     }
 }
