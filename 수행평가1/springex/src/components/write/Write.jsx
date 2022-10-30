@@ -37,6 +37,7 @@ const Write = ({ mode = "write" }) => {
         setAuthor(post.writer);
         setViews(post.views);
         setImage(`${config.server}/board/img/${post.id}`);
+
       } else {
         // location에 저장되어 오지 않았을 때 서버 통신
       }
@@ -90,28 +91,44 @@ const Write = ({ mode = "write" }) => {
   const navigate = useNavigate();
 
   function createPost() {
-    const form = new FormData();
-    form.append("file", image);
-    customAxios
-      .post(`/board/${mode==="edit"?
-       `update/image/${location.state.post.id}` 
-      : "image"}`, form)
-      .then((result) => {
-        customAxios
-          // .post("/board/create", {
-            // edit모드일 땐 update로 보낸다
-          .post(`/board/${mode === "edit" ? `update/${location.state.post.id}` : "create"}`, {
-            title,
-            bookName,
-            content,
-            writer: author,
-            imageId: result.data,
-          })
-          .then((response) => navigate("/"))
-          .catch((error) => console.log(error));
-      })
+    if (typeof(image) === "object") {
+
+      const form = new FormData();
+      form.append("file", image);
+      customAxios
+        .post(`/board/${mode==="edit"?
+         `update/image/${location.state.post.id}` 
+        : "image"}`, form)
+        .then((result) => {
+          customAxios
+            .post(`/board/${mode === "edit" ? `update/${location.state.post.id}` : "create"}`, {
+              title,
+              bookName,
+              content,
+              writer: author,
+              imageId: result.data,
+            })
+            .then((response) => navigate("/"))
+            .catch((error) => console.log(error));
+        })
+        .catch((error) => console.log(error));
+
+    } else {
+
+      customAxios.post(`/board/update/${location.state.post.id}`,{
+        title,
+        bookName,
+        content,
+        writer: author,
+        imageId: location.state.post.id,
+      }).then((response) => navigate("/"))
       .catch((error) => console.log(error));
+
+    }
+
   }
+
+  // function updatePost
 
   return (
     <W.Wrapper>
