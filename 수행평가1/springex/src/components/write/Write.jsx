@@ -104,7 +104,7 @@ const Write = ({ mode = "write" }) => {
         : "image"}`, form)
         .then((result) => {
           customAxios
-            .post(`/board/${mode === "edit" ? `update/${location.state.post.id}` : "create"}`, {
+            .post(`/board/${mode === "edit" ? `update/${location.state.post.id}` : "writer"}`, {
               title,
               bookName,
               content,

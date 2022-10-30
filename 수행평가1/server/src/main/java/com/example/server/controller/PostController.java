@@ -49,8 +49,8 @@ public class PostController {
 
         return postList;
     }
-
-    @PostMapping(value = "create")
+//    @PostMapping(value = "create")
+    @PostMapping(value = "writer")
     public void create(
             @RequestBody CreatePost createPost
     ){
