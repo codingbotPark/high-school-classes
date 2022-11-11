@@ -55,6 +55,8 @@ const Main = () => {
           </Link>
         ))}
       </M.PostListWrapper>
+
+      
       { modalIsOpen &&
       <Modal
         onClose={setModalIsOpen}
