@@ -14,8 +14,11 @@ import PostView from "../../common/postView/PostView";
 import config from "../../config/config.json"
 import useFormatLocalDate from "../../hooks/useFormatLocalDate";
 
+import Modal from "../../common/modal/Modal";
+
 const Main = () => {
   const [postList,setPostList] = useRecoilState(posts)
+
 
   useEffect(() => {
     customAxios.get("/list")
@@ -30,6 +33,12 @@ const Main = () => {
   },[])
 
   const formatLocalDate = useFormatLocalDate();
+
+
+  const [modalIsOpen,setModalIsOpen] = useState(true);
+  function onClose(){
+    setModalIsOpen(false)
+  }
 
   return (
     <M.Wrapper>
@@ -46,6 +55,15 @@ const Main = () => {
           </Link>
         ))}
       </M.PostListWrapper>
+      { modalIsOpen &&
+      <Modal
+        onClose={setModalIsOpen}
+        maskCloseable={true}
+      >
+        <div>ㅎㅇ</div>
+      </Modal>
+      }
+
     </M.Wrapper>
   );
 };
