@@ -5,7 +5,7 @@ import Portal from "../Portal";
 
 import close from "../../assets/modal/close.svg"
 
-const Modal = ({ name, onClose, maskCloseable, children }) => {
+const Modal = ({ onClose, maskCloseable, children }) => {
 
   useEffect(() => {
     document.body.style.cssText = `
@@ -20,11 +20,20 @@ const Modal = ({ name, onClose, maskCloseable, children }) => {
     };
   }, []);
 
+
+
   return (
-    <Portal elementId="modal-root">
-      <M.ModalOverlay>
+    <Portal elementId="modal-root" >
+      <M.ModalOverlay
+          onMouseDown={maskCloseable && onClose}
+      >  
         <M.ModalWrapper>
-        <M.Header><button><img src={close} alt="모달 닫기" /></button></M.Header>
+        <M.Header>
+          <button onClick={() => onClose()}>
+            <img src={close} alt="모달 닫기" />
+            </button>
+          </M.Header>
+        {children}
         </M.ModalWrapper>
       </M.ModalOverlay>
     </Portal>

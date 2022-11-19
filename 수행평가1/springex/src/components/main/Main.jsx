@@ -36,6 +36,7 @@ const Main = () => {
 
 
   const [modalIsOpen,setModalIsOpen] = useState(true);
+
   function onClose(){
     setModalIsOpen(false)
   }
@@ -59,8 +60,8 @@ const Main = () => {
       
       { modalIsOpen &&
       <Modal
-        onClose={setModalIsOpen}
-        maskCloseable={true}
+        onClose={onClose}
+        maskCloseable="true"
       >
         <div>ㅎㅇ</div>
       </Modal>
