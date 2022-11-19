@@ -3,10 +3,9 @@ import * as M from "./Modal.style";
 
 import Portal from "../Portal";
 
-import close from "../../assets/modal/close.svg"
+import close from "../../assets/modal/close.svg";
 
 const Modal = ({ onClose, maskCloseable, children }) => {
-
   useEffect(() => {
     document.body.style.cssText = `
     position: fixed; 
@@ -20,20 +19,14 @@ const Modal = ({ onClose, maskCloseable, children }) => {
     };
   }, []);
 
-
-
   return (
-    <Portal elementId="modal-root" >
-      <M.ModalOverlay
-          onMouseDown={maskCloseable && onClose}
-      >  
+    <Portal elementId="modal-root">
+      <M.ModalOverlay onMouseDown={maskCloseable && onClose}>
         <M.ModalWrapper>
-        <M.Header>
-          <button onClick={() => onClose()}>
-            <img src={close} alt="모달 닫기" />
-            </button>
+          <M.Header>
+            <img src={close} alt="모달 닫기" onClick={() => onClose()} />
           </M.Header>
-        {children}
+          {children}
         </M.ModalWrapper>
       </M.ModalOverlay>
     </Portal>

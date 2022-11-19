@@ -15,6 +15,7 @@ import config from "../../config/config.json"
 import useFormatLocalDate from "../../hooks/useFormatLocalDate";
 
 import Modal from "../../common/modal/Modal";
+import SignUp from "../sign/signup/SignUp";
 
 const Main = () => {
   const [postList,setPostList] = useRecoilState(posts)
@@ -36,7 +37,7 @@ const Main = () => {
 
 
   const [modalIsOpen,setModalIsOpen] = useState(true);
-
+  
   function onClose(){
     setModalIsOpen(false)
   }
@@ -61,9 +62,9 @@ const Main = () => {
       { modalIsOpen &&
       <Modal
         onClose={onClose}
-        maskCloseable="true"
+        maskCloseable={true}
       >
-        <div>ㅎㅇ</div>
+        <SignUp/>
       </Modal>
       }
 
