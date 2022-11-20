@@ -13,6 +13,7 @@ export const PostListWrapper = styled.div`
 
     width:90%;
     height:80%;
+
     display:grid;
 
     /* grid-template-rows:repeat(3,1fr); */
