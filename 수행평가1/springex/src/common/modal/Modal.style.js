@@ -45,3 +45,7 @@ export const ModalBackground = styled.div`
   left: 0;
   background-color: rgba(0, 0, 0, 0.6);
 `;
+
+export const Modal = styled.div`
+    
+`

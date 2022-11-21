@@ -38,10 +38,6 @@ const Main = () => {
 
   const [modalIsOpen,setModalIsOpen] = useState(true);
   
-  function onClose(){
-    setModalIsOpen(false)
-  }
-
   return (
     <M.Wrapper>
       <M.PostListWrapper>
@@ -61,8 +57,7 @@ const Main = () => {
       
       { modalIsOpen &&
       <Modal
-        onClose={onClose}
-        maskCloseable={true}
+        setter={setModalIsOpen}
       >
         <SignUp/>
       </Modal>

@@ -4,9 +4,11 @@ import * as M from "./Modal.style";
 import Portal from "../Portal";
 
 import close from "../../assets/modal/close.svg";
+import useModal from "../../hooks/modal/useModal";
 
 const Modal = ({
-  
+  children,
+  setter
 }) => {
   useEffect(() => {
     document.body.style.cssText = `
@@ -14,6 +16,7 @@ const Modal = ({
     top: -${window.scrollY}px;
     overflow-y: scroll;
     width: 100%;`;
+
     return () => {
       const scrollY = document.body.style.top;
       document.body.style.cssText = "";
@@ -21,10 +24,21 @@ const Modal = ({
     };
   }, []);
 
+  // 모달 설정
+  const [el, clickOutside] = useModal(setter);
+  useEffect(() => {
+    document.addEventListener('mousedown', clickOutside);
+    return () => {
+      document.removeEventListener('mousedown', clickOutside);
+    };
+  }, [clickOutside]);
+
   return (
     <Portal elementId="modal-root">
       <M.ModalBackground>
-        
+        <M.Modal ref={el} >
+          {children}
+        </M.Modal>
       </M.ModalBackground>
       {/* <M.ModalOverlay
       onMouseDown={() => {console.log("클릭됨")}}
