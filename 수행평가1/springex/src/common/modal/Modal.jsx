@@ -40,16 +40,6 @@ const Modal = ({
           {children}
         </M.Modal>
       </M.ModalBackground>
-      {/* <M.ModalOverlay
-      onMouseDown={() => {console.log("클릭됨")}}
-       tabIndex="-1">
-        <M.ModalWrapper tabIndex="0">
-          <M.Header>
-            <img src={close} alt="모달 닫기" onClick={() => onClose()} />
-          </M.Header>
-          {children}
-        </M.ModalWrapper>
-      </M.ModalOverlay> */}
     </Portal>
   );
 };
