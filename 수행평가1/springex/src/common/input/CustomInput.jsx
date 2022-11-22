@@ -4,6 +4,7 @@ import * as C from "./CustomInput.style"
 
 const CustomInput = ({
     placeholder,
+    type="text",
     setter,
 }) => {
     const [filled,setFilled] = useState(false)
@@ -19,7 +20,7 @@ const CustomInput = ({
     return (
         <C.Wrapper>
             <C.PlaceHolder isFill={filled} >{placeholder}</C.PlaceHolder>
-            <C.Input isFill={filled} onChange={(e) => changeHandle(e)} />
+            <C.Input isFill={filled} onChange={(e) => changeHandle(e)} type={type} />
         </C.Wrapper>
     );
 };

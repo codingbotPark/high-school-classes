@@ -1,7 +1,7 @@
 import styled, { css } from "styled-components";
 
 export const Wrapper = styled.div`
-    width:60%;
+    width:100%;
     height:40px;
     /* border-bottom:2px lightgray solid; */
     display:flex;
@@ -15,7 +15,7 @@ export const PlaceHolder = styled.div`
     position:absolute;
     color:lightgray;
     ${(props) => props.isFill && css`
-        font-size:9px;
+        font-size:11px;
         top:0px;
         left:0px;
     `}
