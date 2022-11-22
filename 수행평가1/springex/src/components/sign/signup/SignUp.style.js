@@ -3,7 +3,7 @@ import styled from "styled-components"
 export const Wrapper = styled.div`
     width:70vw;
     max-width:500px;
-    aspect-ratio: 1 / 1;
+    aspect-ratio: 1 / 1.3;
     background-color:white;
     border-radius:15px;
     display:flex;
@@ -12,7 +12,7 @@ export const Wrapper = styled.div`
     align-items:center;
 `
 export const InputWrapper = styled.div`
-    height:140px;
+    height:170px;
     width:60%;
     display:flex;
     flex-direction:column;
@@ -24,12 +24,12 @@ export const ImgWrapper =styled.div`
     width:150px;
     height:150px;
     background-color:black;
-    margin-bottom:30px;
+    margin-bottom:60px;
 `
 
 export const ButtonWrapper =styled.div`
-    width:100px;
-    height:70px;
+    width:45%;
+    height:60px;
     background-color:black;
-    margin-top:30px;
+    margin-top:60px;
 `
