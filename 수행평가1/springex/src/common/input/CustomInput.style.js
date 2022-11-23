@@ -13,7 +13,10 @@ export const Wrapper = styled.div`
 export const PlaceHolder = styled.div`
     font-size:13px;
     position:absolute;
-    color:lightgray;
+    color:gray;
+    /* color:lightgray; */
+    top:20px;
+    left:0px;
     ${(props) => props.isFill && css`
         font-size:11px;
         top:0px;
