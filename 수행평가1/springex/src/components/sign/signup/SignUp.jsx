@@ -3,6 +3,7 @@ import * as S from "./SignUp.style"
 
 import CustomInput from '../../../common/input/CustomInput';
 import { useState } from 'react';
+import CustomButton from '../../../common/button/CustomButton';
 
 const SignUp = () => {
     const [id,setId] = useState("");
@@ -26,7 +27,7 @@ const SignUp = () => {
             setter={setId}/>
             </S.InputWrapper>
             <S.ButtonWrapper>
-                
+                <CustomButton placeholder="제출"/>
             </S.ButtonWrapper>
         </S.Wrapper>
     );

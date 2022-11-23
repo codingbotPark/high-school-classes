@@ -8,7 +8,7 @@ export const Wrapper = styled.div`
     border-radius:15px;
     display:flex;
     flex-direction:column;
-    justify-content:center;
+    justify-content:space-between;
     align-items:center;
 `
 export const InputWrapper = styled.div`
@@ -24,12 +24,22 @@ export const ImgWrapper =styled.div`
     width:150px;
     height:150px;
     background-color:black;
-    margin-bottom:60px;
+    margin-top:60px;
+    @media (max-width:550px) {
+        width:100px;
+        height:100px;
+        margin-top:35px;
+    }
 `
 
 export const ButtonWrapper =styled.div`
     width:45%;
     height:60px;
+    margin-bottom:60px;
     background-color:black;
-    margin-top:60px;
+
+    @media (max-width:550px){
+        width:100%;
+        margin-bottom:0px;
+    }
 `
