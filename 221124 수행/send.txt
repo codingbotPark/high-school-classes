@@ -166,6 +166,7 @@ void buff_init()
       	sendbuff[47] = ' ';
       	sendbuff[48] = 'o';
       	sendbuff[49] = 'n';
+ 
    
    // IP Header Checksum
 unsigned short header_checksum = checksum((unsigned short*)(&sendbuff[14]), 20/2);  // 20 bytes
@@ -204,6 +205,7 @@ void send_data_process()
       	sendbuff[47] = ' ';
       	sendbuff[48] = 'o';
       	sendbuff[49] = 'n';
+
       } else if (firstLed == 1 && secondLed == 0){
             	secondLed = 1;
       	sendbuff[42] = '2';
@@ -214,6 +216,7 @@ void send_data_process()
       	sendbuff[47] = ' ';
       	sendbuff[48] = 'o';
       	sendbuff[49] = 'n';
+   
      
       }else if (firstLed == 1 && secondLed == 1){
       	      	firstLed = 0;
@@ -225,6 +228,7 @@ void send_data_process()
       	sendbuff[47] = ' ';
       	sendbuff[48] = 'o';
       	sendbuff[49] = 'f';
+    
       } else if (firstLed == 0 && secondLed == 1){
                  	secondLed = 0;
       	sendbuff[42] = '2';
@@ -235,6 +239,7 @@ void send_data_process()
       	sendbuff[47] = ' ';
       	sendbuff[48] = 'o';
       	sendbuff[49] = 'f';
+
       } else {
             	sendbuff[42] = 'e';
       	sendbuff[43] = 'r';
