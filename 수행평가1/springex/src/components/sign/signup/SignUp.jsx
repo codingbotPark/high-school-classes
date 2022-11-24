@@ -6,17 +6,20 @@ import CustomInput from "../../../common/input/CustomInput";
 import { useState } from "react";
 import CustomButton from "../../../common/submitButton/CustomSubmitButton";
 
+import api from "../../../util/customAxios"
+
 const SignUp = () => {
   const [id, setId] = useState("");
   const [password,setPassword] = useState("");
 
   function onSubmitF(){
-    console.log("hi");
+    // api.post()
+    console.log("회원가입")
   }
 
   return (
     <>
-      <SignForm text="회원가입" onSubmitF={onSubmitF} >
+      <SignForm mode="signUp" text="회원가입 하기" onSubmitF={onSubmitF} >
         <CustomInput placeholder="닉네임" setter={setId} />
         <CustomInput placeholder="비밀번호" type="password" setter={setId} />
         <CustomInput
