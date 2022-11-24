@@ -1,20 +1,18 @@
 import React from "react";
 import * as S from "./SignUp.style";
+import SignForm from "../SignForm";
 
 import CustomInput from "../../../common/input/CustomInput";
 import { useState } from "react";
-import CustomButton from "../../../common/button/CustomButton";
+import CustomButton from "../../../common/submitButton/CustomSubmitButton";
 
 const SignUp = () => {
   const [id, setId] = useState("");
+  const [password,setPassword] = useState("");
 
   return (
-    <S.Wrapper>
-      <S.ImgWrapper>
-        <h1>똑서</h1>
-        <h3>회원가입 하기</h3>
-      </S.ImgWrapper>
-      <S.InputWrapper>
+    <>
+      <SignForm text="회원가입" >
         <CustomInput placeholder="닉네임" setter={setId} />
         <CustomInput placeholder="비밀번호" type="password" setter={setId} />
         <CustomInput
@@ -22,11 +20,8 @@ const SignUp = () => {
           type="password"
           setter={setId}
         />
-      </S.InputWrapper>
-      <S.ButtonWrapper>
-        <CustomButton placeholder="제출" />
-      </S.ButtonWrapper>
-    </S.Wrapper>
+      </SignForm>
+    </>
   );
 };
 
