@@ -8,9 +8,6 @@ const CustomInput = ({
     setter,
 }) => {
     const [filled,setFilled] = useState(false)
-    useEffect(() => {
-        console.log(filled);
-    },[filled])
 
     function changeHandle(e){
         setter(e.target.value)

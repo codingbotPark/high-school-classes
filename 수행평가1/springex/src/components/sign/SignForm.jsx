@@ -4,15 +4,19 @@ import CustomButton from '../../common/submitButton/CustomSubmitButton';
 
 const signForm = ({
     children,
-    text
+    text,
+    onSubmitF
 }) => {
     return (
-        <S.Wrapper>
+        <S.Wrapper onSubmit={(e) => {
+          e.preventDefault();
+          onSubmitF();
+        }}>
         <S.ImgWrapper>
           <h1>똑서</h1>
           <h3>회원가입 하기</h3>
         </S.ImgWrapper>
-        <S.InputWrapper>
+        <S.InputWrapper >
           {children}
         </S.InputWrapper>
         <S.ButtonWrapper>

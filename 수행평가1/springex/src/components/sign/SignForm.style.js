@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const Wrapper = styled.div`
+export const Wrapper = styled.form`
   width: 70vw;
   max-width: 500px;
   aspect-ratio: 1 / 1.3;
@@ -12,7 +12,7 @@ export const Wrapper = styled.div`
   justify-content:space-around;
   align-items: center;
 `;
-export const InputWrapper = styled.form`
+export const InputWrapper = styled.div`
   height: 170px;
   width: 60%;
   display: flex;

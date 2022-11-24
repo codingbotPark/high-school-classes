@@ -10,9 +10,13 @@ const SignUp = () => {
   const [id, setId] = useState("");
   const [password,setPassword] = useState("");
 
+  function onSubmitF(){
+    console.log("hi");
+  }
+
   return (
     <>
-      <SignForm text="회원가입" >
+      <SignForm text="회원가입" onSubmitF={onSubmitF} >
         <CustomInput placeholder="닉네임" setter={setId} />
         <CustomInput placeholder="비밀번호" type="password" setter={setId} />
         <CustomInput
