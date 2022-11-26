@@ -8,17 +8,14 @@ export const Wrapper = styled.form`
   border-radius: 15px;
   display: flex;
   flex-direction: column;
-  /* justify-content: space-between; */
-  justify-content:space-around;
+  justify-content: space-around;
   align-items: center;
 `;
+
 export const InputWrapper = styled.div`
-  height: 170px;
   width: 60%;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
   /* margin-bottom:20px; */
 `;
 
@@ -48,10 +45,19 @@ export const ImgWrapper = styled.div`
 export const ButtonWrapper = styled.div`
   width: 45%;
   height: 50px;
-  margin-bottom: 30px;
-
+  margin-bottom:30px;
   @media (max-width: 550px) {
     width: 100%;
     margin-bottom: 0px;
   }
 `;
+
+
+export const OtherWay =styled.b`
+  margin-top:20px;
+  width:100%;
+  display:flex;
+  justify-content:flex-end;
+  cursor:pointer;
+  color:${(props) => props.theme.main};
+`

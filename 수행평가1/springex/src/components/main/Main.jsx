@@ -15,7 +15,7 @@ import config from "../../config/config.json"
 import useFormatLocalDate from "../../hooks/useFormatLocalDate";
 
 import Modal from "../../common/modal/Modal";
-import SignUp from "../sign/signup/SignUp";
+import Sign from "../sign/Sign"
 
 const Main = () => {
   const [postList,setPostList] = useRecoilState(posts)
@@ -59,7 +59,7 @@ const Main = () => {
       <Modal
         setter={setModalIsOpen}
       >
-        <SignUp/>
+        <Sign/>
       </Modal>
       }
 
