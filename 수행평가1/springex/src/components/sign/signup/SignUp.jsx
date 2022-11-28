@@ -1,5 +1,4 @@
 import React, { useContext } from "react";
-import * as S from "./SignUp.style";
 import SignForm from "../signForm/SignForm";
 
 import CustomInput from "../../../common/input/CustomInput";
@@ -13,11 +12,13 @@ import { ModeSetterContext } from "../Sign";
 const SignUp = () => {
   const modeSetter = useContext(ModeSetterContext)
 
+  const [id,setId] = useState("");
   const [nickName,setNickName] = useState("")
   const [password,setPassword] = useState("");
   const [passwordCheck,setPasswordCheck] = useState("");
 
   // 요소들의 유효성
+  const [idState,setIdState] = useState(false)
   const [nickState,setNickState] = useState(false)
   const [passwordState,setPasswordState] = useState(false);
   const [passwordCheckState,setPasswordCheckState] = useState(false);
@@ -46,11 +47,16 @@ const SignUp = () => {
   return (
     <>
       <SignForm mode="signUp" text="회원가입" onSubmitF={onSubmitF} otherText="로그인 하기" otherF={otherF}>
-        <S.InputWrapper>
         <CustomInput 
-        placeholder="아이디" 
+        placeholder="이름" 
         setter={setNickName} 
         somthingWrong={nickState}
+        wrongMessage="이름 형식에 맞지 않습니다"
+        />
+        <CustomInput 
+        placeholder="아이디" 
+        setter={setId} 
+        somthingWrong={idState}
         wrongMessage="아이디 형식에 맞지 않습니다"
         />
         <CustomInput 
@@ -65,7 +71,6 @@ const SignUp = () => {
           setter={setPasswordCheck}
           somthingWrong={passwordCheckState}
           wrongMessage="비밀번호가 일치하지 않습니다"/>
-        </S.InputWrapper>
       </SignForm>
     </>
   );

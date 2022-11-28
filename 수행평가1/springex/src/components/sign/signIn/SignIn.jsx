@@ -2,7 +2,6 @@ import React from 'react';
 import { useContext } from 'react';
 import { useState } from 'react';
 import SignForm from '../signForm/SignForm';
-import * as S from "./SignIn.style"
 
 import {ModeSetterContext} from "../Sign"
 import CustomInput from '../../../common/input/CustomInput';
@@ -29,7 +28,6 @@ const SignIn = () => {
             otherText="회원가입 하기"
             otherF={otherF}
         >
-            <S.InputWrapper>
             <CustomInput
             placeholder="아이디"
             setter={setId}
@@ -39,7 +37,6 @@ const SignIn = () => {
             type="password"
             setter={setPassword}
             />
-            </S.InputWrapper>
         </SignForm>
     );
 };

@@ -20,6 +20,7 @@ export const ProfileMenu = styled.div`
 `
 export const Profile = styled.img`
     margin-right:60px;
+    cursor:pointer;
 `
 export const Write = styled.div`
     color:${(props) => props.theme.titleFontColor};

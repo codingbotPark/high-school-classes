@@ -8,7 +8,9 @@ export const Wrapper = styled.div`
     flex-direction:column;
     justify-content:center;
     position:relative;
-    padding-top:13px;
+    padding-top:10px;
+    /* padding-top:13px; */
+    margin-top:8px;
 `
 export const PlaceHolder = styled.div`
     font-size:13px;
