@@ -11,11 +11,24 @@ const Header = () => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
   useEffect(() => {
-    const value = localStorage.getItem("access_token");
-    if (!value) return;
-    // 서버에 유효성 검사
-    console.log("hi");
+    // const value = localStorage.getItem("access_token");
+    // if (!value) return;
+    // // 서버에 유효성 검사
+    // console.log("hi");
+
   }, []);
+
+  function checkUser(){
+    return false
+  }
+
+  function onProfileClick(){
+    if(checkUser()){
+
+    } else {
+        setModalIsOpen(true)
+    }
+  }
 
   return (
     <H.Wrapper>
@@ -26,7 +39,7 @@ const Header = () => {
         <Link to="/write">
           <H.Write>글쓰기</H.Write>
         </Link>
-        <H.Profile src={profile}></H.Profile>
+        <H.Profile onClick={onProfileClick} src={profile}></H.Profile>
       </H.ProfileMenu>
       {modalIsOpen && (
         <Modal setter={setModalIsOpen}>
