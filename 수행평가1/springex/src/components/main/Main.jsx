@@ -14,9 +14,6 @@ import PostView from "../../common/postView/PostView";
 import config from "../../config/config.json"
 import useFormatLocalDate from "../../hooks/useFormatLocalDate";
 
-import Modal from "../../common/modal/Modal";
-import Sign from "../sign/Sign"
-
 const Main = () => {
   const [postList,setPostList] = useRecoilState(posts)
 
@@ -36,7 +33,6 @@ const Main = () => {
   const formatLocalDate = useFormatLocalDate();
 
 
-  const [modalIsOpen,setModalIsOpen] = useState(true);
   
   return (
     <M.Wrapper>
@@ -55,13 +51,7 @@ const Main = () => {
       </M.PostListWrapper>
 
       
-      { modalIsOpen &&
-      <Modal
-        setter={setModalIsOpen}
-      >
-        <Sign/>
-      </Modal>
-      }
+
 
     </M.Wrapper>
   );

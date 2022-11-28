@@ -1,19 +1,40 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import * as H from "./Header.style"
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import * as H from "./Header.style";
 
-import profile from "../../assets/header/profile.svg"
+import profile from "../../assets/header/profile.svg";
+import Modal from "../modal/Modal";
+import Sign from "../../components/sign/Sign";
+import { useEffect } from "react";
 
 const Header = () => {
-    return (
-        <H.Wrapper>
-            <Link to="/"><H.Logo>똑서</H.Logo></Link>
-            <H.ProfileMenu>
-            <Link to="/write"><H.Write>글쓰기</H.Write></Link>
-            <Link to="/my"><H.Profile src={profile}></H.Profile></Link>
-            </H.ProfileMenu>
-        </H.Wrapper>
-    );
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+
+  useEffect(() => {
+    const value = localStorage.getItem("access_token");
+    if (!value) return;
+    // 서버에 유효성 검사
+    console.log("hi");
+  }, []);
+
+  return (
+    <H.Wrapper>
+      <Link to="/">
+        <H.Logo>똑서</H.Logo>
+      </Link>
+      <H.ProfileMenu>
+        <Link to="/write">
+          <H.Write>글쓰기</H.Write>
+        </Link>
+        <H.Profile src={profile}></H.Profile>
+      </H.ProfileMenu>
+      {modalIsOpen && (
+        <Modal setter={setModalIsOpen}>
+          <Sign />
+        </Modal>
+      )}
+    </H.Wrapper>
+  );
 };
 
 export default Header;

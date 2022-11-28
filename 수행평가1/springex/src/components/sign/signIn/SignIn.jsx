@@ -14,7 +14,7 @@ const SignIn = () => {
     const [password,setPassword] = useState("");
 
     function onSubmit(){
-        console.log("로그인")
+        console.log(id,password)
     }
 
     /** 로그인이 아니면 회원가입 */
