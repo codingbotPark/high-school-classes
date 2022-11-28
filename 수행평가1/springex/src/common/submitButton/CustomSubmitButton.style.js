@@ -12,4 +12,8 @@ export const Wrapper = styled.button`
     color:${(props) => props.theme.titleFontColor};
     font-size:15px;
     cursor: pointer;
+
+    :disabled{
+        background-color:lightgray;
+    }
 `

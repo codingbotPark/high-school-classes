@@ -1,20 +1,24 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import * as S from "./SignForm.style";
 import CustomButton from "../../../common/submitButton/CustomSubmitButton";
 
-const SignForm = ({ children, text, onSubmitF,otherText,otherF }) => {
+const SignForm = ({ children, text, onSubmitF, otherText, otherF }) => {
   const [disable, setDisable] = useState(false);
+
+  async function onSubmit(e) {
+    e.preventDefault();
+    setDisable(true);
+    await new Promise((r) =>
+    setTimeout((r) => {
+      onSubmitF();
+      setDisable(false);
+    }, 1000)
+    );
+  }
 
   return (
     <S.Wrapper
-      onSubmit={(e) => {
-        setDisable(true);
-
-        e.preventDefault();
-        onSubmitF();
-
-        setDisable(false);
-      }}
+      onSubmit={onSubmit}
     >
       <S.ImgWrapper>
         <h1>똑서</h1>
@@ -22,10 +26,10 @@ const SignForm = ({ children, text, onSubmitF,otherText,otherF }) => {
       </S.ImgWrapper>
       <S.InputWrapper>
         {children}
-       <S.OtherWay onClick={otherF}>{otherText}</S.OtherWay>
-       </S.InputWrapper>
+        <S.OtherWay onClick={otherF}>{otherText}</S.OtherWay>
+      </S.InputWrapper>
       <S.ButtonWrapper>
-        <CustomButton text={text} disable={disable} />
+        <CustomButton type="submit" text={text} disable={disable} />
       </S.ButtonWrapper>
     </S.Wrapper>
   );
