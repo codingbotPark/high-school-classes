@@ -8,7 +8,7 @@ export const Wrapper = styled.form`
   border-radius: 15px;
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
 `;
 
@@ -20,7 +20,7 @@ export const InputWrapper = styled.div`
 `;
 
 export const ImgWrapper = styled.div`
-  margin-top: 60px;
+  margin-top: 80px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -45,8 +45,10 @@ export const ImgWrapper = styled.div`
 export const ButtonWrapper = styled.div`
   width: 45%;
   height: 50px;
-  margin-bottom:30px;
+  margin-bottom:60px;
+  border-radius:15px;
   @media (max-width: 550px) {
+    border-radius:0px 0px 15px 15px;
     width: 100%;
     margin-bottom: 0px;
   }
