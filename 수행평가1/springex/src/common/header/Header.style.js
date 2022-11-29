@@ -43,8 +43,36 @@ export const Write = styled.div`
 
 export const DropDown = styled.div`
     position:relative;
+    border-radius:15px;
 `
 
 export const ProfileMenuWrapper = styled.div`
-
+    width:230px;
+    border-radius:15px;
+    box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.1);
+    >hr{
+        border:solid 0.5px #DCDCDC;
+        margin:0px;
+    }
+`
+export const MenuButton = styled.button`
+    width:100%;
+    height:50px;
+    display:flex;
+    justify-content:flex-start;
+    align-items:center;
+    color:${(props) => props.theme.fontColor};
+    cursor: pointer;
+    border:0px;
+    :first-child{border-radius:15px 15px 0px 0px;}
+    :last-child{border-radius:0px 0px 15px 15px;}
+    :hover{
+        background-color:whitesmoke;
+    }
+    img{
+        width:22px;
+        margin:0px 5px 0px 5px;
+    }
+    *{color:${(props) => props.theme.fontColor};}
+    *{display:inherit; justify-content:inherit; align-items:inherit;}
 `

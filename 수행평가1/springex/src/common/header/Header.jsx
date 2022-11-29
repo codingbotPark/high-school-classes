@@ -8,6 +8,8 @@ import DropDownButtons from "../../common/dropDownButtons/DropDownButtons"
 import Sign from "../../components/sign/Sign";
 import { useEffect } from "react";
 
+import menuProfile from "../../assets/header/menuProfile.svg"
+
 const Header = () => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [dropDown,setDropDown] = useState(false);
@@ -34,6 +36,10 @@ const Header = () => {
     }
   }
 
+  function logOut(){
+    
+  }
+
   return (
     <H.Wrapper>
       <Link to="/">
@@ -56,11 +62,19 @@ const Header = () => {
             <H.DropDown>
             <DropDownButtons 
             setter={setDropDown}
-            left="-70px"
+            left="-190px"
             top="7px"
             >
               <H.ProfileMenuWrapper>
-
+                <H.MenuButton>
+                  <Link to="/profile">
+                    <img src={menuProfile} /><span>내 프로필</span>
+                    </Link>
+                  </H.MenuButton>
+                  <hr></hr>
+                  <H.MenuButton onClick={logOut}>
+                    로그아웃
+                  </H.MenuButton>
               </H.ProfileMenuWrapper>
             </DropDownButtons>
             </H.DropDown>
