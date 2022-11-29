@@ -14,6 +14,9 @@ export const Info = styled.div`
    justify-content:space-between;
    align-items:center;
    width:500px;
+   @media (max-width:700px) {
+        width:300px;
+   }
 `
 
 export const FooterImg = styled.img`

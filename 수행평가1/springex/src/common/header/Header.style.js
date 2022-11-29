@@ -18,11 +18,25 @@ export const ProfileMenu = styled.div`
     display:flex;
     align-items:center;
 `
-export const Profile = styled.img`
-    margin-right:60px;
+export const Profile = styled.div`
+    margin-right:70px;
+    @media (max-width:700px) {
+        margin-right:30px;    
+    }
     cursor:pointer;
+
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    *{
+        font-size:14px;
+        color:${(props) => props.theme.titleFontColor};
+    }
 `
 export const Write = styled.div`
     color:${(props) => props.theme.titleFontColor};
-    margin-right:15px;
+    margin-right:40px;
+    @media (max-width:700px){
+        margin-right:25px;
+    }
 `

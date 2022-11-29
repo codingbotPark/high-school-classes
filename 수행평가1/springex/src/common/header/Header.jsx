@@ -9,21 +9,23 @@ import { useEffect } from "react";
 
 const Header = () => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [userName,setUserName] = useState("박병돤");
 
   useEffect(() => {
     // const value = localStorage.getItem("access_token");
     // if (!value) return;
     // // 서버에 유효성 검사
     // console.log("hi");
-
+    
   }, []);
 
+  // 로그인 유무
   function checkUser(){
     return false
   }
 
   function onProfileClick(){
-    if(checkUser()){
+    if(userName){
 
     } else {
         setModalIsOpen(true)
@@ -39,7 +41,13 @@ const Header = () => {
         <Link to="/write">
           <H.Write>글쓰기</H.Write>
         </Link>
-        <H.Profile onClick={onProfileClick} src={profile}></H.Profile>
+        <H.Profile onClick={onProfileClick}>
+          <img src={profile} alt="프로필" />
+          <div>
+            {<b>{userName}</b>}
+            <span>님</span>
+          </div>
+        </H.Profile>
       </H.ProfileMenu>
       {modalIsOpen && (
         <Modal setter={setModalIsOpen}>
