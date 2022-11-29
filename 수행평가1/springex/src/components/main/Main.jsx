@@ -17,7 +17,6 @@ import useFormatLocalDate from "../../hooks/useFormatLocalDate";
 const Main = () => {
   const [postList,setPostList] = useRecoilState(posts)
 
-
   useEffect(() => {
     customAxios.get("/list")
     // customAxios.get("/board/list")

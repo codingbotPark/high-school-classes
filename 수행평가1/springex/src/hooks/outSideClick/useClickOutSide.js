@@ -3,7 +3,7 @@ import {
     useRef,
   } from 'react';
   
-  const useModal = (
+  const useClickOutSide = (
     setter,
   ) => {
     // el이라는 곳에 e.target을 저장하게 된다
@@ -21,4 +21,4 @@ import {
     return [el, clickOutside];
   };
   
-  export default useModal;
+  export default useClickOutSide;

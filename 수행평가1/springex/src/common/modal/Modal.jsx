@@ -4,7 +4,7 @@ import * as M from "./Modal.style";
 import Portal from "../Portal";
 
 import close from "../../assets/modal/close.svg";
-import useModal from "../../hooks/modal/useModal";
+import userClickOutSide from "../../hooks/outSideClick/useClickOutSide";
 
 const Modal = ({
   children,
@@ -25,7 +25,7 @@ const Modal = ({
   }, []);
 
   // 모달 설정
-  const [el, clickOutside] = useModal(setter);
+  const [el, clickOutside] = userClickOutSide(setter);
   useEffect(() => {
     document.addEventListener('mousedown', clickOutside);
     return () => {

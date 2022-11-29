@@ -4,6 +4,7 @@ import * as H from "./Header.style";
 
 import profile from "../../assets/header/profile.svg";
 import Modal from "../modal/Modal";
+import DropDownButtons from "../../common/dropDownButtons/DropDownButtons"
 import Sign from "../../components/sign/Sign";
 import { useEffect } from "react";
 
@@ -49,6 +50,20 @@ const Header = () => {
             <b>{userName}</b>
             <span>님</span>
           </div>
+          }
+          {
+            dropDown && 
+            <H.DropDown>
+            <DropDownButtons 
+            setter={setDropDown}
+            left="-70px"
+            top="7px"
+            >
+              <H.ProfileMenuWrapper>
+
+              </H.ProfileMenuWrapper>
+            </DropDownButtons>
+            </H.DropDown>
           }
         </H.Profile>
       </H.ProfileMenu>

@@ -40,3 +40,11 @@ export const Write = styled.div`
         margin-right:25px;
     }
 `
+
+export const DropDown = styled.div`
+    position:relative;
+`
+
+export const ProfileMenuWrapper = styled.div`
+
+`
