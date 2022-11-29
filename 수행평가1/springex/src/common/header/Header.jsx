@@ -9,7 +9,8 @@ import { useEffect } from "react";
 
 const Header = () => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
-  const [userName,setUserName] = useState("박병돤");
+  const [dropDown,setDropDown] = useState(false);
+  const [userName,setUserName] = useState("병관");
 
   useEffect(() => {
     // const value = localStorage.getItem("access_token");
@@ -26,9 +27,9 @@ const Header = () => {
 
   function onProfileClick(){
     if(userName){
-
+      setDropDown(true)
     } else {
-        setModalIsOpen(true)
+      setModalIsOpen(true)
     }
   }
 
@@ -43,10 +44,12 @@ const Header = () => {
         </Link>
         <H.Profile onClick={onProfileClick}>
           <img src={profile} alt="프로필" />
+          { userName &&
           <div>
-            {<b>{userName}</b>}
+            <b>{userName}</b>
             <span>님</span>
           </div>
+          }
         </H.Profile>
       </H.ProfileMenu>
       {modalIsOpen && (

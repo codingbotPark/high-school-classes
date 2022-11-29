@@ -12,7 +12,7 @@ const routes = [
     {path: '/write', element:<WritePage/>, header:true, footer:true},
     {path:'/edit/:id',element:<EditPage/>, header:true,footer:true},
     {path: '/read/:id', element:<ReadPage/>, header:true,footer:true },
-    {path: '/profile:id', element:<Profile/>, header:true,footer:true }
+    {path: '/profile/:id', element:<Profile/>, header:true,footer:true }
 ]
 
 export default routes

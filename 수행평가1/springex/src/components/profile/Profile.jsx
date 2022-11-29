@@ -1,10 +1,13 @@
 import React from 'react';
+import * as P from "./Profile.style"
 
 const Profile = () => {
     return (
-        <div>
-            
-        </div>
+        <P.Wrapper>
+            <P.UserInfoWrapper>
+                
+            </P.UserInfoWrapper>
+        </P.Wrapper>
     );
 };
 
