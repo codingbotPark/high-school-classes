@@ -35,7 +35,7 @@ const SignUp = () => {
     .then((response) => {
       modeSetter("signIn");
     })
-    .catch((error) => console.log(error))
+    .catch((error) => alert("이미존재하는 회원입니다"))
     
     console.log({
       nickName,

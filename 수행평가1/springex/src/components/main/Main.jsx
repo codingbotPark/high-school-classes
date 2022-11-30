@@ -33,6 +33,7 @@ const Main = () => {
 
     })
     .catch((error) => {console.log(error)})
+    console.log(`${config.server}/board/img/1?${Date.now()}`);
   },[])
 
   const formatLocalDate = useFormatLocalDate();

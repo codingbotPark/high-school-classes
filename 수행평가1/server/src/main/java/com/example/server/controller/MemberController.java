@@ -1,7 +1,6 @@
 package com.example.server.controller;
 
 import com.example.server.dto.CreateMember;
-import com.example.server.dto.CreatePost;
 import com.example.server.dto.LoginRequest;
 import com.example.server.entity.Member;
 import com.example.server.repository.MemberRepository;
@@ -10,7 +9,10 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/user")
@@ -23,6 +25,7 @@ public class MemberController {
 
     @PostMapping("register")
     public String psignup(@RequestBody CreateMember member) {
+        
         memberRepository.findByEmail(member.getEmail())
                 .ifPresent(m -> {
                     throw new RuntimeException("존재하는 회원입니다.");
@@ -37,9 +40,10 @@ public class MemberController {
     @PostMapping("login")
     public String signin(@RequestBody LoginRequest request){
         Member member = memberRepository.findByEmail(request.getEmail())
-                .orElseThrow();
+                .orElseThrow(() -> {throw new RuntimeException("ID NOT FOUND");});
 
         if(passwordEncoder.matches(request.getPassword(), member.getPassword())){
+            System.out.println("login");
             return jwtUtil.generateToken(member.getEmail());
         } else {
             throw new RuntimeException("비밀번호가 맞지 않습니다.");
@@ -48,10 +52,9 @@ public class MemberController {
 
     @PostMapping("name")
     public String userName() {
+        System.out.println("hi");
         Member member = (Member) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         return member.getName();
     }
 
-//    @PostMapping("getName")
-//    public
 }

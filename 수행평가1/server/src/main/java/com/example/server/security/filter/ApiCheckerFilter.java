@@ -19,24 +19,29 @@ public class ApiCheckerFilter extends OncePerRequestFilter {
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
-
         String auth = request.getHeader("Authorization");
+        String path = request.getRequestURI();
 
-        if(request.getRequestURI().startsWith("/board/img/")) {
-            filterChain.doFilter(request, response);
-        }
-        else if (auth != null && auth.startsWith("Bearer ")){
-
-            try {
-                String body = jwtUtil.validateAndExtract(auth);
-                System.out.println("body" +body);
-
-                SecurityContextHolder.getContext().setAuthentication(jwtUtil.getAuthentication(auth.split("Bearer ")[1]));
+            if (path.startsWith("/board/img/")) {
                 filterChain.doFilter(request, response);
-            } catch (Exception e){
-                throw new RuntimeException(e);
+            } else if (path.startsWith("/user/login") || path.startsWith("/user/register")) {
+                filterChain.doFilter(request, response);
+            } else if (path.startsWith("/board/list") || path.startsWith("/board/view")) {
+                filterChain.doFilter(request, response);
+            } else {
+
+                if (auth != null && auth.startsWith("Bearer ")) {
+                    try {
+                        String body = jwtUtil.validateAndExtract(auth);
+                        System.out.println("body" + body);
+
+                        SecurityContextHolder.getContext().setAuthentication(jwtUtil.getAuthentication(auth.split("Bearer ")[1]));
+                        filterChain.doFilter(request, response);
+                    } catch (Exception e) {
+                        throw new RuntimeException(e);
+                    }
+                }
             }
-        }
 
     }
 }

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import * as H from "./Header.style";
 
 import profile from "../../assets/header/profile.svg";
@@ -10,47 +10,61 @@ import { useEffect } from "react";
 
 import menuProfile from "../../assets/header/menuProfile.svg"
 import customAxios from "../../util/customAxios";
+import { useRecoilState } from "recoil";
+
+import { userName } from "../../global/userName";
 
 const Header = () => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [dropDown,setDropDown] = useState(false);
-  const [userName,setUserName] = useState("");
+  const [name,setName] = useRecoilState(userName);
 
   useEffect(() => {
-    // const value = localStorage.getItem("access_token");
-    // if (!value) return;
-    // // 서버에 유효성 검사
-    // console.log("hi");
-
-    const token =localStorage.getItem("access_token")
-    customAxios.post("/user/name",{
-      token:token
-    })
-    .then((response) => {
-      setUserName(response.data)
-    })
-    .catch((error) => {
-      console.log(error)
-    })
-    
+    checkUser();
   }, []);
 
   // 로그인 유무
   function checkUser(){
-    return false
+    const token = localStorage.getItem("access_token")
+    customAxios.post("/user/name",{
+      token
+    })
+    .then((response) => {
+      console.log(response)
+      setName(response.data)
+    })
+    .catch((error) => {
+      localStorage.removeItem("access_token")
+      console.log(error)
+    })
   }
 
   function onProfileClick(){
-    if(userName){
+    if(name && localStorage.getItem("access_token")){
       setDropDown(true)
     } else {
       setModalIsOpen(true)
     }
   }
 
+  const navigator = useNavigate()
+  function onClickWriteButton(){
+    if (name){
+      navigator("/write")
+    } else {
+      alert("로그인이 필요한 서비스입니다")
+      setModalIsOpen(true)
+    }
+  }
+
+  useEffect(() => {
+    console.log(dropDown);
+  },[dropDown])
+
   function logOut(){
+    setName("")
     localStorage.removeItem("access_token")
-    setUserName("")
+    setDropDown(false)
   }
 
   return (
@@ -59,14 +73,14 @@ const Header = () => {
         <H.Logo>똑서</H.Logo>
       </Link>
       <H.ProfileMenu>
-        <Link to="/write">
-          <H.Write>글쓰기</H.Write>
-        </Link>
+          <H.Write
+            onClick={onClickWriteButton}
+          >글쓰기</H.Write>
         <H.Profile onClick={onProfileClick}>
           <img src={profile} alt="프로필" />
-          { userName &&
+          { name &&
           <div>
-            <b>{userName}</b>
+            <b>{name}</b>
             <span>님</span>
           </div>
           }
@@ -96,7 +110,7 @@ const Header = () => {
       </H.ProfileMenu>
       {modalIsOpen && (
         <Modal setter={setModalIsOpen}>
-          <Sign setModalIsOpen={setModalIsOpen} />
+          <Sign setModalIsOpen={setModalIsOpen}  />
         </Modal>
       )}
     </H.Wrapper>

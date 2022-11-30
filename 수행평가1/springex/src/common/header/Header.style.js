@@ -36,17 +36,20 @@ export const Profile = styled.div`
 export const Write = styled.div`
     color:${(props) => props.theme.titleFontColor};
     margin-right:40px;
+    cursor:pointer;
     @media (max-width:700px){
         margin-right:25px;
     }
 `
 
 export const DropDown = styled.div`
+    z-index:10;
     position:relative;
     border-radius:15px;
 `
 
 export const ProfileMenuWrapper = styled.div`
+    background-color:white;
     width:230px;
     border-radius:15px;
     box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.1);

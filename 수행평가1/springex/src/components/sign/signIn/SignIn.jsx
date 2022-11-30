@@ -6,10 +6,15 @@ import SignForm from '../signForm/SignForm';
 import {ModeSetterContext,ModalSetterContext} from "../Sign"
 import CustomInput from '../../../common/input/CustomInput';
 import customAxios from '../../../util/customAxios';
+import { useRecoilState } from 'recoil';
+
+import { userName } from '../../../global/userName';
 
 const SignIn = () => {
   const modalSetter = useContext(ModalSetterContext)
     const modeSetter = useContext(ModeSetterContext)
+
+    const [name,setName] = useRecoilState(userName);
 
     const [id,setId] = useState("");
     const [password,setPassword] = useState("");
@@ -25,8 +30,9 @@ const SignIn = () => {
             console.log(response.data)
             localStorage.setItem("access_token",response.data)
             modalSetter(false)
+            checkUser();
           })
-          .catch((err) => console.error(err))
+          .catch((err) => alert("아이디 또는 비밀번호가 잘못됐습니다"))
         console.log(id,password)
     }
 
@@ -34,6 +40,22 @@ const SignIn = () => {
     function otherF(){
         modeSetter("signUp")
     }
+
+      // 로그인 유무
+  function checkUser(){
+    const token = localStorage.getItem("access_token")
+    customAxios.post("/user/name",{
+      token
+    })
+    .then((response) => {
+      console.log(response)
+      setName(response.data)
+    })
+    .catch((error) => {
+      localStorage.removeItem("access_token")
+      console.log(error)
+    })
+  }
 
     return (
         <SignForm
