@@ -1,17 +1,16 @@
 package com.example.server.controller;
 
 import com.example.server.dto.CreateMember;
+import com.example.server.dto.CreatePost;
 import com.example.server.dto.LoginRequest;
 import com.example.server.entity.Member;
 import com.example.server.repository.MemberRepository;
 import com.example.server.security.JwtUtil;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/user")
@@ -45,6 +44,12 @@ public class MemberController {
         } else {
             throw new RuntimeException("비밀번호가 맞지 않습니다.");
         }
+    }
+
+    @PostMapping("name")
+    public String userName() {
+        Member member = (Member) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        return member.getName();
     }
 
 //    @PostMapping("getName")

@@ -9,6 +9,7 @@ import Sign from "../../components/sign/Sign";
 import { useEffect } from "react";
 
 import menuProfile from "../../assets/header/menuProfile.svg"
+import customAxios from "../../util/customAxios";
 
 const Header = () => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
@@ -20,6 +21,17 @@ const Header = () => {
     // if (!value) return;
     // // 서버에 유효성 검사
     // console.log("hi");
+
+    const token =localStorage.getItem("access_token")
+    customAxios.post("/user/name",{
+      token:token
+    })
+    .then((response) => {
+      setUserName(response.data)
+    })
+    .catch((error) => {
+      console.log(error)
+    })
     
   }, []);
 

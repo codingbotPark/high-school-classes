@@ -3,7 +3,8 @@ import config from "../config/config.json"
 
 const customAxios = axios.create({
     baseURL: config.server,
-    timeout: 3000
+    timeout: 20000
+    // timeout: 3000
 });
 
 customAxios.interceptors.request.use(
