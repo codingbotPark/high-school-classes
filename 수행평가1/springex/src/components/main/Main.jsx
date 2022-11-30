@@ -22,8 +22,14 @@ const Main = () => {
     // customAxios.get("/board/list")
     .then((result) => {
         console.log("서버통신")
-        console.log(result.data)
-        setPostList(result.data)
+        console.log(result)
+
+        // -------
+        if (!result.data){
+          setPostList([])
+        } else { 
+          setPostList(result.data)
+        }
 
     })
     .catch((error) => {console.log(error)})

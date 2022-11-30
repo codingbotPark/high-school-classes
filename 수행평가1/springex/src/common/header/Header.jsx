@@ -49,7 +49,8 @@ const Header = () => {
   }
 
   function logOut(){
-    
+    localStorage.removeItem("access_token")
+    setUserName("")
   }
 
   return (

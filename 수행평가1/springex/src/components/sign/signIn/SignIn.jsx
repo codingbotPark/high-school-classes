@@ -22,7 +22,7 @@ const SignIn = () => {
           },
           )
           .then((response) => {
-            // console.log(response.data)
+            console.log(response.data)
             localStorage.setItem("access_token",response.data)
             modalSetter(false)
           })
