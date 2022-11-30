@@ -3,16 +3,30 @@ import { useContext } from 'react';
 import { useState } from 'react';
 import SignForm from '../signForm/SignForm';
 
-import {ModeSetterContext} from "../Sign"
+import {ModeSetterContext,ModalSetterContext} from "../Sign"
 import CustomInput from '../../../common/input/CustomInput';
+import customAxios from '../../../util/customAxios';
 
 const SignIn = () => {
+  const modalSetter = useContext(ModalSetterContext)
     const modeSetter = useContext(ModeSetterContext)
 
     const [id,setId] = useState("");
     const [password,setPassword] = useState("");
 
     function onSubmit(){
+
+        customAxios.post("/user/login",{
+            email: id,
+            password: password
+          },
+          )
+          .then((response) => {
+            // console.log(response.data)
+            localStorage.setItem("access_token",response.data)
+            modalSetter(false)
+          })
+          .catch((err) => console.error(err))
         console.log(id,password)
     }
 

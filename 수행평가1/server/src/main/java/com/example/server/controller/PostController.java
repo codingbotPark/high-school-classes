@@ -26,7 +26,7 @@ import java.util.stream.Collectors;
 
 @Log4j2
 @RestController
-//@RequestMapping("board")
+@RequestMapping("board")
 @RequiredArgsConstructor
 public class PostController {
 

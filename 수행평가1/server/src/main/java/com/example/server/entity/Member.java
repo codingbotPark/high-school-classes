@@ -17,9 +17,15 @@ public class Member {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id",nullable = false)
-    private Long name;
+    private Long id;
 
+    private String name;
     private String email;
     private String password;
 
+    public Member(String name, String email, String password) {
+        this.name = name;
+        this.email = email;
+        this.password = password;
+    }
 }

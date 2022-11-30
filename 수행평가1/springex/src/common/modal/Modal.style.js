@@ -12,7 +12,9 @@ export const ModalBackground = styled.div`
   display:flex;
   justify-content:center;
   align-items:center;
+  z-index:10;
 `;
 
 export const Modal = styled.div`
+  z-index:10;
 `

@@ -18,7 +18,7 @@ const Main = () => {
   const [postList,setPostList] = useRecoilState(posts)
 
   useEffect(() => {
-    customAxios.get("/list")
+    customAxios.get("/board/list")
     // customAxios.get("/board/list")
     .then((result) => {
         console.log("서버통신")
@@ -27,6 +27,7 @@ const Main = () => {
 
     })
     .catch((error) => {console.log(error)})
+    console.log(`${config.server}/board/img/1?${Date.now()}`);
   },[])
 
   const formatLocalDate = useFormatLocalDate();
@@ -39,7 +40,7 @@ const Main = () => {
         {postList.map((i) => (
           <Link to={`/read/${i.id}`}  key={i.id}>
             <PostView
-              img={`${config.server}/img/${i.id}?${Date.now()}`}
+              img={`${config.server}/board/img/${i.id}?${Date.now()}`}
               title={i.title}
               author={i.writer}
               time={formatLocalDate(i.time)}

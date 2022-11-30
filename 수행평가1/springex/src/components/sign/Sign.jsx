@@ -4,12 +4,14 @@ import SignUp from "./signUp/SignUp"
 import SignIn from "./signIn/SignIn"
 
 export const ModeSetterContext = createContext();
+export const ModalSetterContext = createContext();
 
-const Sign = () => {
+const Sign = ({setModalIsOpen}) => {
 
     const [mode,setMode] = useState("signIn");
 
     return (
+        <ModalSetterContext.Provider value={setModalIsOpen}>
        <ModeSetterContext.Provider value={setMode}>
        {
         mode === "signUp" ? 
@@ -17,6 +19,7 @@ const Sign = () => {
         <SignIn/>
        }
        </ModeSetterContext.Provider>
+       </ModalSetterContext.Provider>
        
     );
 };

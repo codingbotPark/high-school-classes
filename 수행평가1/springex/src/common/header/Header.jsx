@@ -13,7 +13,7 @@ import menuProfile from "../../assets/header/menuProfile.svg"
 const Header = () => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [dropDown,setDropDown] = useState(false);
-  const [userName,setUserName] = useState("병관");
+  const [userName,setUserName] = useState("");
 
   useEffect(() => {
     // const value = localStorage.getItem("access_token");
@@ -83,7 +83,7 @@ const Header = () => {
       </H.ProfileMenu>
       {modalIsOpen && (
         <Modal setter={setModalIsOpen}>
-          <Sign />
+          <Sign setModalIsOpen={setModalIsOpen} />
         </Modal>
       )}
     </H.Wrapper>

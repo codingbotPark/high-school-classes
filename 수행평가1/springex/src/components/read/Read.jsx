@@ -31,7 +31,7 @@ const Read = () => {
   const formatLocalDate = useFormatLocalDate()
   useEffect(() => {
     customAxios
-      .get(`/view/${postIndex}`)
+      .get(`board/view/${postIndex}`)
       .then((result) => {
         const data = result.data;
         console.log(data);
@@ -60,7 +60,7 @@ const Read = () => {
     })
     setPostList(list)
 
-    customAxios.delete(`delete/${postIndex}`)
+    customAxios.delete(`board/delete/${postIndex}`)
     .then((result) => {
 
       navigate("/");
@@ -96,7 +96,7 @@ const Read = () => {
           <R.ClosingArea>
             <strong>이 글에 흥미가 생겼다면</strong>
             <R.ClosingImg
-              src={`${config.server}/img/${post.id}?${Date.now()}`}
+              src={`${config.server}/board/img/${post.id}?${Date.now()}`}
               alt="감상문 책"
             />
             <strong>을 직접 읽어보세요</strong>

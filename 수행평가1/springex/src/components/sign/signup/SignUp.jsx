@@ -27,12 +27,16 @@ const SignUp = () => {
   function onSubmitF(){
     // 유효성 겁사 후 요소들 state 변경
 
-    // customAxios.post("signup",{
-    //   nickName,
-    //   id,
-    //   password
-    // })
-
+    customAxios.post("/user/register",{
+      name: nickName,
+      email: id,
+      password: password
+    },)
+    .then((response) => {
+      modeSetter("signIn");
+    })
+    .catch((error) => console.log(error))
+    
     console.log({
       nickName,
       password,
