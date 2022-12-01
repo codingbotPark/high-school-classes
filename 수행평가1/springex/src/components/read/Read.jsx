@@ -51,21 +51,32 @@ const Read = () => {
   // 글 정보를 navigate정보로 넘겨준다
   const navigate = useNavigate();
   function onClickEdit(){
-    navigate(`/edit/${postIndex}`,{state:{post}})
+    if (localStorage.getItem("access_token")){
+      navigate(`/edit/${postIndex}`,{state:{post}})
+    } else {
+      alert("로그인이 필요한 서비스입니다")
+    }
+
   }
   function onClickDelete(){
-    const list = postList
-    list.filter((i) => {
-      return i.id !== postIndex
-    })
-    setPostList(list)
+    if (localStorage.getItem("access_token")){
+      const list = postList
+      list.filter((i) => {
+        return i.id !== postIndex
+      })
+      setPostList(list)
+  
+      customAxios.delete(`board/delete/${postIndex}`)
+      .then((result) => {
+  
+        navigate("/");
+      })
+      .catch((error) => console.log(error))
+    } else {
+      alert("로그인이 필요한 서비스입니다")
+    }
 
-    customAxios.delete(`board/delete/${postIndex}`)
-    .then((result) => {
 
-      navigate("/");
-    })
-    .catch((error) => console.log(error))
   }
 
   return (
