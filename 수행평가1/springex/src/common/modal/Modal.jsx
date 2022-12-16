@@ -36,7 +36,7 @@ const Modal = ({
   return (
     <Portal elementId="modal-root">
       <M.ModalBackground>
-        <M.Modal ref={el} >
+        <M.Modal ref={el}>
           {children}
         </M.Modal>
       </M.ModalBackground>
