@@ -1,7 +1,7 @@
 import React,{createContext} from 'react';
 import { useState } from 'react';
-import SignUp from "./signUp/SignUp"
-import SignIn from "./signIn/SignIn"
+import SignUp from './signUp/SignUp';
+import SignIn from './signIn/SignIn';
 
 export const ModeSetterContext = createContext();
 export const ModalSetterContext = createContext();
