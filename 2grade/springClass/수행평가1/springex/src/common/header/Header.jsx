@@ -4,7 +4,7 @@ import * as H from "./Header.style";
 
 import profile from "../../assets/header/profile.svg";
 import Modal from "../modal/Modal";
-import DropDownButtons from "../../common/dropDownButtons/DropDownButtons"
+import DropDownButtons from "../dropDownButtons/DropDownButtons"
 import Sign from "../../components/sign/Sign";
 import { useEffect } from "react";
 
