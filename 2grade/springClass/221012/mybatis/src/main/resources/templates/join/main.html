@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div class="container" >
+        <h1>findall</h1>
+        <div th:replace="common::html-nav"></div>
+        <div class="row board col-6">
+            학생테이블
+            <table class="table">
+                <tr>
+                    <th>idx</th>
+                    <th>학년</th>
+                    <th>이름</th>
+                </tr>
+                <tr><td></td></tr>
+            </table>
+        </div>
+        <div class="col-6">
+            수강테이블
+            <table class="table">
+                <tr>
+                    <th>학생idx(FK)</th>
+                    <th>idx(PK)</th>
+                    <th>과목명</th>
+                </tr>
+                <tr><td></td></tr>
+            </table>
+        </div>
+        <div>
+            <table class="table">
+                <tr>
+                    <th>idx</th>
+                    <th>학년</th>
+                    <th>이름</th>
+                    <th>과목명</th>
+                </tr>
+            </table>
+        </div>
+    </div>
+</body>
+</html>

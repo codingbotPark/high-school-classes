@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="test">
+    <select id="findall" resultType="com.dgsw.mybatis.dto.Test">
+        select * from test
+    </select>
+
+    <select id="findbyidx" parameterType="com.dgsw.mybatis.dto.Test"
+               resultType="com.dgsw.mybatis.dto.Test">
+        select * from test where idx=#{idx}
+    </select>
+
+    <insert id="inserttest" parameterType="com.dgsw.mybatis.dto.Test">
+        insert into test (aa,bb) values (#{aa},#{bb})
+    </insert>
+
+<!--    <delete id="delete" parameterType="Integer">-->
+<!--        delete from test where idx=${idx};-->
+    <delete id="delete" parameterType="java.util.List">
+        delete from test
+        where idx in
+        <foreach collection="list" open="(" close=")" separator="," item="idx">
+            #{idx}
+        </foreach>
+    </delete>
+
+    <update id="updatetest" parameterType="com.dgsw.mybatis.dto.Test" >
+        update test
+            set aa = #{aa},bb=#{bb}
+        where idx=#{idx}
+    </update>
+
+
+</mapper>
