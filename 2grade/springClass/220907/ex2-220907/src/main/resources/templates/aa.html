@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        var testa = [[${mya}]];
+        console.log(testa);
+    </script>
+</head>
+<body>
+<p th:text="${aa}">
+    원래 문자열 입니다
+</p>
+<div th:each="name:${alist}" >
+    [[${name}]]
+</div>
+<div th:if="${mytrue}">
+    true면 나와라
+</div>
+<div th:classappend="${mytrue} ? 'mystyle'">
+    ㅎㅇ
+</div>
+[[${mya}]]
+
+<div th:replace="footer::copy">
+
+</div>
+
+<style>
+    .mystyle{
+        width:100px;
+        height:100px;
+        background-color: powderblue;
+    }
+</style>
+</body>
+</html>

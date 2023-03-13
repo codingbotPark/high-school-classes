@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="joijn">
+    <select id="student" resultType="com.dgsw.mybatis.dto.학생수강">
+        select * from 학생
+    </select>
+    <select id="subject" resultType="com.dgsw.mybatis.dto.학생수강">
+        select 학생idx.idx,과목 from 수강
+    </select>
+    <select id="studentsubect" resultType="com.dgsw.mybatis.dto.학생수강">
+        select a.idx as '학생_idx',
+                b.idx as '수강_idx',
+               a.학년, a.이름, b.과목명 from a left outer join 수강 b on a..idx= b.학생idx
+    </select>
+</mapper>
