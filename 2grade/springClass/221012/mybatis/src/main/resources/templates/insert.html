@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="common::html-head">>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="container">
+    <h1>insert</h1>
+    <div th:replace="common::html-nav">
+    </div>
+
+    <div>
+        <form method="post" th:object="${test}">
+            aa = <input type="text" name="aa"
+                        class="form-control"
+                        th:classappend="${#fields.hasErrors('aa')} ? 'is-invalid'"
+                        th:field="*{aa}">
+            <div th:if="${#fields.hasErrors('aa')}" class="invalid-feedback">
+                aa값이 비어있으면 안됨.
+            </div>
+            bb = <input type="text" name="bb"
+                        class="form-control"
+                        th:classappend="${#fields.hasErrors('bb')} ? 'is-invalid'"
+                        th:field="*{bb}">
+            <div th:if="${#fields.hasErrors('bb')}" class="invalid-feedback">
+                bb값이 비어 있으면 안됨.
+            </div>
+            <input type="submit" value="저장" class="btn btn-primary m-3">
+        </form>
+    </div>
+
+    <div th:replace="common::html-foot">
+    </div>
+</div>
+</body>
+</html>
