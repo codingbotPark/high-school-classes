@@ -1,0 +1,10 @@
+D:\프실\tetrisP\tetrisP\bin\Debug\tetrisP.exe.config
+D:\프실\tetrisP\tetrisP\bin\Debug\tetrisP.exe
+D:\프실\tetrisP\tetrisP\bin\Debug\tetrisP.pdb
+D:\프실\tetrisP\tetrisP\obj\Debug\tetrisP.csproj.AssemblyReference.cache
+D:\프실\tetrisP\tetrisP\obj\Debug\tetrisP.Form1.resources
+D:\프실\tetrisP\tetrisP\obj\Debug\tetrisP.Properties.Resources.resources
+D:\프실\tetrisP\tetrisP\obj\Debug\tetrisP.csproj.GenerateResource.cache
+D:\프실\tetrisP\tetrisP\obj\Debug\tetrisP.csproj.CoreCompileInputs.cache
+D:\프실\tetrisP\tetrisP\obj\Debug\tetrisP.exe
+D:\프실\tetrisP\tetrisP\obj\Debug\tetrisP.pdb
