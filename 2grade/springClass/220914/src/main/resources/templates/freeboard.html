@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="common::html-head">
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+<div class="container" style="background-color: #eee">
+  <h1>freeboard</h1>
+  <div>
+    <table>
+      <tbody>
+      <tr th:each="obj:${list}">
+        <td>[[${obj.aa}]]</td>
+        <td>[[${obj.bb}]]</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+  <div th:text="${aaa}"></div>
+</div>
+
+</body>
+</html>
