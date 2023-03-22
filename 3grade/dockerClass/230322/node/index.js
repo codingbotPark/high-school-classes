@@ -1,11 +1,12 @@
 const express = require('express')
-const mysql = require('mysql')
+const mysql = require('mysql2')
 
 const pool =mysql.createPool({
     host:'127.0.0.1',
     user:"user1",
     password:"password",
-    database:'word'
+    database:'word',
+    port:'3307'
 })
 
 
