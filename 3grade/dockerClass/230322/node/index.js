@@ -1,12 +1,12 @@
 const express = require('express')
 const mysql = require('mysql2')
 
-const pool =mysql.createPool({
-    host:'127.0.0.1',
-    user:"user1",
+const pool = mysql.createPool({
+    host:'mysql',
+    user:"root",
     password:"password",
     database:'word',
-    port:'3307'
+    port:'3306'
 })
 
 
@@ -28,6 +28,6 @@ app.get("/students",(req,res) => {
 app.get('/',(req,res) => {
     res.send("hi")
 })
-app.listen("5000",() => {
-    console.log("5000listening")
+app.listen("5001",() => {
+    console.log("5001listening")
 })
