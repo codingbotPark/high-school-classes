@@ -2,6 +2,10 @@ const express = require("express")
 const morgan = require("morgan")
 const path = require('path')
 
+// index파일은 폴더 이름만 적어도 불러온다
+const indexRouter = require('./routes');
+const userRouter = require("./routes/user");
+
 const app = express()
 
 app.use(morgan('dev'))
@@ -14,9 +18,9 @@ app.use(express.urlencoded({extended:false}))
 
 app.set('port',process.env.PORT || 3000)
 
-app.get('/',(req,res) => {
-    res.send("Hello Express")
-})
+// 주소만 명시 = use
+app.use('/',indexRouter)
+app.use('/users',userRouter)
 
 app.listen(3000,() => {
     console.log("3000번 포트에서 대기중")
