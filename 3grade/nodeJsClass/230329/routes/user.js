@@ -5,7 +5,7 @@ const router = express.Router();
 
 
 router.get('/',(req,res,next) => {
-    res.send('Hello user')
+    res.render('index',{name : 'USER'})
 })
 router.get('/:id',(req,res,next) => {
     const query = req.query
