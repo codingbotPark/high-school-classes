@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
-  <head> </head>
+  <head> 
+    <link href="main.css" rel="stylesheet" >
+  </head>
   <body>
     <h1>Hello !</h1>
     {% block content %}
@@ -11,6 +13,6 @@
       <li>{{i.title}}</li>
       {% endfor %}
     </ul>
-    {% end block %}
+    {% endblock %}
   </body>
 </html>
