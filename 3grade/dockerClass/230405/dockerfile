@@ -1,0 +1,10 @@
+FROM node:18.13.0
+
+# 리눅스 폴더에서 app생성
+WORKDIR /app
+    
+# 외부로 3000번 포트
+EXPOSE 3000
+
+# pid 1 node app.js
+CMD ["node","app.js"]
