@@ -3,13 +3,16 @@ const path = require('path')
 const morgan = require('morgan');
 const nunjucks = require('nunjucks');
 const methodOverride = require('method-override')
-const db = require('models/index')
+const db = require('./models/index')
+const cors = require('cors')
 
 const {sequelize} = require('./models');
 
 require('dotenv').config()
 
-export class App{
+const router = require("./routes")
+
+class App{
     constructor(){
         this.app = express()
         this.setSequelize();
@@ -36,6 +39,15 @@ export class App{
     }
 
     getRouting(){
+        this.app.get('/',(req,res) => {
+            console.log(req.body)
+            res.send("Hello")
+        })
 
+        const userRouter = new router.UserRoutes()
+        this.app.use('/api/user',userRouter.registerRoutes())
     }
 }
+
+const app = new App()
+module.exports = app.app
