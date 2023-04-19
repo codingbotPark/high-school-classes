@@ -56,6 +56,9 @@ class App{
 
         const userRouter = new router.UserRouter()
         this.app.use('/users',userRouter.registerRoutes())
+
+        const commentRouter = new router.CommentRouter()
+        this.app.use('/comments', commentRouter.registerRoutes())
     }
 
     errorHadnling(){

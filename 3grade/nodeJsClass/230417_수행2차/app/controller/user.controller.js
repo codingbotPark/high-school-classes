@@ -1,7 +1,6 @@
 class UserController{
 
     async getAllUsers(req,res,next){
-        console.log(this.userUseCase)
         try{
             const {got, status,users} = await this.userUseCase.getAllUsers()
             res.json({got, status,users})
@@ -26,8 +25,8 @@ class UserController{
     }  
 
     async deleteUser(req,res,next){
-        const id = req.get('id')
-
+        const {id} = req.params
+        console.log(id);
         try {
             const {deleted,status}= await this.userUseCase.deleteUser({id})
             res.json({deleted,status})

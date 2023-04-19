@@ -167,11 +167,7 @@ document
           e.stopImmediatePropagation()
           console.log("삭제 요청")
           try{
-            await axios.delete("/users",{
-              headers:{
-                id:e.target.id
-              }
-            })
+            await axios.delete(`/users/${e.target.id}`)
             getUser()
           } catch(err){
             console.error(err)

@@ -24,7 +24,7 @@ class UserRouter{
 
         this.router.get('/',this.userController.getAllUsers.bind(this))
         this.router.post('/',this.userController.insertUser.bind(this))
-        this.router.delete('/',this.userController.deleteUser.bind(this))
+        this.router.delete('/:id',this.userController.deleteUser.bind(this))
         this.router.get('/:id/comments',this.userController.getCommentByUser.bind(this))
 
         return this.router
