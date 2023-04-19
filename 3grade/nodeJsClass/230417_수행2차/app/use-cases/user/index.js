@@ -12,7 +12,7 @@ class UserUseCase{
             return {got:true, status:200, users:users}
         } catch(err) {
             console.error(err);
-            next(err);
+            throw err
         }
     }
 
@@ -30,7 +30,7 @@ class UserUseCase{
             return {created:true, status:200, createdUser:user}
         } catch(err) {
             console.error(err)
-            next(err)
+            throw err
         }
     }  
 
@@ -43,22 +43,24 @@ class UserUseCase{
             return {deleted:true,status:200}
         } catch(err){
             console.error(err)
-            next(err)
+            throw err
         }
     }
 
     async getCommentByUser({id}){
+        console.log("----------",id)
         try {
             const comments = await Comment.findAll({
                 include:{
                     model:User,
-                    where:{id}
+                    where:{id:id}
                 }
             })
+            console.log("------------",comments)
             return {got:true, status:200, comments}
         } catch(err){
             console.error(err)
-            next(err)
+            throw err
         }
     }
 }

@@ -12,13 +12,14 @@ class CommentUseCase{
         console.log(this)
         try {
             const createdComment = await Comment.create({
-                id,
-                comment
+                commenter:id,
+                comment,
+                
             });
             return {created:true, status:200, createdComment:createdComment}
         } catch(err) {
             console.error(err);
-            next(err);
+            throw err
         }
     }
 
@@ -32,7 +33,7 @@ class CommentUseCase{
             return {patched:true, status:200, fetchedComment:fetchedComment}
         } catch(err) {
             console.error(err)
-            next(err)
+            throw err
         }
     }  
 
@@ -44,7 +45,7 @@ class CommentUseCase{
             return {deleted:true,status:200}
         } catch(err){
             console.error(err)
-            next(err)
+            throw err
         }
     }
 }

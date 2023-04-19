@@ -165,7 +165,6 @@ document
       Array.from(deleteButtons).forEach((dom) => {
         dom.addEventListener("click",async(e) => {
           e.stopImmediatePropagation()
-          console.log("삭제 요청")
           try{
             await axios.delete(`/users/${e.target.id}`)
             getUser()

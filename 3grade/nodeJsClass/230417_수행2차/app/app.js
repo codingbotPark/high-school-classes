@@ -3,14 +3,14 @@ const path = require('path')
 const morgan = require('morgan');
 const nunjucks = require('nunjucks');
 const methodOverride = require('method-override')
-const db = require('./models/index')
+const {sequelize} = require('./models')
 const cors = require('cors')
 
-const {sequelize} = require('./models');
 
 require('dotenv').config()
 
-const router = require("./routes")
+const router = require("./routes");
+const { urlToHttpOptions } = require('url');
 
 class App{
     constructor(){
@@ -23,7 +23,7 @@ class App{
     }
 
     setSequelize(){
-        db.sequelize.sync({force:false})
+        sequelize.sync({force:false})
         .then(() => {
             console.log("✅ DB Connected")
         })
@@ -52,13 +52,13 @@ class App{
 
     getRouting(){
         const indexRouter = new router.IndexRouter()
-        this.app.use('/',indexRouter.registerRoutes())
+        this.app.use('/',indexRouter.registerRoutes().bind(this.app))
 
         const userRouter = new router.UserRouter()
-        this.app.use('/users',userRouter.registerRoutes())
+        this.app.use('/users',userRouter.registerRoutes().bind(this.app))
 
         const commentRouter = new router.CommentRouter()
-        this.app.use('/comments', commentRouter.registerRoutes())
+        this.app.use('/comments', commentRouter.registerRoutes().bind(this.app))
     }
 
     errorHadnling(){
