@@ -7,6 +7,7 @@
       table { border: 1px solid black; border-collapse: collapse; }
       table th, table td { border: 1px solid black; }
     </style>
+    <link rel="shortcut icon" href="https://user-images.githubusercontent.com/85085375/211107412-826b4a2e-c13d-4b96-87c8-3ecd5b6692df.png">
   </head>
   <body>
     <div>
@@ -37,6 +38,7 @@
           <td>{{user.name}}</td>
           <td>{{user.age}}</td>
           <td>{{ '기혼' if user.married else '미혼'}}</td>
+          <td><button id="{{user.id}}" class="delete-user">삭제</button>
         </tr>
         {% endfor %}
       </tbody>

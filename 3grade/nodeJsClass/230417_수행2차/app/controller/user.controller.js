@@ -1,14 +1,10 @@
-const UserUseCase = require("../use-cases/user")
-
-class UserController {
-    constructor(){
-        this.userUseCase = new UserUseCase()
-    }
+class UserController{
 
     async getAllUsers(req,res,next){
+        console.log(this.userUseCase)
         try{
-            const {got, status} = await this.userUseCase.getAllUsers()
-            return {got,status}
+            const {got, status,users} = await this.userUseCase.getAllUsers()
+            res.json({got, status,users})
         } catch(err){
             console.error(err)
             next(err)
@@ -19,21 +15,35 @@ class UserController {
         const {name,age,married} = req.body
 
         try{
-            const {inserted,status} = await this.userUseCase.insertUser({name,age,married})
-            return {inserted,status}
+            const {inserted,status,createdUser} = await this.userUseCase.insertUser({name,age,married})
+            res.json({inserted,status,createdUser})
         } catch(err){
             console.error(err)
             next(err)
         }
 
+
     }  
 
-    async getComment(req,res,next){
-        const {id} = req.body
+    async deleteUser(req,res,next){
+        const id = req.get('id')
+
+        try {
+            const {deleted,status}= await this.userUseCase.deleteUser({id})
+            res.json({deleted,status})
+        }catch(err){
+            console.error(err)
+            next(err)
+        }
+    }
+
+    async getCommentByUser(req,res,next){
+        const {id} = req.params
+        console.log(id)
 
         try{
-            const {got,status} = await this.userUseCase.getComment({id})
-            return {got,status}
+            const {got,status,comments} = await this.userUseCase.getCommentByUser({id})
+            res.json({got,status,comments})
         } catch(err){
             console.error(err)
             next(err)
