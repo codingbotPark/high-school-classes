@@ -7,6 +7,7 @@ const nunjucks = require("nunjucks")
 const dotenv = require("dotenv")
 
 const pageRouter = require('./routes/page')
+const { sequelize } = require("./models")
 
 dotenv.config()
 
@@ -17,6 +18,13 @@ app.set('view engine', 'html');
 nunjucks.configure('views', {
   express: app,
   watch: true,
+});
+sequelize.sync({ force: false })
+  .then(() => {
+    console.log('데이터베이스 연결 성공');
+  })
+  .catch((err) => {
+    console.error(err);
 });
 
 // 미들웨어 세팅

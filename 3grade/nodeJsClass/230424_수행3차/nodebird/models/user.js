@@ -14,14 +14,14 @@ class User extends Sequelize.Model {
       },
       password: {
         type: Sequelize.STRING(100),
-        allowNull: true,
+        allowNull: true, // 카카오로그인은 비밀번호를 주지 않는다
       },
       provider: {
         type: Sequelize.ENUM('local', 'kakao'),
         allowNull: false,
         defaultValue: 'local',
       },
-      snsId: {
+      snsId: { // 카카오로 로그인 했을 때 id
         type: Sequelize.STRING(30),
         allowNull: true,
       },
