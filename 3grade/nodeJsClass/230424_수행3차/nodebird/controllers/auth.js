@@ -32,15 +32,15 @@ exports.login = (req,res,next) => {
         if(!user){
             return res.redirect(`/?loginError=${info.message}`);
         }
-        
+
         return req.login(user,(loginError) => {
             if(loginError){
                 console.error(loginError);
                 return next(loginError);
             }
             return res.redirect('/');
-        })(req,res,next);
-    })
+        });
+    })(req, res, next);
 }
 
 exports.logout = (req, res) => {
