@@ -21,7 +21,10 @@ exports.join = async(req,res,next) => {
 }
 
 exports.login = (req,res,next) => {
+    console.log("들어옴")
+    console.log(req.body.email, req.body.password)
     passport.authenticate('local',(authError,user,info) => {
+        console.log(authError,user,info)
         if (authError){
             console.error(authError);
             return next(authError)
@@ -29,6 +32,7 @@ exports.login = (req,res,next) => {
         if(!user){
             return res.redirect(`/?loginError=${info.message}`);
         }
+        
         return req.login(user,(loginError) => {
             if(loginError){
                 console.error(loginError);
@@ -38,3 +42,9 @@ exports.login = (req,res,next) => {
         })(req,res,next);
     })
 }
+
+exports.logout = (req, res) => {
+    req.logout(() => {
+      res.redirect('/');
+    });
+  };

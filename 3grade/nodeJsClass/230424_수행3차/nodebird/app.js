@@ -7,7 +7,10 @@ const nunjucks = require("nunjucks")
 const dotenv = require("dotenv")
 
 const pageRouter = require('./routes/page')
+const authRouter = require('./routes/auth')
 const { sequelize } = require("./models")
+const passport = require("passport")
+
 
 dotenv.config()
 
@@ -46,8 +49,12 @@ app.use(session({
     }
 }))
 
+app.use(passport.initialize())
+app.use(passport.session())
+
 // router세팅
 app.use('/',pageRouter)
+app.use('/auth',authRouter)
 
 // 404에러 핸들링
 app.use((req,res,next) => {

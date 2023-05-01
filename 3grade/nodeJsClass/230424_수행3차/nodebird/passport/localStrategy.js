@@ -11,11 +11,16 @@ module.exports = () => {
         passwordField:'password',
         passReqToCallback:false
     },async (email, password,done) => {
+        console.log(email,password)
         try{
+            console.log("----------------")
             const exUser = await User.findOne({where:{email}})
+            console.log("----------------")
+            console.log(exUser)
             if (exUser){
                 const result = await bcrypt.compare(password,exUser.password)
                 if (result){
+                    console.log(result)
                     done(null,exUser)
                 } else {
                     done(null,false, {message:"비밀번호가 일치하지 않습니다"});
