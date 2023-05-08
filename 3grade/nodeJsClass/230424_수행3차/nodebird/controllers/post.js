@@ -22,8 +22,32 @@ exports.uploadPost = async(req,res,next) => {
                 })
             )
         }
+        res.redirect("/")
     }catch(error){
         console.error(error);
+        next(error)
+    }
+}
+
+exports.updatePost = async(req,res,next) => {
+    try{
+        const post = await Post.update({
+            content:req.body.content
+        },{where:{id:req.params.postid}})
+        res.send({post})
+        // res.redirect("/")
+    } catch (error){
+        console.error(error)
+        next(error)
+    }
+}
+
+exports.deletePost = async(req,res,next) => {
+    try{
+        const post = await Post.destroy({where:{id:req.params.postid}})
+        res.send({post})
+    }catch(error) {
+        console.error(error)
         next(error)
     }
 }

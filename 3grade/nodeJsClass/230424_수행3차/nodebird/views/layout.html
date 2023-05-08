@@ -22,8 +22,13 @@
               <div class="count follower-count">{{followerCount}}</div>
             </div>
           <input id="my-id" type="hidden" value="{{user.id}}">
+          <div class="btn-wrapper" >
+          <div>
           <a id="my-profile" href="/profile" class="btn">내 프로필</a>
           <a id="logout" href="/auth/logout" class="btn">로그아웃</a>
+         </div>
+          <a id="go-home" href="/" class="btn" >홈</a>
+        </div>
         {% else %}
           <form id="login-form" action="/auth/login" method="post">
             <div class="input-group">
