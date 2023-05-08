@@ -9,6 +9,7 @@ const dotenv = require("dotenv")
 const pageRouter = require('./routes/page')
 const authRouter = require('./routes/auth')
 const postRouter = require("./routes/post")
+const userRouter = require("./routes/user")
 const { sequelize } = require("./models")
 const passport = require("passport")
 const passportConfig = require("./passport/index")
@@ -62,6 +63,7 @@ app.use(passport.session())
 app.use('/',pageRouter)
 app.use('/auth',authRouter)
 app.use('/post',postRouter)
+app.use('/user',userRouter)
 
 
 // 404에러 핸들링
