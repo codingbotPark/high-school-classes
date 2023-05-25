@@ -28,7 +28,8 @@
           <a id="logout" href="/auth/logout" class="btn">로그아웃</a>
          </div>
          <div>
-          <button class="btn" id="change-password" >정보 수정</button>
+          <button class="btn" id="change-id" >닉네임 수정</button>
+          <button class="btn" id="change-password" >비밀번호 수정</button>
           <a href="/" class="btn go-home" >홈</a>
         </div>
         </div>
@@ -73,14 +74,29 @@
 
       const changePassword = document.querySelector("#change-password")
       changePassword.addEventListener("click",() => {
-        if(password = prompt("바꿀 비밀번호를 입력해주세요"))
-        axios.patch(`/auth/changepw`,{
-          password
-        }).then(() => {
-          alert("비밀번호 변경이 완료되었습니다")
+        if(password = prompt("바꿀 비밀번호를 입력해주세요")){
+          axios.patch(`/auth/changepw`,{
+            password
+          }).then(() => {
+            alert("비밀번호 변경이 완료되었습니다")
+  
+          }).catch(() => {
+          })
+        }
 
-        }).catch(() => {
-        })
+      })
+
+      const changeNick = document.querySelector("#change-id")
+      changeNick.addEventListener("click", () => {
+        if(nickname = prompt("바꿀 닉네임을 입력해주세요")){
+          axios.patch(`/auth/changenick`,{
+            nickname
+          }).then(() => {
+            alert("닉네임  변경이 완료되었습니다")
+            location.reload()
+          }).catch(() => {
+          })
+        }
       })
     </script>
     {% block script %}

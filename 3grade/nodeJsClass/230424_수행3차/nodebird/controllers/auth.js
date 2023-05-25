@@ -45,8 +45,6 @@ exports.login = (req,res,next) => {
 exports.changePassword = async (req,res,next) => {
     const pw = req.body.password
 
-    console.log("pw",pw)
-
     const password = await bcrypt.hash(pw,12)
     const result = await User.update({
         password
@@ -54,6 +52,17 @@ exports.changePassword = async (req,res,next) => {
 
     res.send("success")
     // return res.redirect('/')
+}
+
+exports.changeNickname = async(req,res,next) => {
+    const nickname = req.body.nickname
+
+    await User.update({
+        nick:nickname
+    },{where:{id:req.user.id}})
+
+    res.send("success")
+    // res.redirect('/');
 }
 
 exports.logout = (req, res) => {
