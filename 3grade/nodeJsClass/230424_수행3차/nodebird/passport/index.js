@@ -24,7 +24,7 @@ module.exports = () => {
           }],
         })
           .then(user => {
-            console.log('user', user);
+            // console.log('user', user.Followers);
             done(null, user);
            })
           .catch(err => done(err));

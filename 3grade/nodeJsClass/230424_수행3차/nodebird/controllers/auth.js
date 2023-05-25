@@ -21,7 +21,6 @@ exports.join = async(req,res,next) => {
 }
 
 exports.login = (req,res,next) => {
-    console.log("들어옴")
     console.log(req.body.email, req.body.password)
     passport.authenticate('local',(authError,user,info) => {
         console.log(authError,user,info)
@@ -41,6 +40,20 @@ exports.login = (req,res,next) => {
             return res.redirect('/');
         });
     })(req, res, next);
+}
+
+exports.changePassword = async (req,res,next) => {
+    const pw = req.body.password
+
+    console.log("pw",pw)
+
+    const password = await bcrypt.hash(pw,12)
+    const result = await User.update({
+        password
+    },{where:{id:req.user.id}})
+
+    res.send("success")
+    // return res.redirect('/')
 }
 
 exports.logout = (req, res) => {

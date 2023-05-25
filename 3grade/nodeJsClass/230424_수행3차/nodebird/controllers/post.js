@@ -13,6 +13,7 @@ exports.uploadPost = async(req,res,next) => {
             UserId:req.user.id
         })
         const hashtags = req.body.content.match(/#[^\s#]*/g);
+        console.log("------",hashtags,"-------")
         if (hashtags){
             const result = await Promise.all(
                 hashtags.map(tag => {
@@ -21,6 +22,7 @@ exports.uploadPost = async(req,res,next) => {
                     })
                 })
             )
+            await post.addHashtags(result.map(r => r[0]))
         }
         res.redirect("/")
     }catch(error){

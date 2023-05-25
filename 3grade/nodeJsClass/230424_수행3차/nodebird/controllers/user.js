@@ -1,5 +1,9 @@
 const User = require("../models/user");
 
+const db = require("../models");
+const { Op } = require("sequelize");
+const Follow = db.sequelize.Follow;
+
 exports.follow = async (req, res, next) => {
   try {
     const user = await User.findOne({ where: { id: req.user.id } });
@@ -22,15 +26,29 @@ exports.follow = async (req, res, next) => {
 
 exports.unFollow = async(req,res,next) => {
   try{
-    const user = await User.findOne({where:{id:req.params.id}})
+    // console.log(db.sequelize.Follow)
+
+    const user = await User.findOne({where:{id:req.user.id}});
     if (user){
-      await user.destroyFollowing(parseInt(req.params.id,10));
-      console.log(user);
+      await user.removeFollowing(parseInt(req.params.id, 10));
       res.send("success")
     } else {
-      res.status(404).send("no user");
+      res.status(404).send("no user")
     }
-  }catch(error){
+
+
+    // console.log(follow);
+    // const result = follow.destroy({where:{
+    //   [Op.and]:[
+    //     {followingId:req.params.id},
+    //     {followerId:req.params.myid}
+    //   ]
+    // }})
+    // console.log("-------");
+    // console.log(result);
+
+
+  }catch(error){ 
     console.error(error);
     next(error)
   }

@@ -127,7 +127,7 @@
         const myId = document.querySelector('#my-id');
         if (userId !== myId.value) {
             if (confirm('팔로잉취소하시겠습니까?')) {
-              axios.delete(`/user/${userId}/follow`)
+              axios.delete(`/user/${userId}/follow/${myId.value}`)
                 .then((result) => {
                   console.log(result);
                   location.reload();
