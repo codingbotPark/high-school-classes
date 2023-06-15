@@ -3,8 +3,8 @@ exports.isLoggedIn = (req,res,next) => {
         next();
     } else {
         // res.status(403).redirect(`/`)
-        // res.status(403).send("로그인 필요");
-        res.write("<script>window.location=\"/\";alert('need login')</script>");
+        res.status(403).send("로그인 필요");
+        // res.status(403).write("<script>window.location=\"/\";alert('need login')</script>");
     }
 }
 

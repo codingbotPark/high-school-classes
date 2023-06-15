@@ -22,9 +22,9 @@ describe('isLoggedIn',()=>{
            isAuthenticated:jest.fn(() => false),
         }
         isLoggedIn(req,res,next);
-        // expect(res.status).toBeCallWith(403);
-        // expect(res.send).toBeCalledWith('로그인 필요');
-        expect(res.write).toBeCalledWith("<script>window.location=\"/\";alert('need login')</script>")
+        expect(res.status).toBeCalledWith(403);
+        expect(res.send).toBeCalledWith('로그인 필요');
+        // expect(res.write).toBeCalledWith("<script>window.location=\"/\";alert('need login')</script>")
     })
 })
 

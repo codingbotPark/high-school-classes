@@ -84,7 +84,5 @@ app.use((err,req,res,next) => {
     res.render('error')
 })
 
-// app 사용
-app.listen(app.get('port'), () => {
-    console.log(app.get('port'), '번 포트 대기 중')
-})
+
+module.exports = app
