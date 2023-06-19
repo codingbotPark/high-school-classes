@@ -13,7 +13,7 @@ exports.join = async(req,res,next) => {
         await User.create({
             email,nick,password:hash
         })
-        return res.redirect('/')
+        return res.redirect('/')    
     } catch(err){
         console.error(err)
         return next(err)

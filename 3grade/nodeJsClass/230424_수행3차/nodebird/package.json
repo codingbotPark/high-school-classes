@@ -2,11 +2,11 @@
   "name": "nodebird",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
-    "start": "nodemon app",
-    "test":"jest",
-    "coverage":"jest --coverage"
+    "start": "nodemon server",
+    "test": "jest",
+    "coverage": "jest --coverage"
   },
   "keywords": [],
   "author": "",
@@ -29,7 +29,9 @@
     "sequelize-cli": "^6.6.0"
   },
   "devDependencies": {
+    "artillery": "^2.0.0-33",
     "jest": "^29.5.0",
-    "nodemon": "^2.0.22"
+    "nodemon": "^2.0.22",
+    "supertest": "^6.3.3"
   }
 }
