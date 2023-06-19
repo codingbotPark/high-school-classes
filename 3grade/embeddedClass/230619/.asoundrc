@@ -1,0 +1,11 @@
+pcm.mic{
+	type plug
+	slave{
+		pc "hw: 1,0"
+	}
+}
+
+pcm.!default{
+	type asym
+	capture.cpm "mic"
+}
