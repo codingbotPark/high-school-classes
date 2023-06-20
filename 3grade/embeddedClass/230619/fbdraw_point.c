@@ -4,6 +4,7 @@
 #include <linux/fb.h>
 #include <sys/ioctl.h>
 #include <sys/types.h>
+#include <math.h>
 
 #define FBDEVICE "/dev/fb0"
 
@@ -32,7 +33,8 @@ static int DrawPoint(int fd, int x, int y, unsigned short color)
     return 0;
 }
 
-static int DrawLine(int fd, int start_x, int end_x, int y, unsigned short color) 
+// 가로
+static int DrawColumnLine(int fd, int start_x, int end_x, int y, unsigned short color) 
 {
     int x, offset;
     struct fb_var_screeninfo vinfo;
@@ -52,45 +54,59 @@ static int DrawLine(int fd, int start_x, int end_x, int y, unsigned short color)
     return 0;
 }
 
+// 세로선
+static int DrawRowLine(int fd, int start_y, int end_y, int x, unsigned short color){
+    int y, offset;
+    struct fb_var_screeninfo vinfo;
+
+    /* 현재 프레임버퍼에 대한 고정된 화면 정보를 얻어온다. */
+    if(ioctl(fd, FBIOGET_VSCREENINFO, &vinfo) < 0) {
+        perror("Error reading fixed information");
+        return -1;
+    }
+
+    for(y = start_y; y < end_y; y++) {
+        offset = (x+y*vinfo.xres)*2;
+        lseek(fd, offset, SEEK_SET);
+        write(fd, &color, 2);
+    };
+
+    return 0;
+}
+
 int drawCircle(int fbfd){
     
     int topTemp = 100;
     int leftTemp = 100;
-    int row = 30;
-    int column = 30;
+    int r = 50; // 반지름
     
-    int pointer1Y = topTemp; // left
-    int pointer1X = leftTemp + (column / 2);
+    int centerPointerX = leftTemp + r;
+    int centerPointerY = topTemp + r;
     
-    int pointer2Y = topTemp;
-    int pointer2X = leftTemp + (column / 2); // right
-    
-    for (int i = 0;i<row;i++){
-        if (i < row / 2){
-            if (i > (row / 3) && i < (row / 3) * 2){
-                    DrawPoint(fbfd,pointer1X,pointer1Y,makepixel(0, 255, 0));
-                    DrawPoint(fbfd,pointer2X,pointer2Y,makepixel(0,255,0));
-                    pointer1X--;
-                    pointer1Y++;
-                    pointer2X++;
-                    pointer2Y++;
-            } else {
-                DrawPoint(fbfd,pointer1X,pointer1Y,makepixel(0,255,0));
-                DrawPoint(fbfd,pointer2X,pointer2Y,makepixel(0,255,0));
-                pointer1X--;
-                pointer2X++;
-                DrawPoint(fbfd,pointer1X,pointer1Y,makepixel(0,255,0));
-                DrawPoint(fbfd,pointer2X,pointer2Y,makepixel(0,255,0));
-                pointer1Y++;
-                pointer2Y++;
+    // 세로(y)
+    for (int i = topTemp;i<=topTemp+(r*2);i++){
+            for (int j = leftTemp; j <= leftTemp + (r*2) ;j++){
+                    int tempR = sqrt(pow(centerPointerY - i,2) + pow(centerPointerX - j,2));
+                    if (tempR == r){
+                        DrawPoint(fbfd, j, i, makepixel(0, 255, 0));
+                    }
             }
-        } else {
-            
-            
-            
-        }
     }
 } 
+
+int drawRectangle(int fbfd){
+    int topTemp = 300;
+    int leftTemp = 300;
+    int row = 150; // 세로
+    int column = 100; // 가로
+    
+    DrawColumnLine(fbfd, leftTemp, leftTemp + column, topTemp, makepixel(0, 255, 0)) ;
+    DrawColumnLine(fbfd, leftTemp, leftTemp + column, topTemp+row, makepixel(0, 255, 0)) ;
+    DrawRowLine(fbfd, topTemp, topTemp + row, leftTemp,makepixel(0, 255, 0));
+    DrawRowLine(fbfd, topTemp, topTemp + row, leftTemp+column,makepixel(0, 255, 0));
+}
+
+
 
 int main(int argc, char** argv)
 {
@@ -104,16 +120,10 @@ int main(int argc, char** argv)
         return -1;
     }
     
-    
 
-
-    DrawPoint(fbfd, 50, 50, makepixel(255, 0, 0));            /*  Red 점을 출력 */
-    DrawPoint(fbfd, 100, 100, makepixel(0, 255, 0));        /*  Green 점을 출력 */
-    DrawPoint(fbfd, 150, 150, makepixel(0, 0, 255));        /*  Blue 점을 출력 */
-
-    DrawLine(fbfd, 0, 100, 200, makepixel(0, 255, 255)) ;          /* Cyan 색상을 생성 */ 
     
     drawCircle(fbfd);
+    drawRectangle(fbfd);
 
     close(fbfd);                                           /* 사용이 끝난 프레임버
 퍼 장치를 닫는다. */
